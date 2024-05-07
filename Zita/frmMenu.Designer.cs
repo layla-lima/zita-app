@@ -1,0 +1,344 @@
+﻿namespace Zita
+{
+    partial class frmMenu
+    {
+        /// <summary>
+        /// Required designer variable.
+        /// </summary>
+        private System.ComponentModel.IContainer components = null;
+
+        /// <summary>
+        /// Clean up any resources being used.
+        /// </summary>
+        /// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        protected override void Dispose(bool disposing)
+        {
+            if (disposing && (components != null))
+            {
+                components.Dispose();
+            }
+            base.Dispose(disposing);
+        }
+
+        #region Windows Form Designer generated code
+
+        /// <summary>
+        /// Required method for Designer support - do not modify
+        /// the contents of this method with the code editor.
+        /// </summary>
+        private void InitializeComponent()
+        {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmMenu));
+            panel1 = new Panel();
+            btnMaximize = new PictureBox();
+            btnMinimize = new PictureBox();
+            btnClose = new PictureBox();
+            pictureBox1 = new PictureBox();
+            pictureBox4 = new PictureBox();
+            panel2 = new Panel();
+            pnlContainer = new Panel();
+            lblSair = new Label();
+            lblRelatorio = new Label();
+            pictureBox5 = new PictureBox();
+            pictureBox2 = new PictureBox();
+            pictureBox6 = new PictureBox();
+            lblEstoque = new Label();
+            pictureBox3 = new PictureBox();
+            lblRegistros = new Label();
+            pnlDesktop = new Panel();
+            panel3 = new Panel();
+            label2 = new Label();
+            label1 = new Label();
+            panel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)btnMaximize).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)btnMinimize).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)btnClose).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBox4).BeginInit();
+            panel2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)pictureBox5).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBox6).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBox3).BeginInit();
+            pnlDesktop.SuspendLayout();
+            panel3.SuspendLayout();
+            SuspendLayout();
+            // 
+            // panel1
+            // 
+            panel1.BackColor = SystemColors.ActiveCaptionText;
+            panel1.Controls.Add(btnMaximize);
+            panel1.Controls.Add(btnMinimize);
+            panel1.Controls.Add(btnClose);
+            panel1.Controls.Add(pictureBox1);
+            panel1.Dock = DockStyle.Top;
+            panel1.Location = new Point(298, 0);
+            panel1.Name = "panel1";
+            panel1.Size = new Size(1072, 74);
+            panel1.TabIndex = 17;
+            // 
+            // btnMaximize
+            // 
+            btnMaximize.Image = (Image)resources.GetObject("btnMaximize.Image");
+            btnMaximize.Location = new Point(972, 3);
+            btnMaximize.Name = "btnMaximize";
+            btnMaximize.Size = new Size(50, 18);
+            btnMaximize.SizeMode = PictureBoxSizeMode.Zoom;
+            btnMaximize.TabIndex = 4;
+            btnMaximize.TabStop = false;
+            btnMaximize.Click += btnMaximize_Click;
+            // 
+            // btnMinimize
+            // 
+            btnMinimize.Image = (Image)resources.GetObject("btnMinimize.Image");
+            btnMinimize.Location = new Point(925, 3);
+            btnMinimize.Name = "btnMinimize";
+            btnMinimize.Size = new Size(50, 18);
+            btnMinimize.SizeMode = PictureBoxSizeMode.Zoom;
+            btnMinimize.TabIndex = 3;
+            btnMinimize.TabStop = false;
+            btnMinimize.Click += btnMinimize_Click;
+            // 
+            // btnClose
+            // 
+            btnClose.Image = Properties.Resources.close;
+            btnClose.Location = new Point(1019, 3);
+            btnClose.Name = "btnClose";
+            btnClose.Size = new Size(50, 18);
+            btnClose.SizeMode = PictureBoxSizeMode.Zoom;
+            btnClose.TabIndex = 1;
+            btnClose.TabStop = false;
+            btnClose.Click += btnClose_Click;
+            // 
+            // pictureBox1
+            // 
+            pictureBox1.Image = (Image)resources.GetObject("pictureBox1.Image");
+            pictureBox1.Location = new Point(356, -26);
+            pictureBox1.Name = "pictureBox1";
+            pictureBox1.Size = new Size(347, 118);
+            pictureBox1.SizeMode = PictureBoxSizeMode.Zoom;
+            pictureBox1.TabIndex = 0;
+            pictureBox1.TabStop = false;
+            // 
+            // pictureBox4
+            // 
+            pictureBox4.Image = Properties.Resources.Logo_branco_Photoroom_png_Photoroom;
+            pictureBox4.Location = new Point(39, 75);
+            pictureBox4.Name = "pictureBox4";
+            pictureBox4.Size = new Size(235, 164);
+            pictureBox4.SizeMode = PictureBoxSizeMode.Zoom;
+            pictureBox4.TabIndex = 4;
+            pictureBox4.TabStop = false;
+            // 
+            // panel2
+            // 
+            panel2.BackColor = Color.FromArgb(18, 18, 18);
+            panel2.Controls.Add(pnlContainer);
+            panel2.Controls.Add(lblSair);
+            panel2.Controls.Add(lblRelatorio);
+            panel2.Controls.Add(pictureBox5);
+            panel2.Controls.Add(pictureBox2);
+            panel2.Controls.Add(pictureBox6);
+            panel2.Controls.Add(lblEstoque);
+            panel2.Controls.Add(pictureBox3);
+            panel2.Controls.Add(lblRegistros);
+            panel2.Controls.Add(pictureBox4);
+            panel2.Dock = DockStyle.Left;
+            panel2.Location = new Point(0, 0);
+            panel2.Name = "panel2";
+            panel2.Size = new Size(298, 749);
+            panel2.TabIndex = 18;
+            // 
+            // pnlContainer
+            // 
+            pnlContainer.Location = new Point(298, 75);
+            pnlContainer.Name = "pnlContainer";
+            pnlContainer.Size = new Size(1072, 666);
+            pnlContainer.TabIndex = 17;
+            // 
+            // lblSair
+            // 
+            lblSair.AutoSize = true;
+            lblSair.Cursor = Cursors.Hand;
+            lblSair.Font = new Font("Segoe UI", 20.25F, FontStyle.Bold);
+            lblSair.ForeColor = Color.White;
+            lblSair.Location = new Point(150, 617);
+            lblSair.Name = "lblSair";
+            lblSair.Size = new Size(66, 37);
+            lblSair.TabIndex = 6;
+            lblSair.Text = "Sair";
+            lblSair.Click += lblSair_Click;
+            // 
+            // lblRelatorio
+            // 
+            lblRelatorio.AutoSize = true;
+            lblRelatorio.Cursor = Cursors.Hand;
+            lblRelatorio.Font = new Font("Segoe UI", 15.75F, FontStyle.Bold);
+            lblRelatorio.ForeColor = Color.White;
+            lblRelatorio.Location = new Point(114, 451);
+            lblRelatorio.Name = "lblRelatorio";
+            lblRelatorio.Size = new Size(102, 30);
+            lblRelatorio.TabIndex = 8;
+            lblRelatorio.Text = "Relatório";
+            // 
+            // pictureBox5
+            // 
+            pictureBox5.Image = Properties.Resources.sair;
+            pictureBox5.Location = new Point(77, 601);
+            pictureBox5.Name = "pictureBox5";
+            pictureBox5.Size = new Size(67, 67);
+            pictureBox5.SizeMode = PictureBoxSizeMode.Zoom;
+            pictureBox5.TabIndex = 5;
+            pictureBox5.TabStop = false;
+            // 
+            // pictureBox2
+            // 
+            pictureBox2.Image = Properties.Resources.estoque_pronto;
+            pictureBox2.Location = new Point(52, 349);
+            pictureBox2.Name = "pictureBox2";
+            pictureBox2.Size = new Size(56, 56);
+            pictureBox2.SizeMode = PictureBoxSizeMode.Zoom;
+            pictureBox2.TabIndex = 1;
+            pictureBox2.TabStop = false;
+            // 
+            // pictureBox6
+            // 
+            pictureBox6.Image = Properties.Resources.informacao_financeira;
+            pictureBox6.Location = new Point(52, 434);
+            pictureBox6.Name = "pictureBox6";
+            pictureBox6.Size = new Size(56, 56);
+            pictureBox6.SizeMode = PictureBoxSizeMode.Zoom;
+            pictureBox6.TabIndex = 7;
+            pictureBox6.TabStop = false;
+            // 
+            // lblEstoque
+            // 
+            lblEstoque.AutoSize = true;
+            lblEstoque.Cursor = Cursors.Hand;
+            lblEstoque.Font = new Font("Segoe UI", 15.75F, FontStyle.Bold);
+            lblEstoque.ForeColor = Color.White;
+            lblEstoque.Location = new Point(114, 364);
+            lblEstoque.Name = "lblEstoque";
+            lblEstoque.Size = new Size(91, 30);
+            lblEstoque.TabIndex = 0;
+            lblEstoque.Text = "Estoque";
+            lblEstoque.Click += lblEstoque_Click;
+            // 
+            // pictureBox3
+            // 
+            pictureBox3.Image = Properties.Resources.caixa_eletronico;
+            pictureBox3.Location = new Point(52, 263);
+            pictureBox3.Name = "pictureBox3";
+            pictureBox3.Size = new Size(56, 56);
+            pictureBox3.SizeMode = PictureBoxSizeMode.Zoom;
+            pictureBox3.TabIndex = 2;
+            pictureBox3.TabStop = false;
+            // 
+            // lblRegistros
+            // 
+            lblRegistros.AutoSize = true;
+            lblRegistros.Cursor = Cursors.Hand;
+            lblRegistros.Font = new Font("Segoe UI", 15.75F, FontStyle.Bold);
+            lblRegistros.ForeColor = Color.White;
+            lblRegistros.Location = new Point(114, 282);
+            lblRegistros.Name = "lblRegistros";
+            lblRegistros.Size = new Size(103, 30);
+            lblRegistros.TabIndex = 3;
+            lblRegistros.Text = "Registros";
+            lblRegistros.Click += lblRegistros_Click;
+            // 
+            // pnlDesktop
+            // 
+            pnlDesktop.BackColor = SystemColors.ControlLight;
+            pnlDesktop.Controls.Add(panel3);
+            pnlDesktop.Controls.Add(label1);
+            pnlDesktop.Dock = DockStyle.Fill;
+            pnlDesktop.Location = new Point(298, 74);
+            pnlDesktop.Name = "pnlDesktop";
+            pnlDesktop.Size = new Size(1072, 675);
+            pnlDesktop.TabIndex = 19;
+            // 
+            // panel3
+            // 
+            panel3.BorderStyle = BorderStyle.FixedSingle;
+            panel3.Controls.Add(label2);
+            panel3.Dock = DockStyle.Bottom;
+            panel3.Location = new Point(0, 575);
+            panel3.Name = "panel3";
+            panel3.Size = new Size(1072, 100);
+            panel3.TabIndex = 2;
+            // 
+            // label2
+            // 
+            label2.AutoSize = true;
+            label2.Location = new Point(341, 34);
+            label2.Name = "label2";
+            label2.Size = new Size(398, 15);
+            label2.TabIndex = 1;
+            label2.Text = "Sistema desenvolvido por Layla Lima © 2024. Todos os direitos reservados.";
+            // 
+            // label1
+            // 
+            label1.AutoSize = true;
+            label1.Font = new Font("Segoe UI", 20.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label1.ForeColor = Color.DarkGray;
+            label1.Location = new Point(221, 275);
+            label1.Name = "label1";
+            label1.Size = new Size(630, 37);
+            label1.TabIndex = 0;
+            label1.Text = "Para iniciar, selecione uma das opções do menu.";
+            // 
+            // frmMenu
+            // 
+            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleMode = AutoScaleMode.Font;
+            ClientSize = new Size(1370, 749);
+            Controls.Add(pnlDesktop);
+            Controls.Add(panel1);
+            Controls.Add(panel2);
+            Name = "frmMenu";
+            Text = "frmMenu";
+            WindowState = FormWindowState.Maximized;
+            panel1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)btnMaximize).EndInit();
+            ((System.ComponentModel.ISupportInitialize)btnMinimize).EndInit();
+            ((System.ComponentModel.ISupportInitialize)btnClose).EndInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBox4).EndInit();
+            panel2.ResumeLayout(false);
+            panel2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)pictureBox5).EndInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBox2).EndInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBox6).EndInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBox3).EndInit();
+            pnlDesktop.ResumeLayout(false);
+            pnlDesktop.PerformLayout();
+            panel3.ResumeLayout(false);
+            panel3.PerformLayout();
+            ResumeLayout(false);
+        }
+
+        #endregion
+
+        private Panel panel1;
+        private PictureBox pictureBox1;
+        private PictureBox pictureBox4;
+        private Panel panel2;
+        private Panel pnlContainer;
+        private Label lblSair;
+        private Label lblRelatorio;
+        private PictureBox pictureBox5;
+        private PictureBox pictureBox2;
+        private PictureBox pictureBox6;
+        private Label lblEstoque;
+        private PictureBox pictureBox3;
+        private Label lblRegistros;
+        private Panel pnlDesktop;
+        private Label label2;
+        private Label label1;
+        private Panel panel3;
+        private PictureBox btnMinimize;
+        private PictureBox btnClose;
+        private PictureBox btnMaximize;
+    }
+}
