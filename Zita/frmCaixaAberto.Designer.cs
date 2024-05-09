@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmCaixaAberto));
-            button3 = new Button();
+            btnFinalizarCompra = new Button();
             dgrCompras = new DataGridView();
             Código = new DataGridViewTextBoxColumn();
             Produto = new DataGridViewTextBoxColumn();
@@ -72,19 +72,20 @@
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             SuspendLayout();
             // 
-            // button3
+            // btnFinalizarCompra
             // 
-            button3.BackColor = SystemColors.ActiveCaptionText;
-            button3.Cursor = Cursors.Hand;
-            button3.FlatStyle = FlatStyle.Popup;
-            button3.Font = new Font("Segoe UI", 12F, FontStyle.Bold);
-            button3.ForeColor = SystemColors.ButtonFace;
-            button3.Location = new Point(928, 552);
-            button3.Name = "button3";
-            button3.Size = new Size(267, 79);
-            button3.TabIndex = 36;
-            button3.Text = "Finalizar Compra";
-            button3.UseVisualStyleBackColor = false;
+            btnFinalizarCompra.BackColor = SystemColors.ActiveCaptionText;
+            btnFinalizarCompra.Cursor = Cursors.Hand;
+            btnFinalizarCompra.FlatStyle = FlatStyle.Popup;
+            btnFinalizarCompra.Font = new Font("Segoe UI", 12F, FontStyle.Bold);
+            btnFinalizarCompra.ForeColor = SystemColors.ButtonFace;
+            btnFinalizarCompra.Location = new Point(928, 552);
+            btnFinalizarCompra.Name = "btnFinalizarCompra";
+            btnFinalizarCompra.Size = new Size(267, 79);
+            btnFinalizarCompra.TabIndex = 36;
+            btnFinalizarCompra.Text = "Finalizar Compra";
+            btnFinalizarCompra.UseVisualStyleBackColor = false;
+            btnFinalizarCompra.Click += btnFinalizarCompra_Click;
             // 
             // dgrCompras
             // 
@@ -461,7 +462,7 @@
             ClientSize = new Size(1370, 749);
             Controls.Add(panel3);
             Controls.Add(panel1);
-            Controls.Add(button3);
+            Controls.Add(btnFinalizarCompra);
             Controls.Add(dgrCompras);
             Controls.Add(panel2);
             Name = "frmCaixaAberto";
@@ -480,7 +481,7 @@
 
         #endregion
 
-        private Button button3;
+        private Button btnFinalizarCompra;
         private DataGridView dgrCompras;
         private Button btnRemover;
         private Button btnAdicionar;

@@ -162,7 +162,7 @@ namespace Zita
             // Armazena a forma de pagamento selecionada
             if (optPix.Checked)
             {
-                formaDePagamento = "PIX";
+                formaDePagamento = "Pix";
             }
         }
 
@@ -208,6 +208,81 @@ namespace Zita
                 lblTroco.Text = troco.ToString("C2");
             }
         }
+
+
+        private void btnFinalizarCompra_Click(object sender, EventArgs e)
+        {
+            // Verifica se há um valor total válido
+            if (!string.IsNullOrWhiteSpace(lblValorTotal.Text))
+            {
+                // Obtém o preço total
+                double precoTotal = Convert.ToDouble(lblValorTotal.Text.Replace("R$ ", ""));
+
+                // Obtém a forma de pagamento
+                string formaDePagamento = this.formaDePagamento;
+
+                // Obtém a data e hora atuais
+                DateTime dataHoraAtual = DateTime.Now;
+
+                try
+                {
+                    // Cria a conexão com o banco de dados
+                    using (SqlConnection connection = new SqlConnection(connectionString))
+                    {
+                        // Abre a conexão
+                        connection.Open();
+
+                        // Cria a consulta SQL para inserir os dados na tabela Registros
+                        string query = "INSERT INTO Registros (DataHora, PrecoTotal, FormaDePagamento) VALUES (@DataHora, @PrecoTotal, @FormaDePagamento)";
+
+                        // Cria e configura o comando SQL
+                        using (SqlCommand command = new SqlCommand(query, connection))
+                        {
+                            // Adiciona os parâmetros à consulta SQL
+                            command.Parameters.AddWithValue("@DataHora", dataHoraAtual);
+                            command.Parameters.AddWithValue("@PrecoTotal", precoTotal);
+                            command.Parameters.AddWithValue("@FormaDePagamento", formaDePagamento);
+
+                            // Executa a consulta SQL
+                            command.ExecuteNonQuery();
+                        }
+                    }
+
+                    // Exibe mensagem de sucesso
+                    MessageBox.Show("Compra realizada com sucesso!");
+
+                    // Limpa todos os campos
+                    LimparCampos();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Erro ao finalizar compra: " + ex.Message);
+                }
+            }
+            else
+            {
+                MessageBox.Show("Nenhum item na compra.");
+            }
+        }
+
+        private void LimparCampos()
+        {
+            // Limpa os campos relacionados à compra
+            txtCodProduto.Text = "";
+            lblNomeProduto.Text = "";
+            lblValorUnitario.Text = "";
+            txtQuantidade.Text = "";
+            dgrCompras.Rows.Clear();
+            lblValorTotal.Text = "";
+
+            // Limpa os campos relacionados ao pagamento
+            txtValorPago.Text = "";
+            lblTroco.Text = "";
+
+            // Volta o foco para o campo de código do produto
+            txtCodProduto.Focus();
+        }
+
 
         private void btnClose_Click(object sender, EventArgs e)
         {
