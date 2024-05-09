@@ -36,22 +36,21 @@
             pictureBox1 = new PictureBox();
             pictureBox4 = new PictureBox();
             panel2 = new Panel();
+            panel6 = new Panel();
+            btnRelatorio = new Button();
+            panel7 = new Panel();
+            panel4 = new Panel();
+            btnCaixa = new Button();
+            btnRegistros = new Button();
             panel5 = new Panel();
             btnEstoque = new Button();
             pnlContainer = new Panel();
             lblSair = new Label();
             pictureBox5 = new PictureBox();
-            lblRegistros = new Label();
             pnlDesktop = new Panel();
             panel3 = new Panel();
             label2 = new Label();
             label1 = new Label();
-            panel4 = new Panel();
-            btnRegistros = new Button();
-            panel7 = new Panel();
-            btnCaixa = new Button();
-            panel6 = new Panel();
-            btnRelatorio = new Button();
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)btnMaximize).BeginInit();
             ((System.ComponentModel.ISupportInitialize)btnMinimize).BeginInit();
@@ -151,6 +150,80 @@
             panel2.Size = new Size(298, 749);
             panel2.TabIndex = 18;
             // 
+            // panel6
+            // 
+            panel6.BackColor = Color.FromArgb(50, 50, 50);
+            panel6.Location = new Point(0, 472);
+            panel6.Name = "panel6";
+            panel6.Size = new Size(5, 53);
+            panel6.TabIndex = 26;
+            // 
+            // btnRelatorio
+            // 
+            btnRelatorio.FlatAppearance.BorderSize = 0;
+            btnRelatorio.FlatAppearance.MouseOverBackColor = Color.FromArgb(50, 50, 50);
+            btnRelatorio.FlatStyle = FlatStyle.Flat;
+            btnRelatorio.Font = new Font("Segoe UI", 15.75F, FontStyle.Bold);
+            btnRelatorio.ForeColor = SystemColors.ControlLight;
+            btnRelatorio.Image = (Image)resources.GetObject("btnRelatorio.Image");
+            btnRelatorio.ImageAlign = ContentAlignment.MiddleLeft;
+            btnRelatorio.Location = new Point(3, 472);
+            btnRelatorio.Name = "btnRelatorio";
+            btnRelatorio.Size = new Size(295, 53);
+            btnRelatorio.TabIndex = 27;
+            btnRelatorio.Text = "Relatório";
+            btnRelatorio.UseVisualStyleBackColor = true;
+            // 
+            // panel7
+            // 
+            panel7.BackColor = Color.FromArgb(50, 50, 50);
+            panel7.Location = new Point(0, 264);
+            panel7.Name = "panel7";
+            panel7.Size = new Size(5, 53);
+            panel7.TabIndex = 24;
+            // 
+            // panel4
+            // 
+            panel4.BackColor = Color.FromArgb(50, 50, 50);
+            panel4.Location = new Point(0, 333);
+            panel4.Name = "panel4";
+            panel4.Size = new Size(5, 53);
+            panel4.TabIndex = 22;
+            // 
+            // btnCaixa
+            // 
+            btnCaixa.FlatAppearance.BorderSize = 0;
+            btnCaixa.FlatAppearance.MouseOverBackColor = Color.FromArgb(50, 50, 50);
+            btnCaixa.FlatStyle = FlatStyle.Flat;
+            btnCaixa.Font = new Font("Segoe UI", 15.75F, FontStyle.Bold);
+            btnCaixa.ForeColor = SystemColors.ControlLight;
+            btnCaixa.Image = (Image)resources.GetObject("btnCaixa.Image");
+            btnCaixa.ImageAlign = ContentAlignment.MiddleLeft;
+            btnCaixa.Location = new Point(3, 264);
+            btnCaixa.Name = "btnCaixa";
+            btnCaixa.Size = new Size(295, 53);
+            btnCaixa.TabIndex = 25;
+            btnCaixa.Text = "Caixa";
+            btnCaixa.UseVisualStyleBackColor = true;
+            btnCaixa.Click += btnCaixa_Click;
+            // 
+            // btnRegistros
+            // 
+            btnRegistros.FlatAppearance.BorderSize = 0;
+            btnRegistros.FlatAppearance.MouseOverBackColor = Color.FromArgb(50, 50, 50);
+            btnRegistros.FlatStyle = FlatStyle.Flat;
+            btnRegistros.Font = new Font("Segoe UI", 15.75F, FontStyle.Bold);
+            btnRegistros.ForeColor = SystemColors.ControlLight;
+            btnRegistros.Image = (Image)resources.GetObject("btnRegistros.Image");
+            btnRegistros.ImageAlign = ContentAlignment.MiddleLeft;
+            btnRegistros.Location = new Point(3, 333);
+            btnRegistros.Name = "btnRegistros";
+            btnRegistros.Size = new Size(295, 53);
+            btnRegistros.TabIndex = 23;
+            btnRegistros.Text = "Registros";
+            btnRegistros.UseVisualStyleBackColor = true;
+            btnRegistros.Click += btnRegistros_Click;
+            // 
             // panel5
             // 
             panel5.BackColor = Color.FromArgb(50, 50, 50);
@@ -206,25 +279,11 @@
             pictureBox5.TabIndex = 5;
             pictureBox5.TabStop = false;
             // 
-            // lblRegistros
-            // 
-            lblRegistros.AutoSize = true;
-            lblRegistros.Cursor = Cursors.Hand;
-            lblRegistros.Font = new Font("Segoe UI", 15.75F, FontStyle.Bold);
-            lblRegistros.ForeColor = Color.White;
-            lblRegistros.Location = new Point(25, 499);
-            lblRegistros.Name = "lblRegistros";
-            lblRegistros.Size = new Size(103, 30);
-            lblRegistros.TabIndex = 3;
-            lblRegistros.Text = "Registros";
-            
-            // 
             // pnlDesktop
             // 
             pnlDesktop.BackColor = SystemColors.Control;
             pnlDesktop.Controls.Add(panel3);
             pnlDesktop.Controls.Add(label1);
-            pnlDesktop.Controls.Add(lblRegistros);
             pnlDesktop.Dock = DockStyle.Fill;
             pnlDesktop.Location = new Point(298, 74);
             pnlDesktop.Name = "pnlDesktop";
@@ -260,79 +319,6 @@
             label1.Size = new Size(603, 37);
             label1.TabIndex = 0;
             label1.Text = "Para iniciar, selecione uma das opções do menu.";
-            // 
-            // panel4
-            // 
-            panel4.BackColor = Color.FromArgb(50, 50, 50);
-            panel4.Location = new Point(0, 333);
-            panel4.Name = "panel4";
-            panel4.Size = new Size(5, 53);
-            panel4.TabIndex = 22;
-            // 
-            // btnRegistros
-            // 
-            btnRegistros.FlatAppearance.BorderSize = 0;
-            btnRegistros.FlatAppearance.MouseOverBackColor = Color.FromArgb(50, 50, 50);
-            btnRegistros.FlatStyle = FlatStyle.Flat;
-            btnRegistros.Font = new Font("Segoe UI", 15.75F, FontStyle.Bold);
-            btnRegistros.ForeColor = SystemColors.ControlLight;
-            btnRegistros.Image = (Image)resources.GetObject("btnRegistros.Image");
-            btnRegistros.ImageAlign = ContentAlignment.MiddleLeft;
-            btnRegistros.Location = new Point(3, 333);
-            btnRegistros.Name = "btnRegistros";
-            btnRegistros.Size = new Size(295, 53);
-            btnRegistros.TabIndex = 23;
-            btnRegistros.Text = "Registros";
-            btnRegistros.UseVisualStyleBackColor = true;
-            btnRegistros.Click += btnRegistros_Click;
-            // 
-            // panel7
-            // 
-            panel7.BackColor = Color.FromArgb(50, 50, 50);
-            panel7.Location = new Point(0, 264);
-            panel7.Name = "panel7";
-            panel7.Size = new Size(5, 53);
-            panel7.TabIndex = 24;
-            // 
-            // btnCaixa
-            // 
-            btnCaixa.FlatAppearance.BorderSize = 0;
-            btnCaixa.FlatAppearance.MouseOverBackColor = Color.FromArgb(50, 50, 50);
-            btnCaixa.FlatStyle = FlatStyle.Flat;
-            btnCaixa.Font = new Font("Segoe UI", 15.75F, FontStyle.Bold);
-            btnCaixa.ForeColor = SystemColors.ControlLight;
-            btnCaixa.Image = (Image)resources.GetObject("btnCaixa.Image");
-            btnCaixa.ImageAlign = ContentAlignment.MiddleLeft;
-            btnCaixa.Location = new Point(3, 264);
-            btnCaixa.Name = "btnCaixa";
-            btnCaixa.Size = new Size(295, 53);
-            btnCaixa.TabIndex = 25;
-            btnCaixa.Text = "Caixa";
-            btnCaixa.UseVisualStyleBackColor = true;
-            // 
-            // panel6
-            // 
-            panel6.BackColor = Color.FromArgb(50, 50, 50);
-            panel6.Location = new Point(0, 472);
-            panel6.Name = "panel6";
-            panel6.Size = new Size(5, 53);
-            panel6.TabIndex = 26;
-            // 
-            // btnRelatorio
-            // 
-            btnRelatorio.FlatAppearance.BorderSize = 0;
-            btnRelatorio.FlatAppearance.MouseOverBackColor = Color.FromArgb(50, 50, 50);
-            btnRelatorio.FlatStyle = FlatStyle.Flat;
-            btnRelatorio.Font = new Font("Segoe UI", 15.75F, FontStyle.Bold);
-            btnRelatorio.ForeColor = SystemColors.ControlLight;
-            btnRelatorio.Image = (Image)resources.GetObject("btnRelatorio.Image");
-            btnRelatorio.ImageAlign = ContentAlignment.MiddleLeft;
-            btnRelatorio.Location = new Point(3, 472);
-            btnRelatorio.Name = "btnRelatorio";
-            btnRelatorio.Size = new Size(295, 53);
-            btnRelatorio.TabIndex = 27;
-            btnRelatorio.Text = "Relatório";
-            btnRelatorio.UseVisualStyleBackColor = true;
             // 
             // frmMenu
             // 
@@ -370,7 +356,6 @@
         private Panel pnlContainer;
         private Label lblSair;
         private PictureBox pictureBox5;
-        private Label lblRegistros;
         private Panel pnlDesktop;
         private Label label2;
         private Label label1;

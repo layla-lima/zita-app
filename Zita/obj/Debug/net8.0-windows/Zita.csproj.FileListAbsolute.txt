@@ -30,3 +30,5 @@ C:\Users\Layla\Documents\Zita\Zita\obj\Debug\net8.0-windows\Zita.frmMenu.resourc
 C:\Users\Layla\Documents\Zita\Zita\bin\Debug\net8.0-windows\LiveCharts.dll
 C:\Users\Layla\Documents\Zita\Zita\bin\Debug\net8.0-windows\LiveCharts.WinForms.dll
 C:\Users\Layla\Documents\Zita\Zita\bin\Debug\net8.0-windows\LiveCharts.Wpf.dll
+C:\Users\Layla\Documents\Zita\Zita\obj\Debug\net8.0-windows\Zita.frmCaixa.resources
+C:\Users\Layla\Documents\Zita\Zita\obj\Debug\net8.0-windows\Zita.frmCaixaAberto.resources

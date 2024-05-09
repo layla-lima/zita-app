@@ -46,7 +46,7 @@ namespace Zita
             currentChildForm = childForm;
         }
 
-        
+
         private void frmMenu_KeyDown(object sender, KeyEventArgs e)
         {
             // Verifica se a tecla F11 foi pressionada
@@ -105,6 +105,14 @@ namespace Zita
 
             // Chama o método OpenChildForm para abrir frmRegistros como formulário filho
             OpenChildForm(registrosForm);
+        }
+
+        private void btnCaixa_Click(object sender, EventArgs e)
+        {
+            frmCaixa caixaForm = new frmCaixa();
+
+            // Chama o método OpenChildForm para abrir frmEstoque como formulário filho
+            OpenChildForm(caixaForm);
         }
     }
 }
