@@ -27,3 +27,6 @@ C:\Users\Layla\Documents\Zita\Zita\obj\Debug\net8.0-windows\ref\Zita.dll
 C:\Users\Layla\Documents\Zita\Zita\obj\Debug\net8.0-windows\Zita.frmEstoque.resources
 C:\Users\Layla\Documents\Zita\Zita\obj\Debug\net8.0-windows\Zita.frmRegistros.resources
 C:\Users\Layla\Documents\Zita\Zita\obj\Debug\net8.0-windows\Zita.frmMenu.resources
+C:\Users\Layla\Documents\Zita\Zita\bin\Debug\net8.0-windows\LiveCharts.dll
+C:\Users\Layla\Documents\Zita\Zita\bin\Debug\net8.0-windows\LiveCharts.WinForms.dll
+C:\Users\Layla\Documents\Zita\Zita\bin\Debug\net8.0-windows\LiveCharts.Wpf.dll

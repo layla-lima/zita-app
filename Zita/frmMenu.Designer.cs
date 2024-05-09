@@ -36,19 +36,22 @@
             pictureBox1 = new PictureBox();
             pictureBox4 = new PictureBox();
             panel2 = new Panel();
+            panel5 = new Panel();
+            btnEstoque = new Button();
             pnlContainer = new Panel();
             lblSair = new Label();
-            lblRelatorio = new Label();
             pictureBox5 = new PictureBox();
-            pictureBox2 = new PictureBox();
-            pictureBox6 = new PictureBox();
-            lblEstoque = new Label();
-            pictureBox3 = new PictureBox();
             lblRegistros = new Label();
             pnlDesktop = new Panel();
             panel3 = new Panel();
             label2 = new Label();
             label1 = new Label();
+            panel4 = new Panel();
+            btnRegistros = new Button();
+            panel7 = new Panel();
+            btnCaixa = new Button();
+            panel6 = new Panel();
+            btnRelatorio = new Button();
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)btnMaximize).BeginInit();
             ((System.ComponentModel.ISupportInitialize)btnMinimize).BeginInit();
@@ -57,9 +60,6 @@
             ((System.ComponentModel.ISupportInitialize)pictureBox4).BeginInit();
             panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox5).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)pictureBox6).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)pictureBox3).BeginInit();
             pnlDesktop.SuspendLayout();
             panel3.SuspendLayout();
             SuspendLayout();
@@ -133,21 +133,48 @@
             // panel2
             // 
             panel2.BackColor = Color.FromArgb(18, 18, 18);
+            panel2.Controls.Add(panel6);
+            panel2.Controls.Add(btnRelatorio);
+            panel2.Controls.Add(panel7);
+            panel2.Controls.Add(panel4);
+            panel2.Controls.Add(btnCaixa);
+            panel2.Controls.Add(btnRegistros);
+            panel2.Controls.Add(panel5);
+            panel2.Controls.Add(btnEstoque);
             panel2.Controls.Add(pnlContainer);
             panel2.Controls.Add(lblSair);
-            panel2.Controls.Add(lblRelatorio);
             panel2.Controls.Add(pictureBox5);
-            panel2.Controls.Add(pictureBox2);
-            panel2.Controls.Add(pictureBox6);
-            panel2.Controls.Add(lblEstoque);
-            panel2.Controls.Add(pictureBox3);
-            panel2.Controls.Add(lblRegistros);
             panel2.Controls.Add(pictureBox4);
             panel2.Dock = DockStyle.Left;
             panel2.Location = new Point(0, 0);
             panel2.Name = "panel2";
             panel2.Size = new Size(298, 749);
             panel2.TabIndex = 18;
+            // 
+            // panel5
+            // 
+            panel5.BackColor = Color.FromArgb(50, 50, 50);
+            panel5.Location = new Point(0, 403);
+            panel5.Name = "panel5";
+            panel5.Size = new Size(5, 53);
+            panel5.TabIndex = 4;
+            // 
+            // btnEstoque
+            // 
+            btnEstoque.FlatAppearance.BorderSize = 0;
+            btnEstoque.FlatAppearance.MouseOverBackColor = Color.FromArgb(50, 50, 50);
+            btnEstoque.FlatStyle = FlatStyle.Flat;
+            btnEstoque.Font = new Font("Segoe UI", 15.75F, FontStyle.Bold);
+            btnEstoque.ForeColor = SystemColors.ControlLight;
+            btnEstoque.Image = (Image)resources.GetObject("btnEstoque.Image");
+            btnEstoque.ImageAlign = ContentAlignment.MiddleLeft;
+            btnEstoque.Location = new Point(3, 403);
+            btnEstoque.Name = "btnEstoque";
+            btnEstoque.Size = new Size(295, 53);
+            btnEstoque.TabIndex = 19;
+            btnEstoque.Text = "Estoque";
+            btnEstoque.UseVisualStyleBackColor = true;
+            btnEstoque.Click += btnEstoque_Click;
             // 
             // pnlContainer
             // 
@@ -169,18 +196,6 @@
             lblSair.Text = "Sair";
             lblSair.Click += lblSair_Click;
             // 
-            // lblRelatorio
-            // 
-            lblRelatorio.AutoSize = true;
-            lblRelatorio.Cursor = Cursors.Hand;
-            lblRelatorio.Font = new Font("Segoe UI", 15.75F, FontStyle.Bold);
-            lblRelatorio.ForeColor = Color.White;
-            lblRelatorio.Location = new Point(114, 451);
-            lblRelatorio.Name = "lblRelatorio";
-            lblRelatorio.Size = new Size(102, 30);
-            lblRelatorio.TabIndex = 8;
-            lblRelatorio.Text = "Relatório";
-            // 
             // pictureBox5
             // 
             pictureBox5.Image = Properties.Resources.sair;
@@ -191,67 +206,25 @@
             pictureBox5.TabIndex = 5;
             pictureBox5.TabStop = false;
             // 
-            // pictureBox2
-            // 
-            pictureBox2.Image = Properties.Resources.estoque_pronto;
-            pictureBox2.Location = new Point(52, 349);
-            pictureBox2.Name = "pictureBox2";
-            pictureBox2.Size = new Size(56, 56);
-            pictureBox2.SizeMode = PictureBoxSizeMode.Zoom;
-            pictureBox2.TabIndex = 1;
-            pictureBox2.TabStop = false;
-            // 
-            // pictureBox6
-            // 
-            pictureBox6.Image = Properties.Resources.informacao_financeira;
-            pictureBox6.Location = new Point(52, 434);
-            pictureBox6.Name = "pictureBox6";
-            pictureBox6.Size = new Size(56, 56);
-            pictureBox6.SizeMode = PictureBoxSizeMode.Zoom;
-            pictureBox6.TabIndex = 7;
-            pictureBox6.TabStop = false;
-            // 
-            // lblEstoque
-            // 
-            lblEstoque.AutoSize = true;
-            lblEstoque.Cursor = Cursors.Hand;
-            lblEstoque.Font = new Font("Segoe UI", 15.75F, FontStyle.Bold);
-            lblEstoque.ForeColor = Color.White;
-            lblEstoque.Location = new Point(114, 364);
-            lblEstoque.Name = "lblEstoque";
-            lblEstoque.Size = new Size(91, 30);
-            lblEstoque.TabIndex = 0;
-            lblEstoque.Text = "Estoque";
-            lblEstoque.Click += lblEstoque_Click;
-            // 
-            // pictureBox3
-            // 
-            pictureBox3.Image = Properties.Resources.caixa_eletronico;
-            pictureBox3.Location = new Point(52, 263);
-            pictureBox3.Name = "pictureBox3";
-            pictureBox3.Size = new Size(56, 56);
-            pictureBox3.SizeMode = PictureBoxSizeMode.Zoom;
-            pictureBox3.TabIndex = 2;
-            pictureBox3.TabStop = false;
-            // 
             // lblRegistros
             // 
             lblRegistros.AutoSize = true;
             lblRegistros.Cursor = Cursors.Hand;
             lblRegistros.Font = new Font("Segoe UI", 15.75F, FontStyle.Bold);
             lblRegistros.ForeColor = Color.White;
-            lblRegistros.Location = new Point(114, 282);
+            lblRegistros.Location = new Point(25, 499);
             lblRegistros.Name = "lblRegistros";
             lblRegistros.Size = new Size(103, 30);
             lblRegistros.TabIndex = 3;
             lblRegistros.Text = "Registros";
-            lblRegistros.Click += lblRegistros_Click;
+            
             // 
             // pnlDesktop
             // 
-            pnlDesktop.BackColor = SystemColors.ControlLight;
+            pnlDesktop.BackColor = SystemColors.Control;
             pnlDesktop.Controls.Add(panel3);
             pnlDesktop.Controls.Add(label1);
+            pnlDesktop.Controls.Add(lblRegistros);
             pnlDesktop.Dock = DockStyle.Fill;
             pnlDesktop.Location = new Point(298, 74);
             pnlDesktop.Name = "pnlDesktop";
@@ -263,15 +236,15 @@
             panel3.BorderStyle = BorderStyle.FixedSingle;
             panel3.Controls.Add(label2);
             panel3.Dock = DockStyle.Bottom;
-            panel3.Location = new Point(0, 575);
+            panel3.Location = new Point(0, 587);
             panel3.Name = "panel3";
-            panel3.Size = new Size(1072, 100);
+            panel3.Size = new Size(1072, 88);
             panel3.TabIndex = 2;
             // 
             // label2
             // 
             label2.AutoSize = true;
-            label2.Location = new Point(341, 34);
+            label2.Location = new Point(339, 38);
             label2.Name = "label2";
             label2.Size = new Size(398, 15);
             label2.TabIndex = 1;
@@ -280,13 +253,86 @@
             // label1
             // 
             label1.AutoSize = true;
-            label1.Font = new Font("Segoe UI", 20.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label1.Font = new Font("Segoe UI Semibold", 20.25F, FontStyle.Bold | FontStyle.Italic, GraphicsUnit.Point, 0);
             label1.ForeColor = Color.DarkGray;
             label1.Location = new Point(221, 275);
             label1.Name = "label1";
-            label1.Size = new Size(630, 37);
+            label1.Size = new Size(603, 37);
             label1.TabIndex = 0;
             label1.Text = "Para iniciar, selecione uma das opções do menu.";
+            // 
+            // panel4
+            // 
+            panel4.BackColor = Color.FromArgb(50, 50, 50);
+            panel4.Location = new Point(0, 333);
+            panel4.Name = "panel4";
+            panel4.Size = new Size(5, 53);
+            panel4.TabIndex = 22;
+            // 
+            // btnRegistros
+            // 
+            btnRegistros.FlatAppearance.BorderSize = 0;
+            btnRegistros.FlatAppearance.MouseOverBackColor = Color.FromArgb(50, 50, 50);
+            btnRegistros.FlatStyle = FlatStyle.Flat;
+            btnRegistros.Font = new Font("Segoe UI", 15.75F, FontStyle.Bold);
+            btnRegistros.ForeColor = SystemColors.ControlLight;
+            btnRegistros.Image = (Image)resources.GetObject("btnRegistros.Image");
+            btnRegistros.ImageAlign = ContentAlignment.MiddleLeft;
+            btnRegistros.Location = new Point(3, 333);
+            btnRegistros.Name = "btnRegistros";
+            btnRegistros.Size = new Size(295, 53);
+            btnRegistros.TabIndex = 23;
+            btnRegistros.Text = "Registros";
+            btnRegistros.UseVisualStyleBackColor = true;
+            btnRegistros.Click += btnRegistros_Click;
+            // 
+            // panel7
+            // 
+            panel7.BackColor = Color.FromArgb(50, 50, 50);
+            panel7.Location = new Point(0, 264);
+            panel7.Name = "panel7";
+            panel7.Size = new Size(5, 53);
+            panel7.TabIndex = 24;
+            // 
+            // btnCaixa
+            // 
+            btnCaixa.FlatAppearance.BorderSize = 0;
+            btnCaixa.FlatAppearance.MouseOverBackColor = Color.FromArgb(50, 50, 50);
+            btnCaixa.FlatStyle = FlatStyle.Flat;
+            btnCaixa.Font = new Font("Segoe UI", 15.75F, FontStyle.Bold);
+            btnCaixa.ForeColor = SystemColors.ControlLight;
+            btnCaixa.Image = (Image)resources.GetObject("btnCaixa.Image");
+            btnCaixa.ImageAlign = ContentAlignment.MiddleLeft;
+            btnCaixa.Location = new Point(3, 264);
+            btnCaixa.Name = "btnCaixa";
+            btnCaixa.Size = new Size(295, 53);
+            btnCaixa.TabIndex = 25;
+            btnCaixa.Text = "Caixa";
+            btnCaixa.UseVisualStyleBackColor = true;
+            // 
+            // panel6
+            // 
+            panel6.BackColor = Color.FromArgb(50, 50, 50);
+            panel6.Location = new Point(0, 472);
+            panel6.Name = "panel6";
+            panel6.Size = new Size(5, 53);
+            panel6.TabIndex = 26;
+            // 
+            // btnRelatorio
+            // 
+            btnRelatorio.FlatAppearance.BorderSize = 0;
+            btnRelatorio.FlatAppearance.MouseOverBackColor = Color.FromArgb(50, 50, 50);
+            btnRelatorio.FlatStyle = FlatStyle.Flat;
+            btnRelatorio.Font = new Font("Segoe UI", 15.75F, FontStyle.Bold);
+            btnRelatorio.ForeColor = SystemColors.ControlLight;
+            btnRelatorio.Image = (Image)resources.GetObject("btnRelatorio.Image");
+            btnRelatorio.ImageAlign = ContentAlignment.MiddleLeft;
+            btnRelatorio.Location = new Point(3, 472);
+            btnRelatorio.Name = "btnRelatorio";
+            btnRelatorio.Size = new Size(295, 53);
+            btnRelatorio.TabIndex = 27;
+            btnRelatorio.Text = "Relatório";
+            btnRelatorio.UseVisualStyleBackColor = true;
             // 
             // frmMenu
             // 
@@ -308,9 +354,6 @@
             panel2.ResumeLayout(false);
             panel2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox5).EndInit();
-            ((System.ComponentModel.ISupportInitialize)pictureBox2).EndInit();
-            ((System.ComponentModel.ISupportInitialize)pictureBox6).EndInit();
-            ((System.ComponentModel.ISupportInitialize)pictureBox3).EndInit();
             pnlDesktop.ResumeLayout(false);
             pnlDesktop.PerformLayout();
             panel3.ResumeLayout(false);
@@ -326,12 +369,7 @@
         private Panel panel2;
         private Panel pnlContainer;
         private Label lblSair;
-        private Label lblRelatorio;
         private PictureBox pictureBox5;
-        private PictureBox pictureBox2;
-        private PictureBox pictureBox6;
-        private Label lblEstoque;
-        private PictureBox pictureBox3;
         private Label lblRegistros;
         private Panel pnlDesktop;
         private Label label2;
@@ -340,5 +378,13 @@
         private PictureBox btnMinimize;
         private PictureBox btnClose;
         private PictureBox btnMaximize;
+        private Button btnEstoque;
+        private Panel panel5;
+        private Panel panel4;
+        private Button btnRegistros;
+        private Panel panel6;
+        private Button btnRelatorio;
+        private Panel panel7;
+        private Button btnCaixa;
     }
 }

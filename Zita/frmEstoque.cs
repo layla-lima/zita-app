@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Data;
 using System.Data.SqlClient;
+using System.Diagnostics;
 using System.Drawing;
 using System.Windows.Forms;
 
@@ -33,7 +34,7 @@ namespace Zita
 
         private void CarregarDados()
         {
-            string query = "SELECT IDProduto, Nome, Categoria, Preco, QuantidadeEmEstoque FROM Produtos";
+            string query = "SELECT IDProduto, Codigo, Nome, Categoria, Preco, QuantidadeEmEstoque FROM Produtos";
 
             try
             {
@@ -47,7 +48,7 @@ namespace Zita
                     // Define a propriedade AutoSizeColumnsMode para que as colunas preencham a largura do controle
                     dgrEstoque.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
 
-                    dgrEstoque.Columns["IDProduto"].Visible = false; // pra o IDProduto não aparecer
+                    dgrEstoque.Columns["IDProduto"].Visible = false; // Para o IDProduto não aparecer
                 }
             }
             catch (Exception ex)
@@ -55,6 +56,7 @@ namespace Zita
                 MessageBox.Show("Erro ao carregar dados: " + ex.Message, "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+
 
         private void DgrEstoque_SelectionChanged(object sender, EventArgs e)
         {
@@ -78,13 +80,20 @@ namespace Zita
                 // Define o valor selecionado do ComboBox de Categoria
                 cboCategoria.SelectedItem = categoria;
                 txtPreco.Text = preco.ToString();
-                txtQuantidade.Text = quantidade.ToString();
+                txtQuant.Text = quantidade.ToString();
+
+                // Obtém e preenche o código do produto selecionado
+                string codigoProduto = dgrEstoque.SelectedRows[0].Cells["Codigo"].Value.ToString();
+                txtCodigo.Text = codigoProduto;
 
                 // Habilita o botão "Editar"
                 btnEditar.Enabled = true;
 
                 // Armazena o ID do produto selecionado
                 idProdutoEditando = Convert.ToInt32(dgrEstoque.SelectedRows[0].Cells["IDProduto"].Value);
+
+                // Debug
+                Debug.WriteLine("idProdutoEditando: " + idProdutoEditando);
             }
             else
             {
@@ -96,19 +105,22 @@ namespace Zita
 
 
 
+
+
         private void btnAdicionar_Click(object sender, EventArgs e)
         {
             // Verifica se todos os campos obrigatórios estão preenchidos
-            if (string.IsNullOrWhiteSpace(txtNomeProduto.Text) || cboCategoria.SelectedItem == null || string.IsNullOrWhiteSpace(txtPreco.Text) || string.IsNullOrWhiteSpace(txtQuantidade.Text))
+            if (string.IsNullOrWhiteSpace(txtCodigo.Text) || cboCategoria.SelectedItem == null || string.IsNullOrWhiteSpace(txtPreco.Text) || string.IsNullOrWhiteSpace(txtQuant.Text) || string.IsNullOrWhiteSpace(txtNomeProduto.Text))
             {
                 MessageBox.Show("Todos os campos devem ser preenchidos.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
             // Coleta as informações dos campos
+            string codigoProduto = txtCodigo.Text;
             string nomeProduto = txtNomeProduto.Text;
             string categoria = cboCategoria.SelectedItem.ToString();
             decimal preco = decimal.Parse(txtPreco.Text);
-            int quantidade = int.Parse(txtQuantidade.Text);
+            int quantidade = int.Parse(txtQuant.Text);
 
             // Insere as informações no banco de dados
             try
@@ -116,8 +128,9 @@ namespace Zita
                 using (SqlConnection connection = new SqlConnection(connectionString))
                 {
                     connection.Open();
-                    string insertQuery = "INSERT INTO Produtos (Nome, Categoria, Preco, QuantidadeEmEstoque) VALUES (@Nome, @Categoria, @Preco, @Quantidade)";
+                    string insertQuery = "INSERT INTO Produtos (Codigo, Nome, Categoria, Preco, QuantidadeEmEstoque) VALUES (@Codigo, @Nome, @Categoria, @Preco, @Quantidade)";
                     SqlCommand command = new SqlCommand(insertQuery, connection);
+                    command.Parameters.AddWithValue("@Codigo", codigoProduto);
                     command.Parameters.AddWithValue("@Nome", nomeProduto);
                     command.Parameters.AddWithValue("@Categoria", categoria);
                     command.Parameters.AddWithValue("@Preco", preco);
@@ -139,18 +152,25 @@ namespace Zita
             }
         }
 
+
+
+
+
         private void btnEditar_Click(object sender, EventArgs e)
         {
+            // Verifica se uma linha completa está selecionada
             if (dgrEstoque.SelectedRows.Count != 1)
             {
                 MessageBox.Show("Selecione uma linha inteira para editar.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
-            // Coleta as informações dos campos
+
+            // Coleta as informações dos campos do DataGridView
+            string codigoProduto = txtCodigo.Text;
             string nomeProduto = txtNomeProduto.Text;
             string categoria = cboCategoria.SelectedItem.ToString();
-            decimal preco = decimal.Parse(txtPreco.Text); // Convertendo o preço para decimal
-            int quantidade = int.Parse(txtQuantidade.Text);
+            decimal preco = Convert.ToDecimal(txtPreco.Text);
+            int quantidade = Convert.ToInt32(txtQuant.Text);
 
             // Atualiza as informações do produto no banco de dados
             try
@@ -158,13 +178,15 @@ namespace Zita
                 using (SqlConnection connection = new SqlConnection(connectionString))
                 {
                     connection.Open();
-                    string updateQuery = "UPDATE Produtos SET Categoria = @Categoria, Preco = @Preco, QuantidadeEmEstoque = @Quantidade WHERE IDProduto = @ID";
+                    string updateQuery = "UPDATE Produtos SET Codigo = @Codigo, Nome = @Nome, Categoria = @Categoria, Preco = @Preco, QuantidadeEmEstoque = @Quantidade WHERE IDProduto = @ID";
                     SqlCommand command = new SqlCommand(updateQuery, connection);
+                    command.Parameters.AddWithValue("@Codigo", codigoProduto); // Atualiza o código do produto
+                    command.Parameters.AddWithValue("@Nome", nomeProduto); // Atualiza o nome do produto
                     command.Parameters.AddWithValue("@Categoria", categoria); // Atualiza a categoria
                     command.Parameters.AddWithValue("@Preco", preco);
                     command.Parameters.AddWithValue("@Quantidade", quantidade);
                     command.Parameters.AddWithValue("@ID", idProdutoEditando);
-                    command.ExecuteNonQuery();
+                    command.ExecuteNonQuery(); // Executa o comando SQL de atualização
                 }
 
                 // Recarrega os dados no grid após a edição
@@ -178,6 +200,13 @@ namespace Zita
                 MessageBox.Show("Erro ao editar produto: " + ex.Message, "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+
+
+
+
+
+
+
 
         private void btnDeletar_Click(object sender, EventArgs e)
         {
@@ -225,10 +254,11 @@ namespace Zita
         private void LimparCampos()
         {
             // Limpa os campos de texto
+            txtCodigo.Text = "";
             txtNomeProduto.Text = "";
             cboCategoria.SelectedIndex = -1;
             txtPreco.Text = "";
-            txtQuantidade.Text = "";
+            txtQuant.Text = "";
         }
 
         

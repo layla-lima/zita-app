@@ -46,21 +46,7 @@ namespace Zita
             currentChildForm = childForm;
         }
 
-        private void lblRegistros_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                // Cria uma nova instância do frmRegistros
-                frmRegistros registrosForm = new frmRegistros();
-
-                // Chama o método OpenChildForm para abrir frmRegistros como formulário filho
-                OpenChildForm(registrosForm);
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Ocorreu um erro ao abrir o formulário de registros: " + ex.Message, "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-        }
+        
         private void frmMenu_KeyDown(object sender, KeyEventArgs e)
         {
             // Verifica se a tecla F11 foi pressionada
@@ -69,16 +55,7 @@ namespace Zita
                 ToggleFullScreen();
             }
         }
-        private void lblEstoque_Click(object sender, EventArgs e)
-        {
 
-            frmEstoque estoqueForm = new frmEstoque();
-
-            // Chama o método OpenChildForm para abrir frmEstoque como formulário filho
-            OpenChildForm(estoqueForm);
-
-
-        }
 
         private void btnMinimize_Click(object sender, EventArgs e)
         {
@@ -113,5 +90,21 @@ namespace Zita
             }
         }
 
+        private void btnEstoque_Click(object sender, EventArgs e)
+        {
+            frmEstoque estoqueForm = new frmEstoque();
+
+            // Chama o método OpenChildForm para abrir frmEstoque como formulário filho
+            OpenChildForm(estoqueForm);
+        }
+
+        private void btnRegistros_Click(object sender, EventArgs e)
+        {
+            // Cria uma nova instância do frmRegistros
+            frmRegistros registrosForm = new frmRegistros();
+
+            // Chama o método OpenChildForm para abrir frmRegistros como formulário filho
+            OpenChildForm(registrosForm);
+        }
     }
 }
