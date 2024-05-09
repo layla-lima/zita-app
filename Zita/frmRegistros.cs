@@ -1,32 +1,70 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Data.SqlClient;
 using System.Windows.Forms;
 
 namespace Zita
 {
     public partial class frmRegistros : Form
     {
+        private string connectionString = "Data Source=DESKTOP-M2PRVUH;Initial Catalog=Zita;Integrated Security=True";
+
         public frmRegistros()
         {
             InitializeComponent();
+            this.FormBorderStyle = FormBorderStyle.None;
+
+            // Desativa os estilos visuais dos cabeçalhos
+            dgrRegistros.EnableHeadersVisualStyles = false;
+
+            // Define o estilo para o cabeçalho das colunas
+            dgrRegistros.ColumnHeadersDefaultCellStyle.BackColor = Color.Black;
+            dgrRegistros.ColumnHeadersDefaultCellStyle.ForeColor = Color.White;
+            dgrRegistros.AdvancedColumnHeadersBorderStyle.All = DataGridViewAdvancedCellBorderStyle.None;
+            dgrRegistros.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            CarregarRegistros();
+            ConfigurarDataGridView();
+
+            // Inscreve o evento CellFormatting
+            dgrRegistros.CellFormatting += dgrRegistros_CellFormatting;
         }
 
-        private void lblSair_Click(object sender, EventArgs e)
+        private void ConfigurarDataGridView()
         {
-            // Exibe uma caixa de diálogo de confirmação
-            DialogResult resultado = MessageBox.Show("Tem certeza que deseja sair?", "Confirmação", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            // Oculta a coluna "IDTransacoes"
+            dgrRegistros.Columns["IDTransacao"].Visible = false;
+        }
 
-            // Verifica se o usuário clicou no botão "Sim" na caixa de diálogo
-            if (resultado == DialogResult.Yes)
+        private void dgrRegistros_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
+        {
+            if (dgrRegistros.Columns[e.ColumnIndex].Name == "PrecoTotal" && e.Value != null)
             {
-                // Fecha o sistema
-                Application.Exit();
+                // Formata o valor para exibir como "00,00"
+                if (decimal.TryParse(e.Value.ToString(), out decimal precoTotal))
+                {
+                    e.Value = precoTotal.ToString("N2");
+                    e.FormattingApplied = true;
+                }
+            }
+        }
+
+        private void CarregarRegistros()
+        {
+            try
+            {
+                using (SqlConnection connection = new SqlConnection(connectionString))
+                {
+                    connection.Open();
+                    string query = "SELECT * FROM Registros";
+                    SqlDataAdapter adapter = new SqlDataAdapter(query, connection);
+                    DataTable dataTable = new DataTable();
+                    adapter.Fill(dataTable);
+                    dgrRegistros.DataSource = dataTable;
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Erro ao carregar registros: " + ex.Message);
             }
         }
     }

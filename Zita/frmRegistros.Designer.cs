@@ -31,19 +31,21 @@
             label6 = new Label();
             panel3 = new Panel();
             label2 = new Label();
+            dgrRegistros = new DataGridView();
             panel3.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)dgrRegistros).BeginInit();
             SuspendLayout();
             // 
             // label6
             // 
             label6.AutoSize = true;
-            label6.Font = new Font("Segoe UI", 15.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label6.ForeColor = SystemColors.ControlDark;
-            label6.Location = new Point(377, 243);
+            label6.Font = new Font("Segoe UI", 21.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label6.ForeColor = SystemColors.ActiveCaptionText;
+            label6.Location = new Point(390, 27);
             label6.Name = "label6";
-            label6.Size = new Size(326, 30);
+            label6.Size = new Size(266, 40);
             label6.TabIndex = 6;
-            label6.Text = "Tela de Registro em Andamento";
+            label6.Text = "Vendas Realizadas";
             // 
             // panel3
             // 
@@ -64,11 +66,23 @@
             label2.TabIndex = 1;
             label2.Text = "Sistema desenvolvido por Layla Lima © 2024. Todos os direitos reservados.";
             // 
+            // dgrRegistros
+            // 
+            dgrRegistros.AllowUserToAddRows = false;
+            dgrRegistros.AllowUserToDeleteRows = false;
+            dgrRegistros.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dgrRegistros.Location = new Point(110, 151);
+            dgrRegistros.Name = "dgrRegistros";
+            dgrRegistros.ReadOnly = true;
+            dgrRegistros.Size = new Size(861, 314);
+            dgrRegistros.TabIndex = 8;
+            // 
             // frmRegistros
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1056, 627);
+            Controls.Add(dgrRegistros);
             Controls.Add(panel3);
             Controls.Add(label6);
             Name = "frmRegistros";
@@ -76,6 +90,7 @@
             WindowState = FormWindowState.Maximized;
             panel3.ResumeLayout(false);
             panel3.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)dgrRegistros).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -84,5 +99,6 @@
         private Label label6;
         private Panel panel3;
         private Label label2;
+        private DataGridView dgrRegistros;
     }
 }
