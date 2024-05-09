@@ -31,11 +31,6 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmCaixaAberto));
             btnFinalizarCompra = new Button();
             dgrCompras = new DataGridView();
-            Código = new DataGridViewTextBoxColumn();
-            Produto = new DataGridViewTextBoxColumn();
-            ValorUnitario = new DataGridViewTextBoxColumn();
-            Quantidade = new DataGridViewTextBoxColumn();
-            ValorFinal = new DataGridViewTextBoxColumn();
             btnRemover = new Button();
             btnAdicionar = new Button();
             txtQuantidade = new TextBox();
@@ -64,6 +59,11 @@
             panel3 = new Panel();
             btnClose = new PictureBox();
             pictureBox1 = new PictureBox();
+            Codigo = new DataGridViewTextBoxColumn();
+            Produto = new DataGridViewTextBoxColumn();
+            ValorUnitario = new DataGridViewTextBoxColumn();
+            Quantidade = new DataGridViewTextBoxColumn();
+            ValorFinal = new DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)dgrCompras).BeginInit();
             panel1.SuspendLayout();
             panel2.SuspendLayout();
@@ -93,43 +93,13 @@
             dgrCompras.AllowUserToDeleteRows = false;
             dgrCompras.BackgroundColor = SystemColors.Window;
             dgrCompras.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dgrCompras.Columns.AddRange(new DataGridViewColumn[] { Código, Produto, ValorUnitario, Quantidade, ValorFinal });
+            dgrCompras.Columns.AddRange(new DataGridViewColumn[] { Codigo, Produto, ValorUnitario, Quantidade, ValorFinal });
             dgrCompras.EnableHeadersVisualStyles = false;
             dgrCompras.Location = new Point(54, 354);
             dgrCompras.Name = "dgrCompras";
             dgrCompras.ReadOnly = true;
             dgrCompras.Size = new Size(669, 341);
             dgrCompras.TabIndex = 35;
-            // 
-            // Código
-            // 
-            Código.HeaderText = "Código";
-            Código.Name = "Código";
-            Código.ReadOnly = true;
-            // 
-            // Produto
-            // 
-            Produto.HeaderText = "Produto";
-            Produto.Name = "Produto";
-            Produto.ReadOnly = true;
-            // 
-            // ValorUnitario
-            // 
-            ValorUnitario.HeaderText = "ValorUnitario";
-            ValorUnitario.Name = "ValorUnitario";
-            ValorUnitario.ReadOnly = true;
-            // 
-            // Quantidade
-            // 
-            Quantidade.HeaderText = "Quantidade";
-            Quantidade.Name = "Quantidade";
-            Quantidade.ReadOnly = true;
-            // 
-            // ValorFinal
-            // 
-            ValorFinal.HeaderText = "ValorFinal";
-            ValorFinal.Name = "ValorFinal";
-            ValorFinal.ReadOnly = true;
             // 
             // btnRemover
             // 
@@ -455,6 +425,36 @@
             pictureBox1.TabIndex = 0;
             pictureBox1.TabStop = false;
             // 
+            // Codigo
+            // 
+            Codigo.HeaderText = "Código";
+            Codigo.Name = "Codigo";
+            Codigo.ReadOnly = true;
+            // 
+            // Produto
+            // 
+            Produto.HeaderText = "Produto";
+            Produto.Name = "Produto";
+            Produto.ReadOnly = true;
+            // 
+            // ValorUnitario
+            // 
+            ValorUnitario.HeaderText = "ValorUnitario";
+            ValorUnitario.Name = "ValorUnitario";
+            ValorUnitario.ReadOnly = true;
+            // 
+            // Quantidade
+            // 
+            Quantidade.HeaderText = "Quantidade";
+            Quantidade.Name = "Quantidade";
+            Quantidade.ReadOnly = true;
+            // 
+            // ValorFinal
+            // 
+            ValorFinal.HeaderText = "ValorFinal";
+            ValorFinal.Name = "ValorFinal";
+            ValorFinal.ReadOnly = true;
+            // 
             // frmCaixaAberto
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -500,11 +500,6 @@
         private PictureBox btnClose;
         private PictureBox pictureBox1;
         private Button btnBuscar;
-        private DataGridViewTextBoxColumn Código;
-        private DataGridViewTextBoxColumn Produto;
-        private DataGridViewTextBoxColumn ValorUnitario;
-        private DataGridViewTextBoxColumn Quantidade;
-        private DataGridViewTextBoxColumn ValorFinal;
         private Label label4;
         private Label lblValorTotal;
         private Label lblTextoTroco;
@@ -516,5 +511,10 @@
         private TextBox txtValorPago;
         private Label lblTroco;
         private Button btnConfirmar;
+        private DataGridViewTextBoxColumn Codigo;
+        private DataGridViewTextBoxColumn Produto;
+        private DataGridViewTextBoxColumn ValorUnitario;
+        private DataGridViewTextBoxColumn Quantidade;
+        private DataGridViewTextBoxColumn ValorFinal;
     }
 }

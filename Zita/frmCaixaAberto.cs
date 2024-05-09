@@ -215,12 +215,6 @@ namespace Zita
             // Verifica se há um valor total válido
             if (!string.IsNullOrWhiteSpace(lblValorTotal.Text))
             {
-                // Obtém o preço total
-                double precoTotal = Convert.ToDouble(lblValorTotal.Text.Replace("R$ ", ""));
-
-                // Obtém a forma de pagamento
-                string formaDePagamento = this.formaDePagamento;
-
                 // Obtém a data e hora atuais
                 DateTime dataHoraAtual = DateTime.Now;
 
@@ -232,31 +226,52 @@ namespace Zita
                         // Abre a conexão
                         connection.Open();
 
-                        // Cria a consulta SQL para inserir os dados na tabela Registros
-                        string query = "INSERT INTO Registros (DataHora, PrecoTotal, FormaDePagamento) VALUES (@DataHora, @PrecoTotal, @FormaDePagamento)";
+                        // Inicia uma transação
+                        SqlTransaction transaction = connection.BeginTransaction();
 
-                        // Cria e configura o comando SQL
-                        using (SqlCommand command = new SqlCommand(query, connection))
+                        try
                         {
-                            // Adiciona os parâmetros à consulta SQL
-                            command.Parameters.AddWithValue("@DataHora", dataHoraAtual);
-                            command.Parameters.AddWithValue("@PrecoTotal", precoTotal);
-                            command.Parameters.AddWithValue("@FormaDePagamento", formaDePagamento);
+                            // Itera pelas linhas do DataGridView para obter os detalhes de cada produto vendido
+                            foreach (DataGridViewRow row in dgrCompras.Rows)
+                            {
+                                string codigo = row.Cells["Codigo"].Value.ToString();
+                                int quantidadeVendida = Convert.ToInt32(row.Cells["Quantidade"].Value);
 
-                            // Executa a consulta SQL
-                            command.ExecuteNonQuery();
+                                // Cria a consulta SQL para atualizar a quantidade em estoque do produto vendido
+                                string updateQuery = "UPDATE Produtos SET QuantidadeEmEstoque = QuantidadeEmEstoque - @Quantidade WHERE Codigo = @Codigo";
+
+                                // Cria e configura o comando SQL
+                                using (SqlCommand updateCommand = new SqlCommand(updateQuery, connection, transaction))
+                                {
+                                    // Adiciona os parâmetros à consulta SQL
+                                    updateCommand.Parameters.AddWithValue("@Quantidade", quantidadeVendida);
+                                    updateCommand.Parameters.AddWithValue("@Codigo", codigo);
+
+                                    // Executa a consulta SQL
+                                    updateCommand.ExecuteNonQuery();
+                                }
+                            }
+
+                            // Commit na transação se todas as operações foram bem sucedidas
+                            transaction.Commit();
+
+                            // Exibe mensagem de sucesso
+                            MessageBox.Show("Compra realizada com sucesso!");
+
+                            // Limpa todos os campos
+                            LimparCampos();
+                        }
+                        catch (Exception ex)
+                        {
+                            // Rollback na transação em caso de erro
+                            transaction.Rollback();
+                            MessageBox.Show("Erro ao finalizar compra: " + ex.Message);
                         }
                     }
-
-                    // Exibe mensagem de sucesso
-                    MessageBox.Show("Compra realizada com sucesso!");
-
-                    // Limpa todos os campos
-                    LimparCampos();
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show("Erro ao finalizar compra: " + ex.Message);
+                    MessageBox.Show("Erro ao conectar ao banco de dados: " + ex.Message);
                 }
             }
             else
@@ -264,6 +279,9 @@ namespace Zita
                 MessageBox.Show("Nenhum item na compra.");
             }
         }
+
+
+
 
         private void LimparCampos()
         {
