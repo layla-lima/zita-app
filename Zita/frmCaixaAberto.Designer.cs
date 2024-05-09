@@ -47,22 +47,23 @@
             lblNomeProduto = new Label();
             lblValorUnitario = new Label();
             panel1 = new Panel();
+            btnConfirmar = new Button();
+            txtValorPago = new TextBox();
+            lblTroco = new Label();
+            lblTextoTroco = new Label();
+            lblTextoValorPago = new Label();
+            optDinheiro = new RadioButton();
+            optPix = new RadioButton();
+            optDebito = new RadioButton();
+            optCredito = new RadioButton();
+            lblValorTotal = new Label();
+            label4 = new Label();
             label7 = new Label();
             panel2 = new Panel();
             btnBuscar = new Button();
             panel3 = new Panel();
             btnClose = new PictureBox();
             pictureBox1 = new PictureBox();
-            label4 = new Label();
-            lblValorTotal = new Label();
-            optCredito = new RadioButton();
-            optDebito = new RadioButton();
-            optPix = new RadioButton();
-            optDinheiro = new RadioButton();
-            lblValorPago = new Label();
-            label9 = new Label();
-            lblTroco = new Label();
-            label11 = new Label();
             ((System.ComponentModel.ISupportInitialize)dgrCompras).BeginInit();
             panel1.SuspendLayout();
             panel2.SuspendLayout();
@@ -236,10 +237,11 @@
             // panel1
             // 
             panel1.BorderStyle = BorderStyle.FixedSingle;
+            panel1.Controls.Add(btnConfirmar);
+            panel1.Controls.Add(txtValorPago);
             panel1.Controls.Add(lblTroco);
-            panel1.Controls.Add(label11);
-            panel1.Controls.Add(lblValorPago);
-            panel1.Controls.Add(label9);
+            panel1.Controls.Add(lblTextoTroco);
+            panel1.Controls.Add(lblTextoValorPago);
             panel1.Controls.Add(optDinheiro);
             panel1.Controls.Add(optPix);
             panel1.Controls.Add(optDebito);
@@ -252,11 +254,136 @@
             panel1.Size = new Size(561, 405);
             panel1.TabIndex = 39;
             // 
+            // btnConfirmar
+            // 
+            btnConfirmar.BackColor = SystemColors.ActiveCaptionText;
+            btnConfirmar.FlatStyle = FlatStyle.Popup;
+            btnConfirmar.ForeColor = SystemColors.ButtonFace;
+            btnConfirmar.Location = new Point(410, 162);
+            btnConfirmar.Name = "btnConfirmar";
+            btnConfirmar.Size = new Size(71, 24);
+            btnConfirmar.TabIndex = 53;
+            btnConfirmar.Text = "confirmar";
+            btnConfirmar.UseVisualStyleBackColor = false;
+            btnConfirmar.Visible = false;
+            btnConfirmar.Click += btnConfirmar_Click;
+            // 
+            // txtValorPago
+            // 
+            txtValorPago.Location = new Point(345, 162);
+            txtValorPago.Name = "txtValorPago";
+            txtValorPago.Size = new Size(47, 23);
+            txtValorPago.TabIndex = 52;
+            txtValorPago.Visible = false;
+            // 
+            // lblTroco
+            // 
+            lblTroco.AutoSize = true;
+            lblTroco.Font = new Font("Segoe UI Semibold", 19F, FontStyle.Bold);
+            lblTroco.Location = new Point(279, 191);
+            lblTroco.Name = "lblTroco";
+            lblTroco.Size = new Size(100, 36);
+            lblTroco.TabIndex = 51;
+            lblTroco.Text = "R$ 0,00";
+            lblTroco.Visible = false;
+            // 
+            // lblTextoTroco
+            // 
+            lblTextoTroco.AutoSize = true;
+            lblTextoTroco.Font = new Font("Segoe UI", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            lblTextoTroco.Location = new Point(215, 199);
+            lblTextoTroco.Name = "lblTextoTroco";
+            lblTextoTroco.Size = new Size(68, 25);
+            lblTextoTroco.TabIndex = 50;
+            lblTextoTroco.Text = "Troco:";
+            lblTextoTroco.Visible = false;
+            // 
+            // lblTextoValorPago
+            // 
+            lblTextoValorPago.AutoSize = true;
+            lblTextoValorPago.Font = new Font("Segoe UI", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            lblTextoValorPago.ForeColor = SystemColors.ActiveCaptionText;
+            lblTextoValorPago.Location = new Point(215, 160);
+            lblTextoValorPago.Name = "lblTextoValorPago";
+            lblTextoValorPago.Size = new Size(115, 25);
+            lblTextoValorPago.TabIndex = 48;
+            lblTextoValorPago.Text = "Valor Pago:";
+            lblTextoValorPago.Visible = false;
+            // 
+            // optDinheiro
+            // 
+            optDinheiro.AutoSize = true;
+            optDinheiro.Font = new Font("Segoe UI", 11.25F);
+            optDinheiro.Location = new Point(47, 201);
+            optDinheiro.Name = "optDinheiro";
+            optDinheiro.Size = new Size(84, 24);
+            optDinheiro.TabIndex = 47;
+            optDinheiro.TabStop = true;
+            optDinheiro.Text = "Dinheiro";
+            optDinheiro.UseVisualStyleBackColor = true;
+            optDinheiro.CheckedChanged += optDinheiro_CheckedChanged;
+            // 
+            // optPix
+            // 
+            optPix.AutoSize = true;
+            optPix.Font = new Font("Segoe UI", 11.25F);
+            optPix.Location = new Point(47, 171);
+            optPix.Name = "optPix";
+            optPix.Size = new Size(46, 24);
+            optPix.TabIndex = 46;
+            optPix.TabStop = true;
+            optPix.Text = "Pix";
+            optPix.UseVisualStyleBackColor = true;
+            // 
+            // optDebito
+            // 
+            optDebito.AutoSize = true;
+            optDebito.Font = new Font("Segoe UI", 11.25F);
+            optDebito.Location = new Point(47, 141);
+            optDebito.Name = "optDebito";
+            optDebito.Size = new Size(142, 24);
+            optDebito.TabIndex = 45;
+            optDebito.TabStop = true;
+            optDebito.Text = "Cartão de Débito";
+            optDebito.UseVisualStyleBackColor = true;
+            // 
+            // optCredito
+            // 
+            optCredito.AutoSize = true;
+            optCredito.Font = new Font("Segoe UI", 11.25F);
+            optCredito.Location = new Point(47, 111);
+            optCredito.Name = "optCredito";
+            optCredito.Size = new Size(145, 24);
+            optCredito.TabIndex = 44;
+            optCredito.TabStop = true;
+            optCredito.Text = "Cartão de Crédito";
+            optCredito.UseVisualStyleBackColor = true;
+            // 
+            // lblValorTotal
+            // 
+            lblValorTotal.AutoSize = true;
+            lblValorTotal.Font = new Font("Segoe UI Semibold", 22F, FontStyle.Bold);
+            lblValorTotal.Location = new Point(280, 311);
+            lblValorTotal.Name = "lblValorTotal";
+            lblValorTotal.Size = new Size(120, 41);
+            lblValorTotal.TabIndex = 43;
+            lblValorTotal.Text = "R$ 0,00";
+            // 
+            // label4
+            // 
+            label4.AutoSize = true;
+            label4.Font = new Font("Segoe UI", 20.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label4.Location = new Point(194, 313);
+            label4.Name = "label4";
+            label4.Size = new Size(89, 37);
+            label4.TabIndex = 42;
+            label4.Text = "Total:";
+            // 
             // label7
             // 
             label7.AutoSize = true;
             label7.Font = new Font("Segoe UI", 15.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label7.Location = new Point(28, 37);
+            label7.Location = new Point(31, 51);
             label7.Name = "label7";
             label7.Size = new Size(228, 30);
             label7.TabIndex = 41;
@@ -327,114 +454,6 @@
             pictureBox1.TabIndex = 0;
             pictureBox1.TabStop = false;
             // 
-            // label4
-            // 
-            label4.AutoSize = true;
-            label4.Font = new Font("Segoe UI", 20.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label4.Location = new Point(194, 313);
-            label4.Name = "label4";
-            label4.Size = new Size(89, 37);
-            label4.TabIndex = 42;
-            label4.Text = "Total:";
-            // 
-            // lblValorTotal
-            // 
-            lblValorTotal.AutoSize = true;
-            lblValorTotal.Font = new Font("Segoe UI Semibold", 22F, FontStyle.Bold);
-            lblValorTotal.Location = new Point(280, 311);
-            lblValorTotal.Name = "lblValorTotal";
-            lblValorTotal.Size = new Size(120, 41);
-            lblValorTotal.TabIndex = 43;
-            lblValorTotal.Text = "R$ 0,00";
-            // 
-            // optCredito
-            // 
-            optCredito.AutoSize = true;
-            optCredito.Location = new Point(50, 82);
-            optCredito.Name = "optCredito";
-            optCredito.Size = new Size(118, 19);
-            optCredito.TabIndex = 44;
-            optCredito.TabStop = true;
-            optCredito.Text = "Cartão de Crédito";
-            optCredito.UseVisualStyleBackColor = true;
-            // 
-            // optDebito
-            // 
-            optDebito.AutoSize = true;
-            optDebito.Location = new Point(50, 107);
-            optDebito.Name = "optDebito";
-            optDebito.Size = new Size(114, 19);
-            optDebito.TabIndex = 45;
-            optDebito.TabStop = true;
-            optDebito.Text = "Cartão de Débito";
-            optDebito.UseVisualStyleBackColor = true;
-            // 
-            // optPix
-            // 
-            optPix.AutoSize = true;
-            optPix.Location = new Point(50, 132);
-            optPix.Name = "optPix";
-            optPix.Size = new Size(41, 19);
-            optPix.TabIndex = 46;
-            optPix.TabStop = true;
-            optPix.Text = "Pix";
-            optPix.UseVisualStyleBackColor = true;
-            // 
-            // optDinheiro
-            // 
-            optDinheiro.AutoSize = true;
-            optDinheiro.Location = new Point(50, 158);
-            optDinheiro.Name = "optDinheiro";
-            optDinheiro.Size = new Size(70, 19);
-            optDinheiro.TabIndex = 47;
-            optDinheiro.TabStop = true;
-            optDinheiro.Text = "Dinheiro";
-            optDinheiro.UseVisualStyleBackColor = true;
-            // 
-            // lblValorPago
-            // 
-            lblValorPago.AutoSize = true;
-            lblValorPago.Font = new Font("Segoe UI Semibold", 20.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            lblValorPago.Location = new Point(395, 81);
-            lblValorPago.Name = "lblValorPago";
-            lblValorPago.Size = new Size(108, 37);
-            lblValorPago.TabIndex = 49;
-            lblValorPago.Text = "R$ 0,00";
-            lblValorPago.Visible = false;
-            // 
-            // label9
-            // 
-            label9.AutoSize = true;
-            label9.Font = new Font("Segoe UI", 15.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label9.Location = new Point(265, 88);
-            label9.Name = "label9";
-            label9.Size = new Size(124, 30);
-            label9.TabIndex = 48;
-            label9.Text = "Valor Pago:";
-            label9.Visible = false;
-            // 
-            // lblTroco
-            // 
-            lblTroco.AutoSize = true;
-            lblTroco.Font = new Font("Segoe UI Semibold", 20.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            lblTroco.Location = new Point(395, 118);
-            lblTroco.Name = "lblTroco";
-            lblTroco.Size = new Size(108, 37);
-            lblTroco.TabIndex = 51;
-            lblTroco.Text = "R$ 0,00";
-            lblTroco.Visible = false;
-            // 
-            // label11
-            // 
-            label11.AutoSize = true;
-            label11.Font = new Font("Segoe UI", 15.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label11.Location = new Point(265, 128);
-            label11.Name = "label11";
-            label11.Size = new Size(73, 30);
-            label11.TabIndex = 50;
-            label11.Text = "Troco:";
-            label11.Visible = false;
-            // 
             // frmCaixaAberto
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -487,13 +506,14 @@
         private DataGridViewTextBoxColumn ValorFinal;
         private Label label4;
         private Label lblValorTotal;
-        private Label lblTroco;
-        private Label label11;
-        private Label lblValorPago;
-        private Label label9;
+        private Label lblTextoTroco;
+        private Label lblTextoValorPago;
         private RadioButton optDinheiro;
         private RadioButton optPix;
         private RadioButton optDebito;
         private RadioButton optCredito;
+        private TextBox txtValorPago;
+        private Label lblTroco;
+        private Button btnConfirmar;
     }
 }

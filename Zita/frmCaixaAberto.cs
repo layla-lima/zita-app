@@ -15,6 +15,7 @@ namespace Zita
     {
         private string connectionString = "Data Source=DESKTOP-M2PRVUH;Initial Catalog=Zita;Integrated Security=True";
         private SqlConnection connection;
+        private string formaDePagamento = "";
 
         public frmCaixaAberto()
         {
@@ -69,6 +70,8 @@ namespace Zita
             }
         }
 
+
+
         private void AtualizarValorTotal()
         {
             double total = 0;
@@ -99,11 +102,6 @@ namespace Zita
         }
 
 
-
-        private void btnClose_Click(object sender, EventArgs e)
-        {
-            this.Close();
-        }
 
         private void btnAdicionar_Click(object sender, EventArgs e)
         {
@@ -139,6 +137,81 @@ namespace Zita
             {
                 MessageBox.Show("Selecione uma linha inteira para editar.");
             }
+        }
+
+        private void optCredito_CheckedChanged(object sender, EventArgs e)
+        {
+            // Armazena a forma de pagamento selecionada
+            if (optCredito.Checked)
+            {
+                formaDePagamento = "Crédito";
+            }
+        }
+
+        private void optDebito_CheckedChanged(object sender, EventArgs e)
+        {
+            // Armazena a forma de pagamento selecionada
+            if (optDebito.Checked)
+            {
+                formaDePagamento = "Débito";
+            }
+        }
+
+        private void optPix_CheckedChanged(object sender, EventArgs e)
+        {
+            // Armazena a forma de pagamento selecionada
+            if (optPix.Checked)
+            {
+                formaDePagamento = "PIX";
+            }
+        }
+
+        private void optDinheiro_CheckedChanged(object sender, EventArgs e)
+        {
+            // Armazena a forma de pagamento selecionada e torna os controles visíveis
+            if (optDinheiro.Checked)
+            {
+                formaDePagamento = "Dinheiro";
+
+                lblTextoValorPago.Visible = true;
+                txtValorPago.Visible = true;
+                lblTextoTroco.Visible = true;
+                lblTroco.Visible = true;
+                btnConfirmar.Visible = true;
+            }
+            else
+            {
+                // Se outra opção for selecionada, torna os controles invisíveis
+                lblTextoValorPago.Visible = false;
+                txtValorPago.Visible = false;
+                lblTextoTroco.Visible = false;
+                lblTroco.Visible = false;
+                btnConfirmar.Visible = false;
+            }
+        }
+
+        private void btnConfirmar_Click(object sender, EventArgs e)
+        {
+            // Verifica se o valor pago é válido
+            if (!string.IsNullOrWhiteSpace(txtValorPago.Text))
+            {
+                // Obtém o valor pago pelo cliente
+                double valorPago = Convert.ToDouble(txtValorPago.Text);
+
+                // Obtém o valor total a ser pago
+                double valorTotal = Convert.ToDouble(lblValorTotal.Text.Replace("R$ ", ""));
+
+                // Calcula o troco
+                double troco = valorPago - valorTotal;
+
+                // Exibe o troco no label lblTroco
+                lblTroco.Text = troco.ToString("C2");
+            }
+        }
+
+        private void btnClose_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
 
     }
