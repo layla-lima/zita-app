@@ -69,6 +69,37 @@ namespace Zita
             }
         }
 
+        private void AtualizarValorTotal()
+        {
+            double total = 0;
+
+            // Itera pelas linhas do DataGridView
+            foreach (DataGridViewRow row in dgrCompras.Rows)
+            {
+                // Obtém o valor da última célula da linha (ValorFinal)
+                string valorFinalStr = row.Cells["ValorFinal"].Value.ToString();
+
+                // Remove o prefixo "R$ " da string e converte para um valor double
+                double valorFinal;
+                if (valorFinalStr.StartsWith("R$ "))
+                {
+                    valorFinal = Convert.ToDouble(valorFinalStr.Substring(3));
+                }
+                else
+                {
+                    valorFinal = Convert.ToDouble(valorFinalStr);
+                }
+
+                // Soma ao total
+                total += valorFinal;
+            }
+
+            // Exibe o total no label lblValorTotal
+            lblValorTotal.Text = total.ToString("C2");
+        }
+
+
+
         private void btnClose_Click(object sender, EventArgs e)
         {
             this.Close();
@@ -89,6 +120,7 @@ namespace Zita
             lblNomeProduto.Text = "";
             lblValorUnitario.Text = "";
             txtQuantidade.Text = "";
+            AtualizarValorTotal();
         }
 
         private void btnRemover_Click(object sender, EventArgs e)
@@ -101,6 +133,7 @@ namespace Zita
 
                 // Remove a linha do DataGridView
                 dgrCompras.Rows.RemoveAt(rowIndex);
+                AtualizarValorTotal();
             }
             else
             {
