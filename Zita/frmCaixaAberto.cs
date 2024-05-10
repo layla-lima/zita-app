@@ -212,73 +212,84 @@ namespace Zita
 
         private void btnFinalizarCompra_Click(object sender, EventArgs e)
         {
-            // Verifica se há um valor total válido
-            if (!string.IsNullOrWhiteSpace(lblValorTotal.Text))
-            {
-                // Obtém a data e hora atuais
-                DateTime dataHoraAtual = DateTime.Now;
-
-                try
-                {
-                    // Cria a conexão com o banco de dados
-                    using (SqlConnection connection = new SqlConnection(connectionString))
-                    {
-                        // Abre a conexão
-                        connection.Open();
-
-                        // Inicia uma transação
-                        SqlTransaction transaction = connection.BeginTransaction();
-
-                        try
-                        {
-                            // Itera pelas linhas do DataGridView para obter os detalhes de cada produto vendido
-                            foreach (DataGridViewRow row in dgrCompras.Rows)
-                            {
-                                string codigo = row.Cells["Codigo"].Value.ToString();
-                                int quantidadeVendida = Convert.ToInt32(row.Cells["Quantidade"].Value);
-
-                                // Cria a consulta SQL para atualizar a quantidade em estoque do produto vendido
-                                string updateQuery = "UPDATE Produtos SET QuantidadeEmEstoque = QuantidadeEmEstoque - @Quantidade WHERE Codigo = @Codigo";
-
-                                // Cria e configura o comando SQL
-                                using (SqlCommand updateCommand = new SqlCommand(updateQuery, connection, transaction))
-                                {
-                                    // Adiciona os parâmetros à consulta SQL
-                                    updateCommand.Parameters.AddWithValue("@Quantidade", quantidadeVendida);
-                                    updateCommand.Parameters.AddWithValue("@Codigo", codigo);
-
-                                    // Executa a consulta SQL
-                                    updateCommand.ExecuteNonQuery();
-                                }
-                            }
-
-                            // Commit na transação se todas as operações foram bem sucedidas
-                            transaction.Commit();
-
-                            // Exibe mensagem de sucesso
-                            MessageBox.Show("Compra realizada com sucesso!");
-
-                            // Limpa todos os campos
-                            LimparCampos();
-                        }
-                        catch (Exception ex)
-                        {
-                            // Rollback na transação em caso de erro
-                            transaction.Rollback();
-                            MessageBox.Show("Erro ao finalizar compra: " + ex.Message);
-                        }
-                    }
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show("Erro ao conectar ao banco de dados: " + ex.Message);
-                }
-            }
-            else
+            // Verifica se há itens na compra
+            if (dgrCompras.Rows.Count == 0)
             {
                 MessageBox.Show("Nenhum item na compra.");
+                return;
+            }
+
+            try
+            {
+                connection.Open();
+                // Cria uma transação para garantir que todas as operações sejam feitas de forma segura
+                using (SqlTransaction transaction = connection.BeginTransaction())
+                {
+                    try
+                    {
+                        // Itera pelas linhas do DataGridView para atualizar o estoque
+                        foreach (DataGridViewRow row in dgrCompras.Rows)
+                        {
+                            string codigo = row.Cells["Codigo"].Value.ToString();
+                            int quantidadeVendida = Convert.ToInt32(row.Cells["Quantidade"].Value);
+
+                            string updateQuery = "UPDATE Produtos SET QuantidadeEmEstoque = QuantidadeEmEstoque - @Quantidade WHERE Codigo = @Codigo";
+
+                            using (SqlCommand updateCommand = new SqlCommand(updateQuery, connection, transaction))
+                            {
+                                updateCommand.Parameters.AddWithValue("@Quantidade", quantidadeVendida);
+                                updateCommand.Parameters.AddWithValue("@Codigo", codigo);
+                                updateCommand.ExecuteNonQuery();
+                            }
+                        }
+
+                        // Calcula o total da compra
+                        double totalCompra = 0;
+                        foreach (DataGridViewRow row in dgrCompras.Rows)
+                        {
+                            totalCompra += Convert.ToDouble(row.Cells["ValorFinal"].Value.ToString().Replace("R$ ", ""));
+                        }
+
+                        // Insere os detalhes da compra na tabela Registros
+                        string insertQuery = "INSERT INTO Registros (DataHora, PrecoTotal, FormaDePagamento) VALUES (@DataHora, @PrecoTotal, @FormaDePagamento)";
+                        using (SqlCommand insertCommand = new SqlCommand(insertQuery, connection, transaction))
+                        {
+                            insertCommand.Parameters.AddWithValue("@DataHora", DateTime.Now);
+                            insertCommand.Parameters.AddWithValue("@PrecoTotal", totalCompra);
+                            insertCommand.Parameters.AddWithValue("@FormaDePagamento", formaDePagamento);
+                            insertCommand.ExecuteNonQuery();
+                        }
+
+                        // Confirma a transação
+                        transaction.Commit();
+
+                        // Exibe mensagem de sucesso
+                        MessageBox.Show("Compra realizada com sucesso!");
+
+                        // Limpa os campos
+                        LimparCampos();
+                    }
+                    catch (Exception ex)
+                    {
+                        // Em caso de erro, faz rollback na transação
+                        transaction.Rollback();
+                        MessageBox.Show("Erro ao finalizar compra: " + ex.Message);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Erro ao conectar ao banco de dados: " + ex.Message);
+            }
+            finally
+            {
+                if (connection.State == ConnectionState.Open)
+                    connection.Close();
             }
         }
+
+
+
 
 
 

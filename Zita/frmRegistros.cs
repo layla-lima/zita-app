@@ -8,11 +8,12 @@ namespace Zita
     public partial class frmRegistros : Form
     {
         private string connectionString = "Data Source=DESKTOP-M2PRVUH;Initial Catalog=Zita;Integrated Security=True";
-
+        private SqlConnection connection;
         public frmRegistros()
         {
             InitializeComponent();
             this.FormBorderStyle = FormBorderStyle.None;
+            connection = new SqlConnection(connectionString);
 
             // Desativa os estilos visuais dos cabeçalhos
             dgrRegistros.EnableHeadersVisualStyles = false;
@@ -52,20 +53,23 @@ namespace Zita
         {
             try
             {
-                using (SqlConnection connection = new SqlConnection(connectionString))
-                {
-                    connection.Open();
-                    string query = "SELECT * FROM Registros";
-                    SqlDataAdapter adapter = new SqlDataAdapter(query, connection);
-                    DataTable dataTable = new DataTable();
-                    adapter.Fill(dataTable);
-                    dgrRegistros.DataSource = dataTable;
-                }
+                connection.Open();
+                string query = "SELECT * FROM Registros";
+                SqlDataAdapter adapter = new SqlDataAdapter(query, connection);
+                DataTable dataTable = new DataTable();
+                adapter.Fill(dataTable);
+                dgrRegistros.DataSource = dataTable;
             }
             catch (Exception ex)
             {
                 MessageBox.Show("Erro ao carregar registros: " + ex.Message);
             }
+            finally
+            {
+                if (connection.State == ConnectionState.Open)
+                    connection.Close();
+            }
         }
+
     }
 }
