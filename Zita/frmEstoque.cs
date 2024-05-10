@@ -11,11 +11,12 @@ namespace Zita
     {
         private string connectionString = "Data Source=DESKTOP-M2PRVUH;Initial Catalog=Zita;Integrated Security=True";
         private int idProdutoEditando = -1;
-        
+
 
         public frmEstoque()
         {
             InitializeComponent();
+            txtPesquisar.TextChanged += new EventHandler(txtPesquisar_TextChanged);
             CarregarDados();
 
             // Desativa os estilos visuais dos cabeçalhos
@@ -203,11 +204,6 @@ namespace Zita
 
 
 
-
-
-
-
-
         private void btnDeletar_Click(object sender, EventArgs e)
         {
             // Verifica se uma linha completa está selecionada
@@ -261,10 +257,40 @@ namespace Zita
             txtQuant.Text = "";
         }
 
-        
 
-       
+        private void txtPesquisar_TextChanged(object sender, EventArgs e)
+        {
+            Pesquisar();
+        }
 
-        
+        private void Pesquisar()
+        {
+            string termoPesquisa = txtPesquisar.Text.Trim(); // Termo de pesquisa
+
+            string query = "SELECT Nome, Categoria, Preco, QuantidadeEmEstoque, IDProduto, Codigo FROM Produtos WHERE Nome LIKE @termo OR Categoria LIKE @termo"; // Consulta SQL para pesquisar por nome ou categoria
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                SqlCommand command = new SqlCommand(query, connection);
+                command.Parameters.AddWithValue("@termo", "%" + termoPesquisa + "%"); // Adiciona o termo de pesquisa ao parâmetro da consulta
+                try
+                {
+                    connection.Open();
+                    SqlDataAdapter adapter = new SqlDataAdapter(command);
+                    DataTable dataTable = new DataTable();
+                    adapter.Fill(dataTable);
+
+                    dgrEstoque.DataSource = dataTable; // Define o DataTable como a fonte de dados do DataGridView
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Erro ao pesquisar no banco de dados: " + ex.Message, "Erro de Pesquisa", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+        }
+
+
+
+
+
     }
 }

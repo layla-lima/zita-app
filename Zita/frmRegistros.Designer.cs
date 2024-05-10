@@ -41,7 +41,7 @@
             label6.AutoSize = true;
             label6.Font = new Font("Segoe UI", 21.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label6.ForeColor = SystemColors.ActiveCaptionText;
-            label6.Location = new Point(390, 27);
+            label6.Location = new Point(390, 52);
             label6.Name = "label6";
             label6.Size = new Size(266, 40);
             label6.TabIndex = 6;
