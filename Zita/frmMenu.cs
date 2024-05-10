@@ -6,11 +6,14 @@ namespace Zita
     public partial class frmMenu : Form
     {
         private Form currentChildForm;
+        private List<Button> menuButtons;
+        private Button lastClickedButton;
 
         public frmMenu()
         {
             InitializeComponent();
             this.FormBorderStyle = FormBorderStyle.None;
+            menuButtons = new List<Button> { btnCaixa, btnRegistros, btnEstoque, btnRelatorio };
 
         }
 
@@ -90,16 +93,42 @@ namespace Zita
             }
         }
 
-        private void btnEstoque_Click(object sender, EventArgs e)
+        private void btnCaixa_Click(object sender, EventArgs e)
         {
-            frmEstoque estoqueForm = new frmEstoque();
+            // Define a cor de fundo do botão clicado para cinza
+            Button clickedButton = (Button)sender;
+            clickedButton.BackColor = Color.FromArgb(50, 50, 50);
 
-            // Chama o método OpenChildForm para abrir frmEstoque como formulário filho
-            OpenChildForm(estoqueForm);
+            // Restaura a cor original de todos os outros botões do menu
+            foreach (Button button in menuButtons)
+            {
+                if (button != clickedButton)
+                {
+                    button.BackColor = Color.FromArgb(18, 18, 18);
+                }
+            }
+
+            // Abre o formulário correspondente
+            frmCaixa caixaForm = new frmCaixa();
+            OpenChildForm(caixaForm);
         }
 
         private void btnRegistros_Click(object sender, EventArgs e)
         {
+
+            // Define a cor de fundo do botão clicado para cinza
+            Button clickedButton = (Button)sender;
+            clickedButton.BackColor = Color.FromArgb(50, 50, 50);
+
+            // Restaura a cor original de todos os outros botões do menu
+            foreach (Button button in menuButtons)
+            {
+                if (button != clickedButton)
+                {
+                    button.BackColor = Color.FromArgb(18, 18, 18);
+                }
+            }
+
             // Cria uma nova instância do frmRegistros
             frmRegistros registrosForm = new frmRegistros();
 
@@ -107,12 +136,51 @@ namespace Zita
             OpenChildForm(registrosForm);
         }
 
-        private void btnCaixa_Click(object sender, EventArgs e)
+        private void btnEstoque_Click(object sender, EventArgs e)
         {
-            frmCaixa caixaForm = new frmCaixa();
+            // Define a cor de fundo do botão clicado para cinza
+            Button clickedButton = (Button)sender;
+            clickedButton.BackColor = Color.FromArgb(50, 50, 50);
+
+            // Restaura a cor original de todos os outros botões do menu
+            foreach (Button button in menuButtons)
+            {
+                if (button != clickedButton)
+                {
+                    button.BackColor = Color.FromArgb(18, 18, 18);
+                }
+            }
+
+            frmEstoque estoqueForm = new frmEstoque();
 
             // Chama o método OpenChildForm para abrir frmEstoque como formulário filho
-            OpenChildForm(caixaForm);
+            OpenChildForm(estoqueForm);
         }
+
+        private void btnRelatorio_Click(object sender, EventArgs e)
+        {
+            // Define a cor de fundo do botão clicado para cinza
+            Button clickedButton = (Button)sender;
+            clickedButton.BackColor = Color.FromArgb(50, 50, 50);
+
+            // Restaura a cor original de todos os outros botões do menu
+            foreach (Button button in menuButtons)
+            {
+                if (button != clickedButton)
+                {
+                    button.BackColor = Color.FromArgb(18, 18, 18);
+                }
+            }
+
+            // Cria uma nova instância do frmRelatorio
+            frmRelatorio relatorioForm = new frmRelatorio();
+
+            // Chama o método OpenChildForm para abrir frmRelatorio como formulário filho
+            OpenChildForm(relatorioForm);
+        }
+
+       
+
+
     }
 }

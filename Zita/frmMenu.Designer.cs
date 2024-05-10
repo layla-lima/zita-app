@@ -173,6 +173,7 @@
             btnRelatorio.TabIndex = 27;
             btnRelatorio.Text = "Relatório";
             btnRelatorio.UseVisualStyleBackColor = true;
+            btnRelatorio.Click += btnRelatorio_Click;
             // 
             // panel7
             // 
