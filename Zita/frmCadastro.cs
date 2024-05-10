@@ -6,7 +6,7 @@ namespace Zita
 {
     public partial class frmCadastro : Form
     {
-        string connectionString = "Data Source=DESKTOP-M2PRVUH;Initial Catalog=Zita;Integrated Security=True";
+        private string connectionString = DBHelper.ConnectionString;
 
         public frmCadastro()
         {

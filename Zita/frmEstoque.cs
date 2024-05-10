@@ -9,7 +9,7 @@ namespace Zita
 {
     public partial class frmEstoque : Form
     {
-        private string connectionString = "Data Source=DESKTOP-M2PRVUH;Initial Catalog=Zita;Integrated Security=True";
+        private string connectionString = DBHelper.ConnectionString;
         private int idProdutoEditando = -1;
 
 

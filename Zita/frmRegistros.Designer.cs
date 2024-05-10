@@ -28,24 +28,13 @@
         /// </summary>
         private void InitializeComponent()
         {
-            label6 = new Label();
             panel3 = new Panel();
             label2 = new Label();
             dgrRegistros = new DataGridView();
+            label4 = new Label();
             panel3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dgrRegistros).BeginInit();
             SuspendLayout();
-            // 
-            // label6
-            // 
-            label6.AutoSize = true;
-            label6.Font = new Font("Segoe UI", 21.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label6.ForeColor = SystemColors.ActiveCaptionText;
-            label6.Location = new Point(390, 52);
-            label6.Name = "label6";
-            label6.Size = new Size(266, 40);
-            label6.TabIndex = 6;
-            label6.Text = "Vendas Realizadas";
             // 
             // panel3
             // 
@@ -71,20 +60,30 @@
             dgrRegistros.AllowUserToAddRows = false;
             dgrRegistros.AllowUserToDeleteRows = false;
             dgrRegistros.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dgrRegistros.Location = new Point(110, 151);
+            dgrRegistros.Location = new Point(110, 102);
             dgrRegistros.Name = "dgrRegistros";
             dgrRegistros.ReadOnly = true;
-            dgrRegistros.Size = new Size(861, 314);
+            dgrRegistros.Size = new Size(861, 363);
             dgrRegistros.TabIndex = 8;
+            // 
+            // label4
+            // 
+            label4.AutoSize = true;
+            label4.Font = new Font("Sitka Banner", 20.2499981F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label4.Location = new Point(156, 60);
+            label4.Name = "label4";
+            label4.Size = new Size(302, 39);
+            label4.TabIndex = 22;
+            label4.Text = "Gerenciamento de Vendas";
             // 
             // frmRegistros
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1056, 627);
+            Controls.Add(label4);
             Controls.Add(dgrRegistros);
             Controls.Add(panel3);
-            Controls.Add(label6);
             Name = "frmRegistros";
             Text = "frmRegistros";
             WindowState = FormWindowState.Maximized;
@@ -96,9 +95,9 @@
         }
 
         #endregion
-        private Label label6;
         private Panel panel3;
         private Label label2;
         private DataGridView dgrRegistros;
+        private Label label4;
     }
 }

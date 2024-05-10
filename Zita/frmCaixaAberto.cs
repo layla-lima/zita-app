@@ -13,7 +13,7 @@ namespace Zita
 {
     public partial class frmCaixaAberto : Form
     {
-        private string connectionString = "Data Source=DESKTOP-M2PRVUH;Initial Catalog=Zita;Integrated Security=True";
+        private string connectionString = DBHelper.ConnectionString;
         private SqlConnection connection;
         private string formaDePagamento = "";
 
