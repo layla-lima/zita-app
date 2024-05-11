@@ -4,7 +4,6 @@ C:\Users\Layla\Documents\Zita\Zita\bin\Debug\net8.0-windows\Zita.runtimeconfig.j
 C:\Users\Layla\Documents\Zita\Zita\bin\Debug\net8.0-windows\Zita.dll
 C:\Users\Layla\Documents\Zita\Zita\bin\Debug\net8.0-windows\Zita.pdb
 C:\Users\Layla\Documents\Zita\Zita\bin\Debug\net8.0-windows\LiveCharts.dll
-C:\Users\Layla\Documents\Zita\Zita\bin\Debug\net8.0-windows\LiveCharts.WinForms.dll
 C:\Users\Layla\Documents\Zita\Zita\bin\Debug\net8.0-windows\LiveCharts.Wpf.dll
 C:\Users\Layla\Documents\Zita\Zita\bin\Debug\net8.0-windows\System.Data.SqlClient.dll
 C:\Users\Layla\Documents\Zita\Zita\bin\Debug\net8.0-windows\runtimes\win-arm64\native\sni.dll
@@ -33,3 +32,5 @@ C:\Users\Layla\Documents\Zita\Zita\obj\Debug\net8.0-windows\Zita.pdb
 C:\Users\Layla\Documents\Zita\Zita\obj\Debug\net8.0-windows\Zita.genruntimeconfig.cache
 C:\Users\Layla\Documents\Zita\Zita\obj\Debug\net8.0-windows\ref\Zita.dll
 C:\Users\Layla\Documents\Zita\Zita\obj\Debug\net8.0-windows\Zita.frmRelatorio.resources
+C:\Users\Layla\Documents\Zita\Zita\bin\Debug\net8.0-windows\OxyPlot.dll
+C:\Users\Layla\Documents\Zita\Zita\bin\Debug\net8.0-windows\OxyPlot.WindowsForms.dll

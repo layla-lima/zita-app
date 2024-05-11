@@ -141,7 +141,7 @@ namespace Zita
 
         private void optCredito_CheckedChanged(object sender, EventArgs e)
         {
-            // Armazena a forma de pagamento selecionada
+            // Verifica se a opção está marcada
             if (optCredito.Checked)
             {
                 formaDePagamento = "Crédito";
@@ -150,7 +150,7 @@ namespace Zita
 
         private void optDebito_CheckedChanged(object sender, EventArgs e)
         {
-            // Armazena a forma de pagamento selecionada
+            // Verifica se a opção está marcada
             if (optDebito.Checked)
             {
                 formaDePagamento = "Débito";
@@ -159,7 +159,7 @@ namespace Zita
 
         private void optPix_CheckedChanged(object sender, EventArgs e)
         {
-            // Armazena a forma de pagamento selecionada
+            // Verifica se a opção está marcada
             if (optPix.Checked)
             {
                 formaDePagamento = "Pix";
@@ -173,6 +173,7 @@ namespace Zita
             {
                 formaDePagamento = "Dinheiro";
 
+                // Torna os controles visíveis
                 lblTextoValorPago.Visible = true;
                 txtValorPago.Visible = true;
                 lblTextoTroco.Visible = true;
@@ -212,6 +213,14 @@ namespace Zita
 
         private void btnFinalizarCompra_Click(object sender, EventArgs e)
         {
+
+            // Verifica se a forma de pagamento foi selecionada
+            if (string.IsNullOrWhiteSpace(formaDePagamento))
+            {
+                MessageBox.Show("Selecione uma forma de pagamento.");
+                return;
+            }
+
             // Verifica se há itens na compra
             if (dgrCompras.Rows.Count == 0)
             {

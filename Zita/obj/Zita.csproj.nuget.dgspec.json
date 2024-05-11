@@ -45,9 +45,9 @@
         "net8.0-windows7.0": {
           "targetAlias": "net8.0-windows",
           "dependencies": {
-            "LiveCharts.WinForms": {
+            "OxyPlot.WindowsForms": {
               "target": "Package",
-              "version": "[0.9.7.1, )"
+              "version": "[2.1.2, )"
             },
             "System.Data.SqlClient": {
               "target": "Package",

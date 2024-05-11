@@ -31,6 +31,11 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmCaixaAberto));
             btnFinalizarCompra = new Button();
             dgrCompras = new DataGridView();
+            Codigo = new DataGridViewTextBoxColumn();
+            Produto = new DataGridViewTextBoxColumn();
+            ValorUnitario = new DataGridViewTextBoxColumn();
+            Quantidade = new DataGridViewTextBoxColumn();
+            ValorFinal = new DataGridViewTextBoxColumn();
             btnRemover = new Button();
             btnAdicionar = new Button();
             txtQuantidade = new TextBox();
@@ -59,11 +64,6 @@
             panel3 = new Panel();
             btnClose = new PictureBox();
             pictureBox1 = new PictureBox();
-            Codigo = new DataGridViewTextBoxColumn();
-            Produto = new DataGridViewTextBoxColumn();
-            ValorUnitario = new DataGridViewTextBoxColumn();
-            Quantidade = new DataGridViewTextBoxColumn();
-            ValorFinal = new DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)dgrCompras).BeginInit();
             panel1.SuspendLayout();
             panel2.SuspendLayout();
@@ -100,6 +100,36 @@
             dgrCompras.ReadOnly = true;
             dgrCompras.Size = new Size(669, 341);
             dgrCompras.TabIndex = 35;
+            // 
+            // Codigo
+            // 
+            Codigo.HeaderText = "Código";
+            Codigo.Name = "Codigo";
+            Codigo.ReadOnly = true;
+            // 
+            // Produto
+            // 
+            Produto.HeaderText = "Produto";
+            Produto.Name = "Produto";
+            Produto.ReadOnly = true;
+            // 
+            // ValorUnitario
+            // 
+            ValorUnitario.HeaderText = "ValorUnitario";
+            ValorUnitario.Name = "ValorUnitario";
+            ValorUnitario.ReadOnly = true;
+            // 
+            // Quantidade
+            // 
+            Quantidade.HeaderText = "Quantidade";
+            Quantidade.Name = "Quantidade";
+            Quantidade.ReadOnly = true;
+            // 
+            // ValorFinal
+            // 
+            ValorFinal.HeaderText = "ValorFinal";
+            ValorFinal.Name = "ValorFinal";
+            ValorFinal.ReadOnly = true;
             // 
             // btnRemover
             // 
@@ -305,6 +335,7 @@
             optPix.TabStop = true;
             optPix.Text = "Pix";
             optPix.UseVisualStyleBackColor = true;
+            optPix.CheckedChanged += optPix_CheckedChanged;
             // 
             // optDebito
             // 
@@ -317,6 +348,7 @@
             optDebito.TabStop = true;
             optDebito.Text = "Cartão de Débito";
             optDebito.UseVisualStyleBackColor = true;
+            optDebito.CheckedChanged += optDebito_CheckedChanged;
             // 
             // optCredito
             // 
@@ -329,6 +361,7 @@
             optCredito.TabStop = true;
             optCredito.Text = "Cartão de Crédito";
             optCredito.UseVisualStyleBackColor = true;
+            optCredito.CheckedChanged += optCredito_CheckedChanged;
             // 
             // lblValorTotal
             // 
@@ -424,36 +457,6 @@
             pictureBox1.SizeMode = PictureBoxSizeMode.Zoom;
             pictureBox1.TabIndex = 0;
             pictureBox1.TabStop = false;
-            // 
-            // Codigo
-            // 
-            Codigo.HeaderText = "Código";
-            Codigo.Name = "Codigo";
-            Codigo.ReadOnly = true;
-            // 
-            // Produto
-            // 
-            Produto.HeaderText = "Produto";
-            Produto.Name = "Produto";
-            Produto.ReadOnly = true;
-            // 
-            // ValorUnitario
-            // 
-            ValorUnitario.HeaderText = "ValorUnitario";
-            ValorUnitario.Name = "ValorUnitario";
-            ValorUnitario.ReadOnly = true;
-            // 
-            // Quantidade
-            // 
-            Quantidade.HeaderText = "Quantidade";
-            Quantidade.Name = "Quantidade";
-            Quantidade.ReadOnly = true;
-            // 
-            // ValorFinal
-            // 
-            ValorFinal.HeaderText = "ValorFinal";
-            ValorFinal.Name = "ValorFinal";
-            ValorFinal.ReadOnly = true;
             // 
             // frmCaixaAberto
             // 
