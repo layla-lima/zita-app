@@ -106,10 +106,10 @@ namespace Zita
 
                     var colors = new OxyColor[]
                     {
-                OxyColor.Parse("#45b39d"),
-                OxyColor.Parse("#5ac8b8"),
-                OxyColor.Parse("#30987d"),
-                OxyColor.Parse("#1d7862")
+                        OxyColor.Parse("#45b39d"),
+                        OxyColor.Parse("#5ac8b8"),
+                        OxyColor.Parse("#30987d"),
+                        OxyColor.Parse("#1d7862")
                     };
 
                     int colorIndex = 0;
@@ -119,17 +119,13 @@ namespace Zita
                         string formaPagamento = reader2["FormaDePagamento"].ToString();
                         int quantidade = Convert.ToInt32(reader2["Total"]);
 
-                        // Calculamos a porcentagem correta usando o número total de vendas
-                        double percentual = (double)quantidade / numeroDeVendas * 100;
-
                         double sliceAngle = 360 * quantidade / numeroDeVendas;
 
                         var pieSeries = new PieSeries
                         {
                             StartAngle = startAngle,
                             AngleSpan = sliceAngle,
-                            InnerDiameter = 0.4,
-                            OutsideLabelFormat = ""
+                            InnerDiameter = 0.4
                         };
 
                         pieSeries.Slices.Add(new PieSlice(formaPagamento, quantidade)
@@ -139,9 +135,6 @@ namespace Zita
                         });
 
                         pieSeries.TextColor = OxyColors.White;
-
-                        // Adiciona a porcentagem como rótulo de ferramenta (tool tip)
-                        pieSeries.ToolTip = $"{formaPagamento}: {percentual:0.##}%";
 
                         model.Series.Add(pieSeries);
 
@@ -223,11 +216,11 @@ namespace Zita
                     // Cores para cada categoria (em tons de roxo)
                     var cores = new OxyColor[]
                     {
-                        OxyColor.FromRgb(177, 16, 76),    // #b1104c
-                        OxyColor.FromRgb(197, 45, 99),    // #c52d63
-                        OxyColor.FromRgb(216, 74, 121),   // #d84a79
-                        OxyColor.FromRgb(236, 102, 144),  // #ec6690
-                        OxyColor.FromRgb(255, 131, 166)   // #ff83a6
+                        OxyColor.FromRgb(218, 162, 255),    // #b1104c
+                        OxyColor.FromRgb(218, 162, 255),    // #c52d63
+                        OxyColor.FromRgb(168, 116, 213),   // #d84a79
+                        OxyColor.FromRgb(142, 92, 191),  // #ec6690
+                        OxyColor.FromRgb(117, 69, 170)   // #ff83a6
                     };
 
                     int indiceCor = 0; // Índice para percorrer o array de cores
@@ -261,7 +254,6 @@ namespace Zita
 
             plotView.Model = model;
         }
-
 
 
 
