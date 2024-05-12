@@ -21,7 +21,8 @@ namespace Zita
             InitializeComponent();
             pnlGraficoPizza.SizeChanged += PnlGraficoPizza_SizeChanged; // Adicionando o evento SizeChanged aqui
             AtualizarRelatorio();
-            ConfigurarGraficoPizza();
+            ConfigurarGraficoAnel();
+
         }
 
         private void AtualizarRelatorio()
@@ -75,16 +76,15 @@ namespace Zita
 
 
 
-
-
-        private void ConfigurarGraficoPizza()
+        private void ConfigurarGraficoAnel()
         {
             plotView = new PlotView();
             plotView.Dock = DockStyle.Fill; // Preenche todo o espaço do Panel
             pnlGraficoPizza.Controls.Add(plotView);
 
             var model = new PlotModel { Title = "Formas de Pagamento" };
-            var series = new PieSeries();
+            model.TitleHorizontalAlignment = TitleHorizontalAlignment.CenteredWithinPlotArea; // Alinha o título ao centro horizontalmente
+            model.TitlePadding = 20; // ajusta distancia entre titulo e grafico
 
             try
             {
@@ -97,16 +97,62 @@ namespace Zita
                     SqlCommand cmdFormasPagamento = new SqlCommand(queryFormasPagamento, connection);
                     SqlDataReader reader = cmdFormasPagamento.ExecuteReader();
 
+                    double startAngle = 0;
+                    double total = 0;
+
+                    // Calcula o total de vendas para calcular os ângulos
                     while (reader.Read())
                     {
-                        string formaPagamento = reader["FormaDePagamento"].ToString();
-                        int total = Convert.ToInt32(reader["Total"]);
-
-                        // Adiciona os dados ao gráfico de pizza
-                        series.Slices.Add(new PieSlice(formaPagamento, total));
+                        total += Convert.ToInt32(reader["Total"]);
                     }
 
                     reader.Close();
+
+                    // Consulta novamente para obter os dados reais
+                    SqlDataReader reader2 = cmdFormasPagamento.ExecuteReader();
+
+                    var colors = new OxyColor[]
+                    {
+                OxyColor.Parse("#45b39d"), // COR DO CREDITO
+                OxyColor.Parse("#5ac8b8"), // COR DO DEBITO
+                OxyColor.Parse("#30987d"), //COR DO DINHEIRO
+                OxyColor.Parse("#1d7862") // COR DO PIX
+                    };
+
+                    int colorIndex = 0;
+
+                    // Adiciona as fatias ao gráfico de anel
+                    while (reader2.Read())
+                    {
+                        string formaPagamento = reader2["FormaDePagamento"].ToString();
+                        int quantidade = Convert.ToInt32(reader2["Total"]);
+                        double sliceAngle = 360 * quantidade / total;
+
+                        var pieSeries = new PieSeries
+                        {
+                            StartAngle = startAngle,
+                            AngleSpan = sliceAngle,
+                            InnerDiameter = 0.4,
+                            OutsideLabelFormat = null
+                        };
+
+                        // Define a cor da fatia
+                        pieSeries.Slices.Add(new PieSlice(formaPagamento, quantidade)
+                        {
+                            Fill = colors[colorIndex],
+                            IsExploded = true // Ajusta o espaçamento entre as fatias
+                        });
+
+                        // Define a cor do texto dentro das fatias como branco
+                        pieSeries.TextColor = OxyColors.White;
+
+                        model.Series.Add(pieSeries);
+
+                        startAngle += sliceAngle;
+                        colorIndex = (colorIndex + 1) % colors.Length; // Avança para a próxima cor na lista de cores
+                    }
+
+                    reader2.Close();
                 }
             }
             catch (Exception ex)
@@ -114,16 +160,6 @@ namespace Zita
                 MessageBox.Show("Erro ao obter dados de formas de pagamento: " + ex.Message);
             }
 
-            // Define as cores para cada fatia do gráfico
-            series.Slices[0].Fill = OxyColor.Parse("#2478c9");
-            series.Slices[1].Fill = OxyColor.Parse("#1b68b7");
-            series.Slices[2].Fill = OxyColor.Parse("#1259a5");
-            series.Slices[3].Fill = OxyColor.Parse("#094992");
-
-            // Configuração para mostrar a porcentagem dentro das fatias
-            series.LabelField = "Value";
-
-            model.Series.Add(series);
             plotView.Model = model;
         }
 
@@ -135,8 +171,6 @@ namespace Zita
             plotView.Width = pnlGraficoPizza.Width;
             plotView.Height = pnlGraficoPizza.Height;
         }
-
-
 
 
 

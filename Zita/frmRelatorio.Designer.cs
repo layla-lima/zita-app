@@ -151,10 +151,10 @@
             // pnlGraficoPizza
             // 
             pnlGraficoPizza.BackColor = SystemColors.ButtonFace;
-            pnlGraficoPizza.BorderStyle = BorderStyle.FixedSingle;
-            pnlGraficoPizza.Location = new Point(51, 239);
+            pnlGraficoPizza.ForeColor = SystemColors.ActiveCaptionText;
+            pnlGraficoPizza.Location = new Point(51, 227);
             pnlGraficoPizza.Name = "pnlGraficoPizza";
-            pnlGraficoPizza.Size = new Size(598, 347);
+            pnlGraficoPizza.Size = new Size(404, 359);
             pnlGraficoPizza.TabIndex = 4;
             // 
             // panel3
@@ -204,9 +204,9 @@
             // 
             panel4.BackColor = SystemColors.ButtonFace;
             panel4.BorderStyle = BorderStyle.FixedSingle;
-            panel4.Location = new Point(689, 235);
+            panel4.Location = new Point(485, 239);
             panel4.Name = "panel4";
-            panel4.Size = new Size(288, 347);
+            panel4.Size = new Size(492, 343);
             panel4.TabIndex = 5;
             // 
             // frmRelatorio
