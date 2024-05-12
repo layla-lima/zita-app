@@ -150,7 +150,6 @@
             // 
             // dgrEstoque
             // 
-            dgrEstoque.AllowUserToAddRows = false;
             dgrEstoque.AllowUserToDeleteRows = false;
             dgrEstoque.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dgrEstoque.EnableHeadersVisualStyles = false;
