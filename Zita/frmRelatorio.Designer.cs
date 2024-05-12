@@ -38,10 +38,18 @@
             pictureBox2 = new PictureBox();
             lblGanhoTotal = new Label();
             label5 = new Label();
+            pnlGraficoPizza = new Panel();
+            panel3 = new Panel();
+            pictureBox3 = new PictureBox();
+            lblGanhosDoDia = new Label();
+            label4 = new Label();
+            panel4 = new Panel();
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
+            panel3.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)pictureBox3).BeginInit();
             SuspendLayout();
             // 
             // label1
@@ -140,14 +148,78 @@
             label5.TabIndex = 0;
             label5.Text = "Ganhos no Total";
             // 
+            // pnlGraficoPizza
+            // 
+            pnlGraficoPizza.BackColor = SystemColors.ButtonFace;
+            pnlGraficoPizza.BorderStyle = BorderStyle.FixedSingle;
+            pnlGraficoPizza.Location = new Point(51, 239);
+            pnlGraficoPizza.Name = "pnlGraficoPizza";
+            pnlGraficoPizza.Size = new Size(598, 347);
+            pnlGraficoPizza.TabIndex = 4;
+            // 
+            // panel3
+            // 
+            panel3.BackColor = Color.Orange;
+            panel3.Controls.Add(pictureBox3);
+            panel3.Controls.Add(lblGanhosDoDia);
+            panel3.Controls.Add(label4);
+            panel3.Location = new Point(689, 90);
+            panel3.Name = "panel3";
+            panel3.Size = new Size(288, 108);
+            panel3.TabIndex = 4;
+            // 
+            // pictureBox3
+            // 
+            pictureBox3.Image = (Image)resources.GetObject("pictureBox3.Image");
+            pictureBox3.Location = new Point(210, 37);
+            pictureBox3.Name = "pictureBox3";
+            pictureBox3.Size = new Size(59, 52);
+            pictureBox3.SizeMode = PictureBoxSizeMode.Zoom;
+            pictureBox3.TabIndex = 2;
+            pictureBox3.TabStop = false;
+            // 
+            // lblGanhosDoDia
+            // 
+            lblGanhosDoDia.AutoSize = true;
+            lblGanhosDoDia.Font = new Font("Microsoft Sans Serif", 26.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            lblGanhosDoDia.ForeColor = SystemColors.ButtonFace;
+            lblGanhosDoDia.Location = new Point(20, 50);
+            lblGanhosDoDia.Name = "lblGanhosDoDia";
+            lblGanhosDoDia.Size = new Size(164, 39);
+            lblGanhosDoDia.TabIndex = 1;
+            lblGanhosDoDia.Text = "R$ 00,00";
+            // 
+            // label4
+            // 
+            label4.AutoSize = true;
+            label4.Font = new Font("Nirmala UI", 11.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            label4.ForeColor = SystemColors.ButtonFace;
+            label4.Location = new Point(20, 10);
+            label4.Name = "label4";
+            label4.Size = new Size(107, 20);
+            label4.TabIndex = 0;
+            label4.Text = "Ganhos do Dia";
+            // 
+            // panel4
+            // 
+            panel4.BackColor = SystemColors.ButtonFace;
+            panel4.BorderStyle = BorderStyle.FixedSingle;
+            panel4.Location = new Point(689, 235);
+            panel4.Name = "panel4";
+            panel4.Size = new Size(288, 347);
+            panel4.TabIndex = 5;
+            // 
             // frmRelatorio
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1056, 636);
+            Controls.Add(panel4);
+            Controls.Add(panel3);
             Controls.Add(panel2);
             Controls.Add(panel1);
             Controls.Add(label1);
+            Controls.Add(pnlGraficoPizza);
             Name = "frmRelatorio";
             Text = "frmRelatorio";
             panel1.ResumeLayout(false);
@@ -156,6 +228,9 @@
             panel2.ResumeLayout(false);
             panel2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).EndInit();
+            panel3.ResumeLayout(false);
+            panel3.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)pictureBox3).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -171,6 +246,11 @@
         private PictureBox pictureBox2;
         private Label lblGanhoTotal;
         private Label label5;
-        
+        private Panel pnlGraficoPizza;
+        private Panel panel3;
+        private PictureBox pictureBox3;
+        private Label lblGanhosDoDia;
+        private Label label4;
+        private Panel panel4;
     }
 }

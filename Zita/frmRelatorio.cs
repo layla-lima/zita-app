@@ -19,6 +19,7 @@ namespace Zita
         public frmRelatorio()
         {
             InitializeComponent();
+            pnlGraficoPizza.SizeChanged += PnlGraficoPizza_SizeChanged; // Adicionando o evento SizeChanged aqui
             AtualizarRelatorio();
             ConfigurarGraficoPizza();
         }
@@ -31,10 +32,12 @@ namespace Zita
                 {
                     connection.Open();
 
+                    // Calcula o número de vendas
                     string queryVendas = "SELECT COUNT(*) FROM Registros";
                     SqlCommand cmdVendas = new SqlCommand(queryVendas, connection);
                     numeroDeVendas = (int)cmdVendas.ExecuteScalar();
 
+                    // Calcula o ganho total
                     string queryGanhoTotal = "SELECT SUM(PrecoTotal) FROM Registros";
                     SqlCommand cmdGanhoTotal = new SqlCommand(queryGanhoTotal, connection);
                     object result = cmdGanhoTotal.ExecuteScalar();
@@ -43,6 +46,23 @@ namespace Zita
                         ganhoTotal = Convert.ToDecimal(result);
                     }
 
+                    // Calcula os ganhos do dia atual
+                    DateTime dataAtual = DateTime.Today;
+                    string queryGanhosDiaAtual = "SELECT SUM(PrecoTotal) FROM Registros WHERE CONVERT(date, DataHora) = @DataAtual";
+                    SqlCommand cmdGanhosDiaAtual = new SqlCommand(queryGanhosDiaAtual, connection);
+                    cmdGanhosDiaAtual.Parameters.AddWithValue("@DataAtual", dataAtual);
+                    object resultGanhosDiaAtual = cmdGanhosDiaAtual.ExecuteScalar();
+                    if (resultGanhosDiaAtual != DBNull.Value)
+                    {
+                        decimal ganhosDiaAtual = Convert.ToDecimal(resultGanhosDiaAtual);
+                        lblGanhosDoDia.Text = ganhosDiaAtual.ToString("C2");
+                    }
+                    else
+                    {
+                        lblGanhosDoDia.Text = "R$ 0,00"; // Se não houver registros, exibe 0,00 como total dos ganhos do dia atual
+                    }
+
+                    // Atualiza os outros dados do relatório
                     lblVendasRealizadas.Text = numeroDeVendas.ToString();
                     lblGanhoTotal.Text = ganhoTotal.ToString("C2");
                 }
@@ -53,12 +73,15 @@ namespace Zita
             }
         }
 
+
+
+
+
         private void ConfigurarGraficoPizza()
         {
             plotView = new PlotView();
-            plotView.Location = new Point(51, 295);
-            plotView.Size = new Size(598, 264);
-            Controls.Add(plotView);
+            plotView.Dock = DockStyle.Fill; // Preenche todo o espaço do Panel
+            pnlGraficoPizza.Controls.Add(plotView);
 
             var model = new PlotModel { Title = "Formas de Pagamento" };
             var series = new PieSeries();
@@ -104,6 +127,14 @@ namespace Zita
             plotView.Model = model;
         }
 
+
+
+        private void PnlGraficoPizza_SizeChanged(object sender, EventArgs e)
+        {
+            // Ajusta o tamanho do PlotView sempre que o tamanho do Panel mudar
+            plotView.Width = pnlGraficoPizza.Width;
+            plotView.Height = pnlGraficoPizza.Height;
+        }
 
 
 
