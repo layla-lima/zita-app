@@ -8,12 +8,21 @@
     ".NETCoreApp,Version=v8.0": {
       "Zita/1.0.0": {
         "dependencies": {
+          "DG.AdvancedDataGridView": "1.2.29301.14",
           "OxyPlot.WindowsForms": "2.0.0",
           "System.Data.SqlClient": "4.8.6",
           "LiveCharts.WinForms": "0.9.7.1"
         },
         "runtime": {
           "Zita.dll": {}
+        }
+      },
+      "DG.AdvancedDataGridView/1.2.29301.14": {
+        "runtime": {
+          "lib/net5.0-windows7.0/AdvancedDataGridView.dll": {
+            "assemblyVersion": "1.2.29301.14",
+            "fileVersion": "1.2.29301.14"
+          }
         }
       },
       "Microsoft.NETCore.Platforms/3.1.0": {},
@@ -793,6 +802,13 @@
       "type": "project",
       "serviceable": false,
       "sha512": ""
+    },
+    "DG.AdvancedDataGridView/1.2.29301.14": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-wV8y27HDK1ZdnzRjIU9uHk2/kuTVGtd5ThCWiVO6OJN5OCbTMhLPQb94U7ytMw7dVvxTJ9fhxacJExHA6oN/zA==",
+      "path": "dg.advanceddatagridview/1.2.29301.14",
+      "hashPath": "dg.advanceddatagridview.1.2.29301.14.nupkg.sha512"
     },
     "Microsoft.NETCore.Platforms/3.1.0": {
       "type": "package",

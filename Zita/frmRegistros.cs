@@ -9,11 +9,13 @@ namespace Zita
     {
         private string connectionString = DBHelper.ConnectionString;
         private SqlConnection connection;
+
         public frmRegistros()
         {
             InitializeComponent();
             this.FormBorderStyle = FormBorderStyle.None;
             connection = new SqlConnection(connectionString);
+            dgrRegistros.DataBindingComplete += DgrRegistros_DataBindingComplete;
 
             // Desativa os estilos visuais dos cabeçalhos
             dgrRegistros.EnableHeadersVisualStyles = false;
@@ -47,6 +49,18 @@ namespace Zita
                     e.FormattingApplied = true;
                 }
             }
+        }
+
+        private void DgrRegistros_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)
+        {
+            // Calcular valor total filtrado
+            decimal valorTotalFiltrado = 0;
+            foreach (DataGridViewRow row in dgrRegistros.Rows)
+            {
+                valorTotalFiltrado += Convert.ToDecimal(row.Cells["PrecoTotal"].Value);
+            }
+
+            lblValorTotalFiltrado.Text = valorTotalFiltrado.ToString("N2");
         }
 
         private void CarregarRegistros()
