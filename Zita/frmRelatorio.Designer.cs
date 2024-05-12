@@ -165,13 +165,13 @@
             panel3.Controls.Add(label4);
             panel3.Location = new Point(689, 90);
             panel3.Name = "panel3";
-            panel3.Size = new Size(288, 108);
+            panel3.Size = new Size(306, 108);
             panel3.TabIndex = 4;
             // 
             // pictureBox3
             // 
             pictureBox3.Image = (Image)resources.GetObject("pictureBox3.Image");
-            pictureBox3.Location = new Point(210, 37);
+            pictureBox3.Location = new Point(229, 37);
             pictureBox3.Name = "pictureBox3";
             pictureBox3.Size = new Size(59, 52);
             pictureBox3.SizeMode = PictureBoxSizeMode.Zoom;
@@ -203,10 +203,9 @@
             // pnlGraficoBarras
             // 
             pnlGraficoBarras.BackColor = SystemColors.ButtonFace;
-            pnlGraficoBarras.BorderStyle = BorderStyle.FixedSingle;
             pnlGraficoBarras.Location = new Point(485, 227);
             pnlGraficoBarras.Name = "pnlGraficoBarras";
-            pnlGraficoBarras.Size = new Size(492, 355);
+            pnlGraficoBarras.Size = new Size(519, 355);
             pnlGraficoBarras.TabIndex = 5;
             // 
             // frmRelatorio

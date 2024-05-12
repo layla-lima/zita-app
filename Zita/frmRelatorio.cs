@@ -4,6 +4,7 @@ using System.Data.SqlClient;
 using System.Drawing;
 using System.Windows.Forms;
 using OxyPlot;
+using OxyPlot.Axes;
 using OxyPlot.Series;
 using OxyPlot.WindowsForms;
 
@@ -19,10 +20,10 @@ namespace Zita
         public frmRelatorio()
         {
             InitializeComponent();
-            pnlGraficoPizza.SizeChanged += PnlGraficoPizza_SizeChanged; // Adicionando o evento SizeChanged aqui
+            pnlGraficoPizza.SizeChanged += PnlGraficoPizza_SizeChanged;
             AtualizarRelatorio();
             ConfigurarGraficoAnel();
-
+            ConfigurarGraficoBarras(); // Adicionado aqui para configurar o gráfico de barras
         }
 
         private void AtualizarRelatorio()
@@ -33,12 +34,10 @@ namespace Zita
                 {
                     connection.Open();
 
-                    // Calcula o número de vendas
                     string queryVendas = "SELECT COUNT(*) FROM Registros";
                     SqlCommand cmdVendas = new SqlCommand(queryVendas, connection);
                     numeroDeVendas = (int)cmdVendas.ExecuteScalar();
 
-                    // Calcula o ganho total
                     string queryGanhoTotal = "SELECT SUM(PrecoTotal) FROM Registros";
                     SqlCommand cmdGanhoTotal = new SqlCommand(queryGanhoTotal, connection);
                     object result = cmdGanhoTotal.ExecuteScalar();
@@ -47,7 +46,6 @@ namespace Zita
                         ganhoTotal = Convert.ToDecimal(result);
                     }
 
-                    // Calcula os ganhos do dia atual
                     DateTime dataAtual = DateTime.Today;
                     string queryGanhosDiaAtual = "SELECT SUM(PrecoTotal) FROM Registros WHERE CONVERT(date, DataHora) = @DataAtual";
                     SqlCommand cmdGanhosDiaAtual = new SqlCommand(queryGanhosDiaAtual, connection);
@@ -60,10 +58,9 @@ namespace Zita
                     }
                     else
                     {
-                        lblGanhosDoDia.Text = "R$ 0,00"; // Se não houver registros, exibe 0,00 como total dos ganhos do dia atual
+                        lblGanhosDoDia.Text = "R$ 0,00";
                     }
 
-                    // Atualiza os outros dados do relatório
                     lblVendasRealizadas.Text = numeroDeVendas.ToString();
                     lblGanhoTotal.Text = ganhoTotal.ToString("C2");
                 }
@@ -74,17 +71,15 @@ namespace Zita
             }
         }
 
-
-
         private void ConfigurarGraficoAnel()
         {
             plotView = new PlotView();
-            plotView.Dock = DockStyle.Fill; // Preenche todo o espaço do Panel
+            plotView.Dock = DockStyle.Fill;
             pnlGraficoPizza.Controls.Add(plotView);
 
             var model = new PlotModel { Title = "Formas de Pagamento" };
-            model.TitleHorizontalAlignment = TitleHorizontalAlignment.CenteredWithinPlotArea; // Alinha o título ao centro horizontalmente
-            model.TitlePadding = 20; // ajusta distancia entre titulo e grafico
+            model.TitleHorizontalAlignment = TitleHorizontalAlignment.CenteredWithinPlotArea;
+            model.TitlePadding = 20;
 
             try
             {
@@ -92,64 +87,66 @@ namespace Zita
                 {
                     connection.Open();
 
-                    // Consulta para obter a contagem de registros por forma de pagamento
                     string queryFormasPagamento = "SELECT FormaDePagamento, COUNT(*) AS Total FROM Registros GROUP BY FormaDePagamento";
                     SqlCommand cmdFormasPagamento = new SqlCommand(queryFormasPagamento, connection);
                     SqlDataReader reader = cmdFormasPagamento.ExecuteReader();
 
                     double startAngle = 0;
-                    double total = 0;
+                    int numeroDeVendas = 0;
 
-                    // Calcula o total de vendas para calcular os ângulos
+                    // Obter o número total de vendas
                     while (reader.Read())
                     {
-                        total += Convert.ToInt32(reader["Total"]);
+                        numeroDeVendas += Convert.ToInt32(reader["Total"]);
                     }
 
                     reader.Close();
 
-                    // Consulta novamente para obter os dados reais
                     SqlDataReader reader2 = cmdFormasPagamento.ExecuteReader();
 
                     var colors = new OxyColor[]
                     {
-                OxyColor.Parse("#45b39d"), // COR DO CREDITO
-                OxyColor.Parse("#5ac8b8"), // COR DO DEBITO
-                OxyColor.Parse("#30987d"), //COR DO DINHEIRO
-                OxyColor.Parse("#1d7862") // COR DO PIX
+                OxyColor.Parse("#45b39d"),
+                OxyColor.Parse("#5ac8b8"),
+                OxyColor.Parse("#30987d"),
+                OxyColor.Parse("#1d7862")
                     };
 
                     int colorIndex = 0;
 
-                    // Adiciona as fatias ao gráfico de anel
                     while (reader2.Read())
                     {
                         string formaPagamento = reader2["FormaDePagamento"].ToString();
                         int quantidade = Convert.ToInt32(reader2["Total"]);
-                        double sliceAngle = 360 * quantidade / total;
+
+                        // Calculamos a porcentagem correta usando o número total de vendas
+                        double percentual = (double)quantidade / numeroDeVendas * 100;
+
+                        double sliceAngle = 360 * quantidade / numeroDeVendas;
 
                         var pieSeries = new PieSeries
                         {
                             StartAngle = startAngle,
                             AngleSpan = sliceAngle,
                             InnerDiameter = 0.4,
-                            OutsideLabelFormat = null
+                            OutsideLabelFormat = ""
                         };
 
-                        // Define a cor da fatia
                         pieSeries.Slices.Add(new PieSlice(formaPagamento, quantidade)
                         {
                             Fill = colors[colorIndex],
-                            IsExploded = true // Ajusta o espaçamento entre as fatias
+                            IsExploded = true
                         });
 
-                        // Define a cor do texto dentro das fatias como branco
                         pieSeries.TextColor = OxyColors.White;
+
+                        // Adiciona a porcentagem como rótulo de ferramenta (tool tip)
+                        pieSeries.ToolTip = $"{formaPagamento}: {percentual:0.##}%";
 
                         model.Series.Add(pieSeries);
 
                         startAngle += sliceAngle;
-                        colorIndex = (colorIndex + 1) % colors.Length; // Avança para a próxima cor na lista de cores
+                        colorIndex = (colorIndex + 1) % colors.Length;
                     }
 
                     reader2.Close();
@@ -165,14 +162,114 @@ namespace Zita
 
 
 
-        private void PnlGraficoPizza_SizeChanged(object sender, EventArgs e)
+
+        private void ConfigurarGraficoBarras()
         {
-            // Ajusta o tamanho do PlotView sempre que o tamanho do Panel mudar
-            plotView.Width = pnlGraficoPizza.Width;
-            plotView.Height = pnlGraficoPizza.Height;
+            plotView = new PlotView();
+            plotView.Dock = DockStyle.Fill;
+            pnlGraficoBarras.Controls.Add(plotView);
+
+            var model = new PlotModel { Title = "Categorias Mais Vendidas" };
+            model.TitleHorizontalAlignment = TitleHorizontalAlignment.CenteredWithinPlotArea;
+            model.TitlePadding = 20;
+            model.DefaultFont = "Arial"; // Definindo a fonte padrão como Arial
+
+            // Definindo as categorias manualmente
+            string[] categorias = { "Bolsas", "Semijoias", "Calçados", "Óculos", "Acessórios" };
+
+            try
+            {
+                using (SqlConnection connection = new SqlConnection(connectionString))
+                {
+                    connection.Open();
+
+                    // Consulta para obter a quantidade total de itens vendidos por categoria
+                    string queryQuantidadePorCategoria = @"
+                SELECT P.Categoria, SUM(IV.Quantidade) AS TotalQuantidade
+                FROM Produtos P
+                LEFT JOIN ItensVendidos IV ON IV.CodigoProduto = P.Codigo
+                GROUP BY P.Categoria
+                ORDER BY TotalQuantidade DESC";
+                    SqlCommand cmdQuantidadePorCategoria = new SqlCommand(queryQuantidadePorCategoria, connection);
+                    SqlDataReader reader = cmdQuantidadePorCategoria.ExecuteReader();
+
+                    // Dicionário para armazenar a quantidade total de itens vendidos para cada categoria
+                    Dictionary<string, int> quantidadePorCategoria = new Dictionary<string, int>();
+
+                    // Inicializando o dicionário com quantidade zero para cada categoria
+                    foreach (string categoria in categorias)
+                    {
+                        quantidadePorCategoria.Add(categoria, 0);
+                    }
+
+                    // Preenchendo o dicionário com as quantidades reais de itens vendidos
+                    while (reader.Read())
+                    {
+                        string categoria = reader["Categoria"].ToString();
+                        int totalQuantidade = Convert.ToInt32(reader["TotalQuantidade"]);
+
+                        // Verificando se a categoria está na lista de categorias definidas
+                        if (quantidadePorCategoria.ContainsKey(categoria))
+                        {
+                            quantidadePorCategoria[categoria] = totalQuantidade;
+                        }
+                    }
+
+                    reader.Close();
+
+                    // Adicionando as barras ao modelo do gráfico
+                    var barSeries = new ColumnSeries { LabelPlacement = LabelPlacement.Inside };
+
+                    // Cores para cada categoria (em tons de roxo)
+                    var cores = new OxyColor[]
+                    {
+                        OxyColor.FromRgb(177, 16, 76),    // #b1104c
+                        OxyColor.FromRgb(197, 45, 99),    // #c52d63
+                        OxyColor.FromRgb(216, 74, 121),   // #d84a79
+                        OxyColor.FromRgb(236, 102, 144),  // #ec6690
+                        OxyColor.FromRgb(255, 131, 166)   // #ff83a6
+                    };
+
+                    int indiceCor = 0; // Índice para percorrer o array de cores
+
+                    foreach (string categoria in categorias)
+                    {
+                        var cor = cores[indiceCor]; // Seleciona a cor para a categoria atual
+                        barSeries.Items.Add(new ColumnItem { Value = quantidadePorCategoria[categoria], Color = cor });
+                        indiceCor++;
+                    }
+
+                    model.Series.Add(barSeries);
+
+                    // Adicionando os nomes das categorias ao eixo X
+                    var categoryAxis = new CategoryAxis { Position = AxisPosition.Bottom };
+                    foreach (string categoria in categorias)
+                    {
+                        categoryAxis.Labels.Add(categoria);
+                    }
+                    model.Axes.Add(categoryAxis);
+
+                    // Adicionando o título ao eixo Y
+                    var valueAxis = new LinearAxis { Position = AxisPosition.Left, Title = "Quantidade de Itens Vendidos", AxisTitleDistance = 15 }; // Ajusta a distância da legenda dos números do eixo Y
+                    model.Axes.Add(valueAxis);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Erro ao obter dados das categorias mais vendidas: " + ex.Message);
+            }
+
+            plotView.Model = model;
         }
 
 
 
+
+
+        private void PnlGraficoPizza_SizeChanged(object sender, EventArgs e)
+        {
+            plotView.Width = pnlGraficoPizza.Width;
+            plotView.Height = pnlGraficoPizza.Height;
+        }
     }
 }
