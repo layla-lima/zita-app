@@ -213,7 +213,6 @@ namespace Zita
 
         private void btnFinalizarCompra_Click(object sender, EventArgs e)
         {
-
             // Verifica se a forma de pagamento foi selecionada
             if (string.IsNullOrWhiteSpace(formaDePagamento))
             {
@@ -236,47 +235,58 @@ namespace Zita
                 {
                     try
                     {
-                        // Itera pelas linhas do DataGridView para atualizar o estoque
-                        foreach (DataGridViewRow row in dgrCompras.Rows)
-                        {
-                            string codigo = row.Cells["Codigo"].Value.ToString();
-                            int quantidadeVendida = Convert.ToInt32(row.Cells["Quantidade"].Value);
-
-                            string updateQuery = "UPDATE Produtos SET QuantidadeEmEstoque = QuantidadeEmEstoque - @Quantidade WHERE Codigo = @Codigo";
-
-                            using (SqlCommand updateCommand = new SqlCommand(updateQuery, connection, transaction))
-                            {
-                                updateCommand.Parameters.AddWithValue("@Quantidade", quantidadeVendida);
-                                updateCommand.Parameters.AddWithValue("@Codigo", codigo);
-                                updateCommand.ExecuteNonQuery();
-                            }
-                        }
-
-                        // Calcula o total da compra
-                        double totalCompra = 0;
-                        foreach (DataGridViewRow row in dgrCompras.Rows)
-                        {
-                            totalCompra += Convert.ToDouble(row.Cells["ValorFinal"].Value.ToString().Replace("R$ ", ""));
-                        }
-
                         // Insere os detalhes da compra na tabela Registros
-                        string insertQuery = "INSERT INTO Registros (DataHora, PrecoTotal, FormaDePagamento) VALUES (@DataHora, @PrecoTotal, @FormaDePagamento)";
-                        using (SqlCommand insertCommand = new SqlCommand(insertQuery, connection, transaction))
+                        string insertRegistroQuery = "INSERT INTO Registros (DataHora, PrecoTotal, FormaDePagamento) VALUES (@DataHora, @PrecoTotal, @FormaDePagamento); SELECT SCOPE_IDENTITY();";
+                        using (SqlCommand insertRegistroCommand = new SqlCommand(insertRegistroQuery, connection, transaction))
                         {
-                            insertCommand.Parameters.AddWithValue("@DataHora", DateTime.Now);
-                            insertCommand.Parameters.AddWithValue("@PrecoTotal", totalCompra);
-                            insertCommand.Parameters.AddWithValue("@FormaDePagamento", formaDePagamento);
-                            insertCommand.ExecuteNonQuery();
+                            insertRegistroCommand.Parameters.AddWithValue("@DataHora", DateTime.Now);
+                            insertRegistroCommand.Parameters.AddWithValue("@PrecoTotal", Convert.ToDouble(lblValorTotal.Text.Replace("R$ ", "")));
+                            insertRegistroCommand.Parameters.AddWithValue("@FormaDePagamento", formaDePagamento);
+
+                            // Executa o comando e obtém o IDTransacao gerado
+                            int idTransacao = Convert.ToInt32(insertRegistroCommand.ExecuteScalar());
+
+                            // Itera pelas linhas do DataGridView para atualizar o estoque e inserir os detalhes na tabela ItensVendidos
+                            foreach (DataGridViewRow row in dgrCompras.Rows)
+                            {
+                                string codigo = row.Cells["Codigo"].Value.ToString();
+                                string produto = row.Cells["Produto"].Value.ToString();
+                                int quantidade = Convert.ToInt32(row.Cells["Quantidade"].Value.ToString());
+                                double valorUnitario = Convert.ToDouble(row.Cells["ValorUnitario"].Value.ToString().Replace("R$ ", ""));
+                                double valorFinal = Convert.ToDouble(row.Cells["ValorFinal"].Value.ToString().Replace("R$ ", ""));
+
+                                // Atualiza o estoque na tabela Produtos
+                                string updateQuery = "UPDATE Produtos SET QuantidadeEmEstoque = QuantidadeEmEstoque - @Quantidade WHERE Codigo = @Codigo";
+                                using (SqlCommand updateCommand = new SqlCommand(updateQuery, connection, transaction))
+                                {
+                                    updateCommand.Parameters.AddWithValue("@Quantidade", quantidade);
+                                    updateCommand.Parameters.AddWithValue("@Codigo", codigo);
+                                    updateCommand.ExecuteNonQuery();
+                                }
+
+                                // Insere os detalhes da compra na tabela ItensVendidos
+                                string insertItemVendidoQuery = "INSERT INTO ItensVendidos (IDTransacao, CodigoProduto, NomeProduto, Quantidade, PrecoUnitario, PrecoTotal) VALUES (@IDTransacao, @CodigoProduto, @NomeProduto, @Quantidade, @PrecoUnitario, @PrecoTotal)";
+                                using (SqlCommand insertItemVendidoCommand = new SqlCommand(insertItemVendidoQuery, connection, transaction))
+                                {
+                                    insertItemVendidoCommand.Parameters.AddWithValue("@IDTransacao", idTransacao);
+                                    insertItemVendidoCommand.Parameters.AddWithValue("@CodigoProduto", codigo);
+                                    insertItemVendidoCommand.Parameters.AddWithValue("@NomeProduto", produto);
+                                    insertItemVendidoCommand.Parameters.AddWithValue("@Quantidade", quantidade);
+                                    insertItemVendidoCommand.Parameters.AddWithValue("@PrecoUnitario", valorUnitario);
+                                    insertItemVendidoCommand.Parameters.AddWithValue("@PrecoTotal", valorFinal);
+                                    insertItemVendidoCommand.ExecuteNonQuery();
+                                }
+                            }
+
+                            // Confirma a transação
+                            transaction.Commit();
+
+                            // Exibe mensagem de sucesso
+                            MessageBox.Show("Compra realizada com sucesso!");
+
+                            // Limpa os campos
+                            LimparCampos();
                         }
-
-                        // Confirma a transação
-                        transaction.Commit();
-
-                        // Exibe mensagem de sucesso
-                        MessageBox.Show("Compra realizada com sucesso!");
-
-                        // Limpa os campos
-                        LimparCampos();
                     }
                     catch (Exception ex)
                     {
@@ -296,6 +306,9 @@ namespace Zita
                     connection.Close();
             }
         }
+
+
+
 
 
 

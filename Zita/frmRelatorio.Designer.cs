@@ -43,7 +43,7 @@
             pictureBox3 = new PictureBox();
             lblGanhosDoDia = new Label();
             label4 = new Label();
-            panel4 = new Panel();
+            pnlGraficoBarras = new Panel();
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             panel2.SuspendLayout();
@@ -200,21 +200,21 @@
             label4.TabIndex = 0;
             label4.Text = "Ganhos do Dia";
             // 
-            // panel4
+            // pnlGraficoBarras
             // 
-            panel4.BackColor = SystemColors.ButtonFace;
-            panel4.BorderStyle = BorderStyle.FixedSingle;
-            panel4.Location = new Point(485, 239);
-            panel4.Name = "panel4";
-            panel4.Size = new Size(492, 343);
-            panel4.TabIndex = 5;
+            pnlGraficoBarras.BackColor = SystemColors.ButtonFace;
+            pnlGraficoBarras.BorderStyle = BorderStyle.FixedSingle;
+            pnlGraficoBarras.Location = new Point(485, 227);
+            pnlGraficoBarras.Name = "pnlGraficoBarras";
+            pnlGraficoBarras.Size = new Size(492, 355);
+            pnlGraficoBarras.TabIndex = 5;
             // 
             // frmRelatorio
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1056, 636);
-            Controls.Add(panel4);
+            Controls.Add(pnlGraficoBarras);
             Controls.Add(panel3);
             Controls.Add(panel2);
             Controls.Add(panel1);
@@ -251,6 +251,6 @@
         private PictureBox pictureBox3;
         private Label lblGanhosDoDia;
         private Label label4;
-        private Panel panel4;
+        private Panel pnlGraficoBarras;
     }
 }
