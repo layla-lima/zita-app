@@ -47,6 +47,11 @@
             lblNomeProduto = new Label();
             lblValorUnitario = new Label();
             panel1 = new Panel();
+            button1 = new Button();
+            txtDesconto = new TextBox();
+            label5 = new Label();
+            label4 = new Label();
+            lblValorTotal = new Label();
             btnConfirmar = new Button();
             txtValorPago = new TextBox();
             lblTroco = new Label();
@@ -56,8 +61,6 @@
             optPix = new RadioButton();
             optDebito = new RadioButton();
             optCredito = new RadioButton();
-            lblValorTotal = new Label();
-            label4 = new Label();
             label7 = new Label();
             panel2 = new Panel();
             btnBuscar = new Button();
@@ -238,6 +241,11 @@
             // panel1
             // 
             panel1.BorderStyle = BorderStyle.FixedSingle;
+            panel1.Controls.Add(label4);
+            panel1.Controls.Add(lblValorTotal);
+            panel1.Controls.Add(button1);
+            panel1.Controls.Add(txtDesconto);
+            panel1.Controls.Add(label5);
             panel1.Controls.Add(btnConfirmar);
             panel1.Controls.Add(txtValorPago);
             panel1.Controls.Add(lblTroco);
@@ -247,20 +255,68 @@
             panel1.Controls.Add(optPix);
             panel1.Controls.Add(optDebito);
             panel1.Controls.Add(optCredito);
-            panel1.Controls.Add(lblValorTotal);
-            panel1.Controls.Add(label4);
             panel1.Controls.Add(label7);
             panel1.Location = new Point(782, 93);
             panel1.Name = "panel1";
             panel1.Size = new Size(561, 405);
             panel1.TabIndex = 39;
             // 
+            // button1
+            // 
+            button1.BackColor = SystemColors.ActiveCaptionText;
+            button1.FlatStyle = FlatStyle.Popup;
+            button1.ForeColor = SystemColors.ButtonFace;
+            button1.Location = new Point(440, 91);
+            button1.Name = "button1";
+            button1.Size = new Size(71, 24);
+            button1.TabIndex = 57;
+            button1.Text = "confirmar";
+            button1.UseVisualStyleBackColor = false;
+            // 
+            // txtDesconto
+            // 
+            txtDesconto.Location = new Point(375, 92);
+            txtDesconto.Name = "txtDesconto";
+            txtDesconto.Size = new Size(47, 23);
+            txtDesconto.TabIndex = 56;
+            // 
+            // label5
+            // 
+            label5.AutoSize = true;
+            label5.Font = new Font("Segoe UI", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label5.ForeColor = SystemColors.ActiveCaptionText;
+            label5.Location = new Point(245, 89);
+            label5.Name = "label5";
+            label5.Size = new Size(136, 25);
+            label5.TabIndex = 55;
+            label5.Text = "Desconto (%):";
+            // 
+            // label4
+            // 
+            label4.AutoSize = true;
+            label4.Font = new Font("Segoe UI", 20.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label4.Location = new Point(182, 306);
+            label4.Name = "label4";
+            label4.Size = new Size(89, 37);
+            label4.TabIndex = 42;
+            label4.Text = "Total:";
+            // 
+            // lblValorTotal
+            // 
+            lblValorTotal.AutoSize = true;
+            lblValorTotal.Font = new Font("Segoe UI Semibold", 22F, FontStyle.Bold);
+            lblValorTotal.Location = new Point(263, 302);
+            lblValorTotal.Name = "lblValorTotal";
+            lblValorTotal.Size = new Size(120, 41);
+            lblValorTotal.TabIndex = 43;
+            lblValorTotal.Text = "R$ 0,00";
+            // 
             // btnConfirmar
             // 
             btnConfirmar.BackColor = SystemColors.ActiveCaptionText;
             btnConfirmar.FlatStyle = FlatStyle.Popup;
             btnConfirmar.ForeColor = SystemColors.ButtonFace;
-            btnConfirmar.Location = new Point(410, 162);
+            btnConfirmar.Location = new Point(440, 140);
             btnConfirmar.Name = "btnConfirmar";
             btnConfirmar.Size = new Size(71, 24);
             btnConfirmar.TabIndex = 53;
@@ -271,7 +327,7 @@
             // 
             // txtValorPago
             // 
-            txtValorPago.Location = new Point(345, 162);
+            txtValorPago.Location = new Point(375, 140);
             txtValorPago.Name = "txtValorPago";
             txtValorPago.Size = new Size(47, 23);
             txtValorPago.TabIndex = 52;
@@ -281,7 +337,7 @@
             // 
             lblTroco.AutoSize = true;
             lblTroco.Font = new Font("Segoe UI Semibold", 19F, FontStyle.Bold);
-            lblTroco.Location = new Point(279, 191);
+            lblTroco.Location = new Point(309, 184);
             lblTroco.Name = "lblTroco";
             lblTroco.Size = new Size(100, 36);
             lblTroco.TabIndex = 51;
@@ -292,7 +348,7 @@
             // 
             lblTextoTroco.AutoSize = true;
             lblTextoTroco.Font = new Font("Segoe UI", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            lblTextoTroco.Location = new Point(215, 199);
+            lblTextoTroco.Location = new Point(245, 192);
             lblTextoTroco.Name = "lblTextoTroco";
             lblTextoTroco.Size = new Size(68, 25);
             lblTextoTroco.TabIndex = 50;
@@ -304,7 +360,7 @@
             lblTextoValorPago.AutoSize = true;
             lblTextoValorPago.Font = new Font("Segoe UI", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
             lblTextoValorPago.ForeColor = SystemColors.ActiveCaptionText;
-            lblTextoValorPago.Location = new Point(215, 160);
+            lblTextoValorPago.Location = new Point(245, 138);
             lblTextoValorPago.Name = "lblTextoValorPago";
             lblTextoValorPago.Size = new Size(115, 25);
             lblTextoValorPago.TabIndex = 48;
@@ -315,7 +371,7 @@
             // 
             optDinheiro.AutoSize = true;
             optDinheiro.Font = new Font("Segoe UI", 11.25F);
-            optDinheiro.Location = new Point(47, 201);
+            optDinheiro.Location = new Point(35, 179);
             optDinheiro.Name = "optDinheiro";
             optDinheiro.Size = new Size(84, 24);
             optDinheiro.TabIndex = 47;
@@ -328,7 +384,7 @@
             // 
             optPix.AutoSize = true;
             optPix.Font = new Font("Segoe UI", 11.25F);
-            optPix.Location = new Point(47, 171);
+            optPix.Location = new Point(35, 149);
             optPix.Name = "optPix";
             optPix.Size = new Size(46, 24);
             optPix.TabIndex = 46;
@@ -341,7 +397,7 @@
             // 
             optDebito.AutoSize = true;
             optDebito.Font = new Font("Segoe UI", 11.25F);
-            optDebito.Location = new Point(47, 141);
+            optDebito.Location = new Point(35, 119);
             optDebito.Name = "optDebito";
             optDebito.Size = new Size(142, 24);
             optDebito.TabIndex = 45;
@@ -354,7 +410,7 @@
             // 
             optCredito.AutoSize = true;
             optCredito.Font = new Font("Segoe UI", 11.25F);
-            optCredito.Location = new Point(47, 111);
+            optCredito.Location = new Point(35, 89);
             optCredito.Name = "optCredito";
             optCredito.Size = new Size(145, 24);
             optCredito.TabIndex = 44;
@@ -363,31 +419,11 @@
             optCredito.UseVisualStyleBackColor = true;
             optCredito.CheckedChanged += optCredito_CheckedChanged;
             // 
-            // lblValorTotal
-            // 
-            lblValorTotal.AutoSize = true;
-            lblValorTotal.Font = new Font("Segoe UI Semibold", 22F, FontStyle.Bold);
-            lblValorTotal.Location = new Point(280, 311);
-            lblValorTotal.Name = "lblValorTotal";
-            lblValorTotal.Size = new Size(120, 41);
-            lblValorTotal.TabIndex = 43;
-            lblValorTotal.Text = "R$ 0,00";
-            // 
-            // label4
-            // 
-            label4.AutoSize = true;
-            label4.Font = new Font("Segoe UI", 20.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label4.Location = new Point(194, 313);
-            label4.Name = "label4";
-            label4.Size = new Size(89, 37);
-            label4.TabIndex = 42;
-            label4.Text = "Total:";
-            // 
             // label7
             // 
             label7.AutoSize = true;
             label7.Font = new Font("Segoe UI", 15.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label7.Location = new Point(31, 51);
+            label7.Location = new Point(19, 29);
             label7.Name = "label7";
             label7.Size = new Size(228, 30);
             label7.TabIndex = 41;
@@ -519,5 +555,8 @@
         private DataGridViewTextBoxColumn ValorUnitario;
         private DataGridViewTextBoxColumn Quantidade;
         private DataGridViewTextBoxColumn ValorFinal;
+        private Button button1;
+        private TextBox txtDesconto;
+        private Label label5;
     }
 }

@@ -101,7 +101,7 @@
             // 
             // pictureBox1
             // 
-            pictureBox1.BackColor = SystemColors.Control;
+            pictureBox1.BackColor = Color.Transparent;
             pictureBox1.Image = Properties.Resources.Logo_preto_removebg_preview;
             pictureBox1.Location = new Point(235, 8);
             pictureBox1.Name = "pictureBox1";
@@ -114,6 +114,7 @@
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
+            BackColor = SystemColors.ButtonHighlight;
             ClientSize = new Size(800, 492);
             Controls.Add(lblCriarConta);
             Controls.Add(btnEntrar);
@@ -123,6 +124,7 @@
             Controls.Add(label1);
             Controls.Add(pictureBox1);
             Icon = (Icon)resources.GetObject("$this.Icon");
+            MaximizeBox = false;
             Name = "frmLogin";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Zita";

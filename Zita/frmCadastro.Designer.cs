@@ -44,7 +44,7 @@
             // label1
             // 
             label1.AutoSize = true;
-            label1.BackColor = SystemColors.InactiveBorder;
+            label1.BackColor = SystemColors.ControlLightLight;
             label1.Font = new Font("Myanmar Text", 24F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label1.Location = new Point(127, 44);
             label1.Name = "label1";
@@ -139,7 +139,7 @@
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            BackColor = SystemColors.InactiveBorder;
+            BackColor = SystemColors.ControlLightLight;
             ClientSize = new Size(605, 489);
             Controls.Add(btnCadastrar);
             Controls.Add(txtConfirmarSenha);
@@ -152,6 +152,7 @@
             Controls.Add(label2);
             Controls.Add(label1);
             Icon = (Icon)resources.GetObject("$this.Icon");
+            MaximizeBox = false;
             Name = "frmCadastro";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Zita";
