@@ -20,7 +20,7 @@ namespace Zita
             string senha = txtSenha.Text.Trim();
 
             // Verifica se a senha está correta
-            if (senha == "0506")
+            if (senha == "2602")
             {
                 // Abre o formulário associado ao botão clicado
                 if (targetButton == menuForm.BtnEstoque)

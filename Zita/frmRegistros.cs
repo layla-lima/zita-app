@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Data;
 using System.Data.SqlClient;
+using System.Drawing;
 using System.Windows.Forms;
 
 namespace Zita
@@ -9,13 +10,24 @@ namespace Zita
     {
         private string connectionString = DBHelper.ConnectionString;
         private SqlConnection connection;
+        private SqlDataAdapter adapter;
+        private DataTable dataTable;
 
         public frmRegistros()
         {
             InitializeComponent();
             this.FormBorderStyle = FormBorderStyle.None;
             connection = new SqlConnection(connectionString);
-            dgrRegistros.DataBindingComplete += DgrRegistros_DataBindingComplete;
+            adapter = new SqlDataAdapter("SELECT * FROM Registros", connection); // Configura o adaptador com a consulta SQL
+            dataTable = new DataTable();
+            this.Load += frmRegistros_Load;
+
+            // Adiciona as opções ao ComboBox
+            cboFormaDePagamento.Items.AddRange(new string[] { "Pix", "Dinheiro", "Crédito", "Débito" });
+
+            // Adiciona os eventos aos botões
+            btnFiltrar.Click += BtnFiltrar_Click;
+            btnLimparFiltro.Click += BtnLimparFiltro_Click;
 
             // Desativa os estilos visuais dos cabeçalhos
             dgrRegistros.EnableHeadersVisualStyles = false;
@@ -25,65 +37,121 @@ namespace Zita
             dgrRegistros.ColumnHeadersDefaultCellStyle.ForeColor = Color.White;
             dgrRegistros.AdvancedColumnHeadersBorderStyle.All = DataGridViewAdvancedCellBorderStyle.None;
             dgrRegistros.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+
+            // Carrega os registros ao inicializar o formulário
             CarregarRegistros();
-            ConfigurarDataGridView();
-
-            // Inscreve o evento CellFormatting
-            dgrRegistros.CellFormatting += dgrRegistros_CellFormatting;
         }
 
-        private void ConfigurarDataGridView()
+        private void frmRegistros_Load(object sender, EventArgs e)
         {
-            // Oculta a coluna "IDTransacoes"
-            dgrRegistros.Columns["IDTransacao"].Visible = false;
-        }
-
-        private void dgrRegistros_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
-        {
-            if (dgrRegistros.Columns[e.ColumnIndex].Name == "PrecoTotal" && e.Value != null)
+            // Oculta a coluna "IDTransacao" se ela existir
+            if (dgrRegistros.Columns.Contains("IDTransacao"))
             {
-                // Formata o valor para exibir como "00,00"
-                if (decimal.TryParse(e.Value.ToString(), out decimal precoTotal))
+                dgrRegistros.Columns["IDTransacao"].Visible = false;
+            }
+        }
+
+        private void BtnFiltrar_Click(object sender, EventArgs e)
+        {
+            FiltrarRegistrosPorDataEFormaDePagamento();
+        }
+
+        private void BtnLimparFiltro_Click(object sender, EventArgs e)
+        {
+            // Limpa os filtros
+            cboFormaDePagamento.SelectedIndex = -1;
+            CarregarRegistros();
+        }
+
+        private void FiltrarRegistrosPorDataEFormaDePagamento()
+        {
+            try
+            {
+                // Obtém os valores dos DateTimePickers
+                DateTime dataInicio = dateTimePickerInicio.Value.Date; // Apenas a data, sem a parte do tempo
+                DateTime dataFim = dateTimePickerFim.Value.Date.AddDays(1).AddSeconds(-1); // Ajusta para o final do dia selecionado
+
+                // Obtém a forma de pagamento selecionada
+                string formaPagamento = cboFormaDePagamento.SelectedIndex >= 0 ? cboFormaDePagamento.SelectedItem.ToString() : null;
+
+                // Limpa a DataTable antes de preencher com os dados filtrados
+                dataTable.Clear();
+
+                // Configura os parâmetros da consulta SQL
+                adapter.SelectCommand.Parameters.Clear();
+                adapter.SelectCommand.Parameters.AddWithValue("@DataInicio", dataInicio);
+                adapter.SelectCommand.Parameters.AddWithValue("@DataFim", dataFim);
+
+                // Constrói a cláusula de filtro
+                string filtro = "DataHora >= @DataInicio AND DataHora <= @DataFim";
+                if (!string.IsNullOrEmpty(formaPagamento))
                 {
-                    e.Value = precoTotal.ToString("N2");
-                    e.FormattingApplied = true;
+                    filtro += " AND FormaDePagamento = @FormaDePagamento";
+                    adapter.SelectCommand.Parameters.AddWithValue("@FormaDePagamento", formaPagamento);
                 }
-            }
-        }
 
-        private void DgrRegistros_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)
-        {
-            // Calcular valor total filtrado
-            decimal valorTotalFiltrado = 0;
-            foreach (DataGridViewRow row in dgrRegistros.Rows)
+                // Preenche a DataTable com os dados filtrados
+                adapter.SelectCommand.CommandText = $"SELECT * FROM Registros WHERE {filtro}";
+                adapter.Fill(dataTable);
+
+                // Atualiza o DataGridView com os dados filtrados
+                dgrRegistros.DataSource = dataTable;
+
+                // Calcula e exibe o valor total filtrado
+                CalcularEExibirValorTotalFiltrado();
+            }
+            catch (Exception ex)
             {
-                valorTotalFiltrado += Convert.ToDecimal(row.Cells["PrecoTotal"].Value);
+                MessageBox.Show("Erro ao filtrar registros por data e forma de pagamento: " + ex.Message);
             }
-
-            lblValorTotalFiltrado.Text = valorTotalFiltrado.ToString("N2");
         }
+
+
+        private void CalcularEExibirValorTotalFiltrado()
+        {
+            decimal valorTotal = 0;
+            foreach (DataRow row in dataTable.Rows)
+            {
+                valorTotal += Convert.ToDecimal(row["PrecoTotal"]);
+            }
+            lblValorTotalFiltrado.Text = valorTotal.ToString("C"); // Exibe apenas o valor no formato de moeda
+        }
+
 
         private void CarregarRegistros()
         {
             try
             {
-                connection.Open();
-                string query = "SELECT * FROM Registros";
-                SqlDataAdapter adapter = new SqlDataAdapter(query, connection);
-                DataTable dataTable = new DataTable();
+                // Limpa a DataTable antes de preencher com todos os registros
+                dataTable?.Clear();
+
+                // Preenche a DataTable com todos os registros
+                adapter.SelectCommand.CommandText = "SELECT * FROM Registros";
                 adapter.Fill(dataTable);
-                dgrRegistros.DataSource = dataTable;
+
+                if (dataTable != null && dataTable.Rows.Count > 0)
+                {
+                    // Oculta a coluna "IDTransacao" se ela existir
+                    if (dgrRegistros.Columns.Contains("IDTransacao"))
+                    {
+                        dgrRegistros.Columns["IDTransacao"].Visible = false;
+                    }
+
+                    // Atualiza o DataGridView com todos os registros
+                    dgrRegistros.DataSource = dataTable;
+
+                    // Calcula e exibe o valor total
+                    CalcularEExibirValorTotalFiltrado();
+                }
             }
             catch (Exception ex)
             {
                 MessageBox.Show("Erro ao carregar registros: " + ex.Message);
             }
-            finally
-            {
-                if (connection.State == ConnectionState.Open)
-                    connection.Close();
-            }
         }
+
+
+
 
     }
 }
