@@ -33,3 +33,4 @@ C:\Users\Layla\Documents\Zita\Zita\obj\Debug\net8.0-windows\Zita.pdb
 C:\Users\Layla\Documents\Zita\Zita\obj\Debug\net8.0-windows\Zita.genruntimeconfig.cache
 C:\Users\Layla\Documents\Zita\Zita\obj\Debug\net8.0-windows\ref\Zita.dll
 C:\Users\Layla\Documents\Zita\Zita\bin\Debug\net8.0-windows\AdvancedDataGridView.dll
+C:\Users\Layla\Documents\Zita\Zita\obj\Debug\net8.0-windows\frmRestricao.resources

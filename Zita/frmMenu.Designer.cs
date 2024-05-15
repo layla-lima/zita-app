@@ -153,7 +153,7 @@
             // panel6
             // 
             panel6.BackColor = Color.FromArgb(50, 50, 50);
-            panel6.Location = new Point(0, 472);
+            panel6.Location = new Point(0, 475);
             panel6.Name = "panel6";
             panel6.Size = new Size(5, 53);
             panel6.TabIndex = 26;
@@ -167,7 +167,7 @@
             btnRelatorio.ForeColor = SystemColors.ControlLight;
             btnRelatorio.Image = (Image)resources.GetObject("btnRelatorio.Image");
             btnRelatorio.ImageAlign = ContentAlignment.MiddleLeft;
-            btnRelatorio.Location = new Point(3, 472);
+            btnRelatorio.Location = new Point(3, 475);
             btnRelatorio.Name = "btnRelatorio";
             btnRelatorio.Size = new Size(295, 53);
             btnRelatorio.TabIndex = 27;
@@ -186,7 +186,7 @@
             // panel4
             // 
             panel4.BackColor = Color.FromArgb(50, 50, 50);
-            panel4.Location = new Point(0, 333);
+            panel4.Location = new Point(0, 402);
             panel4.Name = "panel4";
             panel4.Size = new Size(5, 53);
             panel4.TabIndex = 22;
@@ -217,7 +217,7 @@
             btnRegistros.ForeColor = SystemColors.ControlLight;
             btnRegistros.Image = (Image)resources.GetObject("btnRegistros.Image");
             btnRegistros.ImageAlign = ContentAlignment.MiddleLeft;
-            btnRegistros.Location = new Point(3, 333);
+            btnRegistros.Location = new Point(3, 402);
             btnRegistros.Name = "btnRegistros";
             btnRegistros.Size = new Size(295, 53);
             btnRegistros.TabIndex = 23;
@@ -228,7 +228,7 @@
             // panel5
             // 
             panel5.BackColor = Color.FromArgb(50, 50, 50);
-            panel5.Location = new Point(0, 403);
+            panel5.Location = new Point(0, 333);
             panel5.Name = "panel5";
             panel5.Size = new Size(5, 53);
             panel5.TabIndex = 4;
@@ -242,7 +242,7 @@
             btnEstoque.ForeColor = SystemColors.ControlLight;
             btnEstoque.Image = (Image)resources.GetObject("btnEstoque.Image");
             btnEstoque.ImageAlign = ContentAlignment.MiddleLeft;
-            btnEstoque.Location = new Point(3, 403);
+            btnEstoque.Location = new Point(3, 333);
             btnEstoque.Name = "btnEstoque";
             btnEstoque.Size = new Size(295, 53);
             btnEstoque.TabIndex = 19;

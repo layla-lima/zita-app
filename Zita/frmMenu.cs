@@ -1,64 +1,66 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Drawing;
 using System.Windows.Forms;
 
 namespace Zita
 {
     public partial class frmMenu : Form
     {
-        private Form currentChildForm;
+        public Form CurrentChildForm { get; private set; }
+        public Button LastClickedButton { get; private set; }
+        public Button BtnRelatorio { get { return btnRelatorio; } }
+
+
         private List<Button> menuButtons;
-        private Button lastClickedButton;
+
+        public Button BtnEstoque { get { return btnEstoque; } }
+        public Button BtnRegistros { get { return btnRegistros; } }
 
         public frmMenu()
         {
             InitializeComponent();
             this.FormBorderStyle = FormBorderStyle.None;
             menuButtons = new List<Button> { btnCaixa, btnRegistros, btnEstoque, btnRelatorio };
-
         }
 
-        private void ToggleFullScreen()
+        public void ToggleFullScreen()
         {
             if (this.FormBorderStyle == FormBorderStyle.None)
             {
-                // Se estiver em tela cheia, restaura para o tamanho normal e exibe a borda do formulário
                 this.FormBorderStyle = FormBorderStyle.Sizable;
                 this.WindowState = FormWindowState.Normal;
             }
             else
             {
-                // Se estiver no modo normal, entra em tela cheia
                 this.FormBorderStyle = FormBorderStyle.None;
                 this.WindowState = FormWindowState.Maximized;
             }
         }
 
-        private void OpenChildForm(Form childForm)
+        public void OpenChildForm(Form childForm)
         {
-            if (currentChildForm != null)
+            if (CurrentChildForm != null)
             {
-                currentChildForm.Close();
+                CurrentChildForm.Close();
             }
             childForm.TopLevel = false;
             childForm.FormBorderStyle = FormBorderStyle.None;
             childForm.Dock = DockStyle.Fill;
-            pnlDesktop.Controls.Add(childForm); // Adicione o childForm ao pnlContainer
+            pnlDesktop.Controls.Add(childForm);
             Tag = childForm;
             childForm.BringToFront();
             childForm.Show();
-            currentChildForm = childForm;
+            CurrentChildForm = childForm;
         }
-
 
         private void frmMenu_KeyDown(object sender, KeyEventArgs e)
         {
-            // Verifica se a tecla F11 foi pressionada
             if (e.KeyCode == Keys.F11)
             {
                 ToggleFullScreen();
             }
         }
-
 
         private void btnMinimize_Click(object sender, EventArgs e)
         {
@@ -67,12 +69,10 @@ namespace Zita
 
         private void btnMaximize_Click(object sender, EventArgs e)
         {
-            {
-                if (this.WindowState == FormWindowState.Normal)
-                    this.WindowState = FormWindowState.Maximized;
-                else
-                    this.WindowState = FormWindowState.Normal;
-            }
+            if (this.WindowState == FormWindowState.Normal)
+                this.WindowState = FormWindowState.Maximized;
+            else
+                this.WindowState = FormWindowState.Normal;
         }
 
         private void btnClose_Click(object sender, EventArgs e)
@@ -82,24 +82,18 @@ namespace Zita
 
         private void lblSair_Click(object sender, EventArgs e)
         {
-            // Exibe uma caixa de diálogo de confirmação
             DialogResult resultado = MessageBox.Show("Tem certeza que deseja sair?", "Confirmação", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-
-            // Verifica se o usuário clicou no botão "Sim" na caixa de diálogo
             if (resultado == DialogResult.Yes)
             {
-                // Fecha o sistema
                 Application.Exit();
             }
         }
 
-        private void btnCaixa_Click(object sender, EventArgs e)
+        public void btnCaixa_Click(object sender, EventArgs e)
         {
-            // Define a cor de fundo do botão clicado para cinza
             Button clickedButton = (Button)sender;
             clickedButton.BackColor = Color.FromArgb(50, 50, 50);
 
-            // Restaura a cor original de todos os outros botões do menu
             foreach (Button button in menuButtons)
             {
                 if (button != clickedButton)
@@ -108,19 +102,15 @@ namespace Zita
                 }
             }
 
-            // Abre o formulário correspondente
             frmCaixa caixaForm = new frmCaixa();
             OpenChildForm(caixaForm);
         }
 
-        private void btnRegistros_Click(object sender, EventArgs e)
+        public void btnRegistros_Click(object sender, EventArgs e)
         {
-
-            // Define a cor de fundo do botão clicado para cinza
             Button clickedButton = (Button)sender;
             clickedButton.BackColor = Color.FromArgb(50, 50, 50);
 
-            // Restaura a cor original de todos os outros botões do menu
             foreach (Button button in menuButtons)
             {
                 if (button != clickedButton)
@@ -129,20 +119,16 @@ namespace Zita
                 }
             }
 
-            // Cria uma nova instância do frmRegistros
-            frmRegistros registrosForm = new frmRegistros();
-
-            // Chama o método OpenChildForm para abrir frmRegistros como formulário filho
-            OpenChildForm(registrosForm);
+            LastClickedButton = clickedButton;
+            frmRestricao restricaoForm = new frmRestricao(this, clickedButton);
+            restricaoForm.ShowDialog();
         }
 
-        private void btnEstoque_Click(object sender, EventArgs e)
+        public void btnEstoque_Click(object sender, EventArgs e)
         {
-            // Define a cor de fundo do botão clicado para cinza
             Button clickedButton = (Button)sender;
             clickedButton.BackColor = Color.FromArgb(50, 50, 50);
 
-            // Restaura a cor original de todos os outros botões do menu
             foreach (Button button in menuButtons)
             {
                 if (button != clickedButton)
@@ -152,18 +138,14 @@ namespace Zita
             }
 
             frmEstoque estoqueForm = new frmEstoque();
-
-            // Chama o método OpenChildForm para abrir frmEstoque como formulário filho
             OpenChildForm(estoqueForm);
         }
 
-        private void btnRelatorio_Click(object sender, EventArgs e)
+        public void btnRelatorio_Click(object sender, EventArgs e)
         {
-            // Define a cor de fundo do botão clicado para cinza
             Button clickedButton = (Button)sender;
             clickedButton.BackColor = Color.FromArgb(50, 50, 50);
 
-            // Restaura a cor original de todos os outros botões do menu
             foreach (Button button in menuButtons)
             {
                 if (button != clickedButton)
@@ -172,14 +154,11 @@ namespace Zita
                 }
             }
 
-            // Cria uma nova instância do frmRelatorio
-            frmRelatorio relatorioForm = new frmRelatorio();
-
-            // Chama o método OpenChildForm para abrir frmRelatorio como formulário filho
-            OpenChildForm(relatorioForm);
+            LastClickedButton = clickedButton;
+            frmRestricao restricaoForm = new frmRestricao(this, clickedButton);
+            restricaoForm.ShowDialog();
         }
 
-       
 
 
     }
