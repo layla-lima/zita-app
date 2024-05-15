@@ -88,7 +88,7 @@
             Controls.Add(label1);
             Name = "frmRestricao";
             StartPosition = FormStartPosition.CenterScreen;
-            Text = "frmRestricao";
+            Text = "Acesso Restrito";
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             ResumeLayout(false);
             PerformLayout();
