@@ -16,6 +16,7 @@ namespace Zita
         private string connectionString = DBHelper.ConnectionString;
         private SqlConnection connection;
         private string formaDePagamento = "";
+        private double valorTotalOriginal;
 
         public frmCaixaAberto()
         {
@@ -30,6 +31,8 @@ namespace Zita
             dgrCompras.ColumnHeadersDefaultCellStyle.ForeColor = Color.White;
             dgrCompras.AdvancedColumnHeadersBorderStyle.All = DataGridViewAdvancedCellBorderStyle.None;
             dgrCompras.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            txtDesconto.Leave += TxtDesconto_Leave;
+
         }
 
         private void btnBuscar_Click(object sender, EventArgs e)
@@ -97,9 +100,14 @@ namespace Zita
                 total += valorFinal;
             }
 
+            // Atualiza o valor total original
+            valorTotalOriginal = total;
+
             // Exibe o total no label lblValorTotal
             lblValorTotal.Text = total.ToString("C2");
         }
+
+
 
 
 
@@ -310,9 +318,49 @@ namespace Zita
 
 
 
+        private void btnConfirmarDesconto_Click(object sender, EventArgs e)
+        {
+            if (!string.IsNullOrWhiteSpace(txtDesconto.Text))
+            {
+                // Remove o símbolo '%' se já estiver presente
+                string descontoText = txtDesconto.Text.Replace("%", "");
+
+                // Verifica se o texto é um número válido
+                if (double.TryParse(descontoText, out double desconto))
+                {
+                    if (desconto == 0)
+                    {
+                        // Se o desconto for zero, restaura o valor total original da compra
+                        lblValorTotal.Text = valorTotalOriginal.ToString("C2");
+                    }
+                    else
+                    {
+                        // Calcula o valor com desconto
+                        double valorTotal = Convert.ToDouble(lblValorTotal.Text.Replace("R$ ", ""));
+                        double valorComDesconto = valorTotal - (valorTotal * (desconto / 100));
+
+                        // Exibe o valor com desconto no label lblValorTotal
+                        lblValorTotal.Text = valorComDesconto.ToString("C2");
+                    }
+                }
+            }
+            else
+            {
+                // Se o texto estiver vazio, não há desconto
+                MessageBox.Show("Por favor, insira um valor de desconto válido.");
+            }
+        }
 
 
-
+        private void TxtDesconto_Leave(object sender, EventArgs e)
+        {
+            // Verifica se o texto contém apenas números
+            if (double.TryParse(txtDesconto.Text, out double desconto))
+            {
+                // Se sim, formata o texto adicionando o símbolo '%' sem casas decimais
+                txtDesconto.Text = string.Format("{0:0}%", desconto);
+            }
+        }
 
 
 
@@ -339,6 +387,7 @@ namespace Zita
         {
             this.Close();
         }
+
 
     }
 

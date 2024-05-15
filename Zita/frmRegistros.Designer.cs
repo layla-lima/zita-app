@@ -95,12 +95,12 @@
             dgrRegistros.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dgrRegistros.FilterAndSortEnabled = true;
             dgrRegistros.FilterStringChangedInvokeBeforeDatasourceUpdate = true;
-            dgrRegistros.Location = new Point(106, 75);
+            dgrRegistros.Location = new Point(106, 74);
             dgrRegistros.MaxFilterButtonImageHeight = 23;
             dgrRegistros.Name = "dgrRegistros";
             dgrRegistros.ReadOnly = true;
             dgrRegistros.RightToLeft = RightToLeft.No;
-            dgrRegistros.Size = new Size(857, 306);
+            dgrRegistros.Size = new Size(861, 310);
             dgrRegistros.SortStringChangedInvokeBeforeDatasourceUpdate = true;
             dgrRegistros.TabIndex = 25;
             // 

@@ -47,7 +47,7 @@
             lblNomeProduto = new Label();
             lblValorUnitario = new Label();
             panel1 = new Panel();
-            button1 = new Button();
+            btnConfirmarDesconto = new Button();
             txtDesconto = new TextBox();
             label5 = new Label();
             label4 = new Label();
@@ -241,11 +241,11 @@
             // panel1
             // 
             panel1.BorderStyle = BorderStyle.FixedSingle;
-            panel1.Controls.Add(label4);
-            panel1.Controls.Add(lblValorTotal);
-            panel1.Controls.Add(button1);
+            panel1.Controls.Add(btnConfirmarDesconto);
             panel1.Controls.Add(txtDesconto);
             panel1.Controls.Add(label5);
+            panel1.Controls.Add(label4);
+            panel1.Controls.Add(lblValorTotal);
             panel1.Controls.Add(btnConfirmar);
             panel1.Controls.Add(txtValorPago);
             panel1.Controls.Add(lblTroco);
@@ -261,35 +261,38 @@
             panel1.Size = new Size(561, 405);
             panel1.TabIndex = 39;
             // 
-            // button1
+            // btnConfirmarDesconto
             // 
-            button1.BackColor = SystemColors.ActiveCaptionText;
-            button1.FlatStyle = FlatStyle.Popup;
-            button1.ForeColor = SystemColors.ButtonFace;
-            button1.Location = new Point(440, 91);
-            button1.Name = "button1";
-            button1.Size = new Size(71, 24);
-            button1.TabIndex = 57;
-            button1.Text = "confirmar";
-            button1.UseVisualStyleBackColor = false;
+            btnConfirmarDesconto.BackColor = SystemColors.ActiveCaptionText;
+            btnConfirmarDesconto.FlatStyle = FlatStyle.Popup;
+            btnConfirmarDesconto.ForeColor = SystemColors.ButtonFace;
+            btnConfirmarDesconto.Location = new Point(417, 87);
+            btnConfirmarDesconto.Name = "btnConfirmarDesconto";
+            btnConfirmarDesconto.Size = new Size(71, 24);
+            btnConfirmarDesconto.TabIndex = 56;
+            btnConfirmarDesconto.Text = "confirmar";
+            btnConfirmarDesconto.UseVisualStyleBackColor = false;
+            btnConfirmarDesconto.Click += btnConfirmarDesconto_Click;
             // 
             // txtDesconto
             // 
-            txtDesconto.Location = new Point(375, 92);
+            txtDesconto.Location = new Point(352, 87);
             txtDesconto.Name = "txtDesconto";
+            txtDesconto.PlaceholderText = "0%";
             txtDesconto.Size = new Size(47, 23);
-            txtDesconto.TabIndex = 56;
+            txtDesconto.TabIndex = 55;
+            
             // 
             // label5
             // 
             label5.AutoSize = true;
-            label5.Font = new Font("Segoe UI", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label5.Font = new Font("Segoe UI", 12F, FontStyle.Bold);
             label5.ForeColor = SystemColors.ActiveCaptionText;
-            label5.Location = new Point(245, 89);
+            label5.Location = new Point(247, 89);
             label5.Name = "label5";
-            label5.Size = new Size(136, 25);
-            label5.TabIndex = 55;
-            label5.Text = "Desconto (%):";
+            label5.Size = new Size(86, 21);
+            label5.TabIndex = 54;
+            label5.Text = "Desconto:";
             // 
             // label4
             // 
@@ -316,7 +319,7 @@
             btnConfirmar.BackColor = SystemColors.ActiveCaptionText;
             btnConfirmar.FlatStyle = FlatStyle.Popup;
             btnConfirmar.ForeColor = SystemColors.ButtonFace;
-            btnConfirmar.Location = new Point(440, 140);
+            btnConfirmar.Location = new Point(417, 135);
             btnConfirmar.Name = "btnConfirmar";
             btnConfirmar.Size = new Size(71, 24);
             btnConfirmar.TabIndex = 53;
@@ -327,7 +330,7 @@
             // 
             // txtValorPago
             // 
-            txtValorPago.Location = new Point(375, 140);
+            txtValorPago.Location = new Point(352, 135);
             txtValorPago.Name = "txtValorPago";
             txtValorPago.Size = new Size(47, 23);
             txtValorPago.TabIndex = 52;
@@ -336,10 +339,10 @@
             // lblTroco
             // 
             lblTroco.AutoSize = true;
-            lblTroco.Font = new Font("Segoe UI Semibold", 19F, FontStyle.Bold);
-            lblTroco.Location = new Point(309, 184);
+            lblTroco.Font = new Font("Segoe UI Semibold", 14F, FontStyle.Bold);
+            lblTroco.Location = new Point(305, 181);
             lblTroco.Name = "lblTroco";
-            lblTroco.Size = new Size(100, 36);
+            lblTroco.Size = new Size(78, 25);
             lblTroco.TabIndex = 51;
             lblTroco.Text = "R$ 0,00";
             lblTroco.Visible = false;
@@ -347,10 +350,10 @@
             // lblTextoTroco
             // 
             lblTextoTroco.AutoSize = true;
-            lblTextoTroco.Font = new Font("Segoe UI", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            lblTextoTroco.Location = new Point(245, 192);
+            lblTextoTroco.Font = new Font("Segoe UI", 12F, FontStyle.Bold);
+            lblTextoTroco.Location = new Point(247, 184);
             lblTextoTroco.Name = "lblTextoTroco";
-            lblTextoTroco.Size = new Size(68, 25);
+            lblTextoTroco.Size = new Size(56, 21);
             lblTextoTroco.TabIndex = 50;
             lblTextoTroco.Text = "Troco:";
             lblTextoTroco.Visible = false;
@@ -358,11 +361,11 @@
             // lblTextoValorPago
             // 
             lblTextoValorPago.AutoSize = true;
-            lblTextoValorPago.Font = new Font("Segoe UI", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            lblTextoValorPago.Font = new Font("Segoe UI", 12F, FontStyle.Bold);
             lblTextoValorPago.ForeColor = SystemColors.ActiveCaptionText;
-            lblTextoValorPago.Location = new Point(245, 138);
+            lblTextoValorPago.Location = new Point(247, 137);
             lblTextoValorPago.Name = "lblTextoValorPago";
-            lblTextoValorPago.Size = new Size(115, 25);
+            lblTextoValorPago.Size = new Size(97, 21);
             lblTextoValorPago.TabIndex = 48;
             lblTextoValorPago.Text = "Valor Pago:";
             lblTextoValorPago.Visible = false;
@@ -555,7 +558,7 @@
         private DataGridViewTextBoxColumn ValorUnitario;
         private DataGridViewTextBoxColumn Quantidade;
         private DataGridViewTextBoxColumn ValorFinal;
-        private Button button1;
+        private Button btnConfirmarDesconto;
         private TextBox txtDesconto;
         private Label label5;
     }
