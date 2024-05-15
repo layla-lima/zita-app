@@ -153,7 +153,7 @@
             // panel6
             // 
             panel6.BackColor = Color.FromArgb(50, 50, 50);
-            panel6.Location = new Point(0, 475);
+            panel6.Location = new Point(0, 470);
             panel6.Name = "panel6";
             panel6.Size = new Size(5, 53);
             panel6.TabIndex = 26;
@@ -167,7 +167,7 @@
             btnRelatorio.ForeColor = SystemColors.ControlLight;
             btnRelatorio.Image = (Image)resources.GetObject("btnRelatorio.Image");
             btnRelatorio.ImageAlign = ContentAlignment.MiddleLeft;
-            btnRelatorio.Location = new Point(3, 475);
+            btnRelatorio.Location = new Point(3, 470);
             btnRelatorio.Name = "btnRelatorio";
             btnRelatorio.Size = new Size(295, 53);
             btnRelatorio.TabIndex = 27;

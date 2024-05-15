@@ -133,6 +133,26 @@ namespace Zita.Properties {
         /// <summary>
         ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap iconAdmin2 {
+            get {
+                object obj = ResourceManager.GetObject("iconAdmin2", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap iconAdmin3 {
+            get {
+                object obj = ResourceManager.GetObject("iconAdmin3", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap informacao_financeira {
             get {
                 object obj = ResourceManager.GetObject("informacao-financeira", resourceCulture);
