@@ -285,6 +285,7 @@
             pnlDesktop.BackColor = SystemColors.Control;
             pnlDesktop.Controls.Add(panel3);
             pnlDesktop.Controls.Add(label1);
+            pnlDesktop.Dock = DockStyle.Fill;
             pnlDesktop.Location = new Point(298, 74);
             pnlDesktop.Name = "pnlDesktop";
             pnlDesktop.Size = new Size(1072, 675);
@@ -295,15 +296,15 @@
             panel3.BorderStyle = BorderStyle.FixedSingle;
             panel3.Controls.Add(label2);
             panel3.Dock = DockStyle.Bottom;
-            panel3.Location = new Point(0, 604);
+            panel3.Location = new Point(0, 587);
             panel3.Name = "panel3";
-            panel3.Size = new Size(1072, 71);
+            panel3.Size = new Size(1072, 88);
             panel3.TabIndex = 2;
             // 
             // label2
             // 
             label2.AutoSize = true;
-            label2.Location = new Point(340, 28);
+            label2.Location = new Point(339, 38);
             label2.Name = "label2";
             label2.Size = new Size(398, 15);
             label2.TabIndex = 1;

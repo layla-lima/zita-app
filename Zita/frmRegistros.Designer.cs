@@ -28,6 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
+            panel3 = new Panel();
+            label2 = new Label();
             label4 = new Label();
             lblValorTotalFiltrado = new Label();
             label1 = new Label();
@@ -40,11 +42,28 @@
             label6 = new Label();
             cboFormaDePagamento = new ComboBox();
             btnLimparFiltro = new Button();
-            panel3 = new Panel();
-            label2 = new Label();
-            ((System.ComponentModel.ISupportInitialize)dgrRegistros).BeginInit();
             panel3.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)dgrRegistros).BeginInit();
             SuspendLayout();
+            // 
+            // panel3
+            // 
+            panel3.BorderStyle = BorderStyle.FixedSingle;
+            panel3.Controls.Add(label2);
+            panel3.Dock = DockStyle.Bottom;
+            panel3.Location = new Point(0, 548);
+            panel3.Name = "panel3";
+            panel3.Size = new Size(1056, 88);
+            panel3.TabIndex = 7;
+            // 
+            // label2
+            // 
+            label2.AutoSize = true;
+            label2.Location = new Point(339, 38);
+            label2.Name = "label2";
+            label2.Size = new Size(398, 15);
+            label2.TabIndex = 1;
+            label2.Text = "Sistema desenvolvido por Layla Lima © 2024. Todos os direitos reservados.";
             // 
             // label4
             // 
@@ -166,31 +185,11 @@
             btnLimparFiltro.UseVisualStyleBackColor = false;
             btnLimparFiltro.Click += BtnLimparFiltro_Click;
             // 
-            // panel3
-            // 
-            panel3.BorderStyle = BorderStyle.FixedSingle;
-            panel3.Controls.Add(label2);
-            panel3.Dock = DockStyle.Bottom;
-            panel3.Location = new Point(0, 565);
-            panel3.Name = "panel3";
-            panel3.Size = new Size(1056, 71);
-            panel3.TabIndex = 35;
-            // 
-            // label2
-            // 
-            label2.AutoSize = true;
-            label2.Location = new Point(340, 28);
-            label2.Name = "label2";
-            label2.Size = new Size(398, 15);
-            label2.TabIndex = 1;
-            label2.Text = "Sistema desenvolvido por Layla Lima © 2024. Todos os direitos reservados.";
-            // 
             // frmRegistros
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1056, 636);
-            Controls.Add(panel3);
             Controls.Add(btnLimparFiltro);
             Controls.Add(cboFormaDePagamento);
             Controls.Add(label6);
@@ -203,17 +202,20 @@
             Controls.Add(label1);
             Controls.Add(lblValorTotalFiltrado);
             Controls.Add(label4);
+            Controls.Add(panel3);
             Name = "frmRegistros";
             Text = "frmRegistros";
             WindowState = FormWindowState.Maximized;
-            ((System.ComponentModel.ISupportInitialize)dgrRegistros).EndInit();
             panel3.ResumeLayout(false);
             panel3.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)dgrRegistros).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
 
         #endregion
+        private Panel panel3;
+        private Label label2;
         private Label label4;
         private Label lblValorTotalFiltrado;
         private Label label1;
@@ -226,7 +228,5 @@
         private Label label6;
         private ComboBox cboFormaDePagamento;
         private Button btnLimparFiltro;
-        private Panel panel3;
-        private Label label2;
     }
 }

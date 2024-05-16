@@ -40,40 +40,31 @@
 			<!--<supportedOS Id="{1f676c76-80e1-4239-95bb-83d0f6d0da78}" />-->
 
 			<!-- Windows 10 -->
-			<!--<supportedOS Id="{8e0f7a12-bfb3-4fe8-b9a5-48fd50a15a9a}" />-->
+			<supportedOS Id="{8e0f7a12-bfb3-4fe8-b9a5-48fd50a15a9a}" />
+
+			<!-- Windows 11 -->
+			<supportedOS Id="{d9180b0b-1e90-4c1a-9d2d-2a85e0a0f98b}" />
 
 		</application>
 	</compatibility>
 
-	<!-- Indica que o aplicativo tem reconhecimento de DPI e não será dimensionado automaticamente pelo Windows em caso de DPIs
-       mais altos. Os aplicativos do WPF (Windows Presentation Foundation) têm reconhecimento automático de DPI e não precisam
-       aceitar esta configuração. Os aplicativos do Windows Forms direcionados ao .NET Framework 4.6 que aceitam esta configuração 
-       também devem ter a configuração 'EnableWindowsFormsHighDpiAutoResizing' definida como 'true' no app.config. 
-       
-       Esta opção faz com que o aplicativo reconheça caminhos longos. Confira https://docs.microsoft.com/windows/win32/fileio/maximum-file-path-limitation -->
-	<!--
-  <application xmlns="urn:schemas-microsoft-com:asm.v3">
-    <windowsSettings>
-      <dpiAware xmlns="http://schemas.microsoft.com/SMI/2005/WindowsSettings">true</dpiAware>
-      <longPathAware xmlns="http://schemas.microsoft.com/SMI/2016/WindowsSettings">true</longPathAware>
-    </windowsSettings>
-  </application>
-  -->
+	<application xmlns="urn:schemas-microsoft-com:asm.v3">
+		<windowsSettings>
+			<dpiAware xmlns="http://schemas.microsoft.com/SMI/2005/WindowsSettings">true/pm</dpiAware>
+			<longPathAware xmlns="http://schemas.microsoft.com/SMI/2016/WindowsSettings">true</longPathAware>
+		</windowsSettings>
+	</application>
 
-	<!-- Habilita temas para caixas de diálogo e controles comuns do Windows (Windows XP e posteriores) -->
-	<!--
-  <dependency>
-    <dependentAssembly>
-      <assemblyIdentity
-          type="win32"
-          name="Microsoft.Windows.Common-Controls"
-          version="6.0.0.0"
-          processorArchitecture="*"
-          publicKeyToken="6595b64144ccf1df"
-          language="*"
+	<dependency>
+		<dependentAssembly>
+			<assemblyIdentity
+				type="win32"
+				name="Microsoft.Windows.Common-Controls"
+				version="6.0.0.0"
+				processorArchitecture="*"
+				publicKeyToken="6595b64144ccf1df"
+				language="*"
         />
-    </dependentAssembly>
-  </dependency>
-  -->
-
+		</dependentAssembly>
+	</dependency>
 </assembly>
