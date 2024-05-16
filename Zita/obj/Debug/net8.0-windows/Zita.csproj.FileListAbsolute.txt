@@ -3,7 +3,6 @@ C:\Users\Layla\Documents\Zita\Zita\bin\Debug\net8.0-windows\Zita.deps.json
 C:\Users\Layla\Documents\Zita\Zita\bin\Debug\net8.0-windows\Zita.runtimeconfig.json
 C:\Users\Layla\Documents\Zita\Zita\bin\Debug\net8.0-windows\Zita.dll
 C:\Users\Layla\Documents\Zita\Zita\bin\Debug\net8.0-windows\Zita.pdb
-C:\Users\Layla\Documents\Zita\Zita\bin\Debug\net8.0-windows\AdvancedDataGridView.dll
 C:\Users\Layla\Documents\Zita\Zita\bin\Debug\net8.0-windows\OxyPlot.dll
 C:\Users\Layla\Documents\Zita\Zita\bin\Debug\net8.0-windows\OxyPlot.WindowsForms.dll
 C:\Users\Layla\Documents\Zita\Zita\bin\Debug\net8.0-windows\System.Data.SqlClient.dll
