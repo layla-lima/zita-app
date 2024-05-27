@@ -303,9 +303,9 @@
             lblData.ForeColor = SystemColors.ControlDarkDark;
             lblData.Location = new Point(241, 287);
             lblData.Name = "lblData";
-            lblData.Size = new Size(558, 42);
+            lblData.Size = new Size(478, 42);
             lblData.TabIndex = 4;
-            lblData.Text = "[semana], [dia] de [mês] de [ano]";
+            lblData.Text = "semana, dia de mês de ano";
             // 
             // lblHora
             // 

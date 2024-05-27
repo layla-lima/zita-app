@@ -509,6 +509,7 @@
             Name = "frmCaixaAberto";
             Text = "CaixaAberto";
             WindowState = FormWindowState.Maximized;
+            Load += frmCaixaAberto_Load;
             ((System.ComponentModel.ISupportInitialize)dgrCompras).EndInit();
             panel1.ResumeLayout(false);
             panel1.PerformLayout();

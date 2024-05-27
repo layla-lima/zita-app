@@ -38,12 +38,20 @@ namespace Zita
                         {
                             MessageBox.Show("Login bem-sucedido!", "Login", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
-                            // Abre o formulário principal
-                            frmMenu menuForm = new frmMenu();
-                            menuForm.Show();
+                            // Consulta SQL para obter o nome do usuário
+                            string nomeQuery = "SELECT NomeUsuario FROM Usuarios WHERE Email = @Email";
+                            using (SqlCommand nomeCommand = new SqlCommand(nomeQuery, connection))
+                            {
+                                nomeCommand.Parameters.AddWithValue("@Email", email);
+                                string nomeUsuario = (string)nomeCommand.ExecuteScalar();
 
-                            // Fecha o formulário de login
-                            this.Hide();
+                                // Abre o formulário do menu (frmMenu) e passa o nome do usuário
+                                frmMenu menuForm = new frmMenu(nomeUsuario);
+                                menuForm.Show();
+
+                                // Fecha o formulário de login
+                                this.Hide();
+                            }
                         }
                         else
                         {
@@ -57,6 +65,10 @@ namespace Zita
                 MessageBox.Show("Erro ao tentar fazer login: " + ex.Message, "Erro de Login", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+
+
+
+
 
         private void lblCriarConta_Click(object sender, EventArgs e)
         {

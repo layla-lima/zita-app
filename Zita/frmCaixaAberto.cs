@@ -17,8 +17,9 @@ namespace Zita
         private SqlConnection connection;
         private string formaDePagamento = "";
         private double valorTotalOriginal;
+        private string nomeUsuario; // Declare a variável aqui
 
-        public frmCaixaAberto()
+        public frmCaixaAberto(string nomeUsuario)
         {
 
             InitializeComponent();
@@ -35,7 +36,28 @@ namespace Zita
             dgrCompras.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             txtDesconto.Leave += TxtDesconto_Leave;
 
+            // Armazena o nome do usuário logado
+            this.nomeUsuario = nomeUsuario;
+
+
         }
+        private void frmCaixaAberto_Load(object sender, EventArgs e)
+        {
+            if (!string.IsNullOrEmpty(nomeUsuario))
+            {
+                // Use o nome do usuário conforme necessário
+                // Por exemplo, atualizar um label ou qualquer outro uso
+                // Exemplo:
+                // lblWelcome.Text = $"Bem-vindo, {nomeUsuario}";
+            }
+            else
+            {
+                MessageBox.Show("Nome do usuário não disponível", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+
+
 
         private void btnBuscar_Click(object sender, EventArgs e)
         {
@@ -247,12 +269,13 @@ namespace Zita
                     try
                     {
                         // Insere os detalhes da compra na tabela Registros
-                        string insertRegistroQuery = "INSERT INTO Registros (DataHora, PrecoTotal, FormaDePagamento) VALUES (@DataHora, @PrecoTotal, @FormaDePagamento); SELECT SCOPE_IDENTITY();";
+                        string insertRegistroQuery = "INSERT INTO Registros (DataHora, PrecoTotal, FormaDePagamento, NomeUsuario) VALUES (@DataHora, @PrecoTotal, @FormaDePagamento, @NomeUsuario); SELECT SCOPE_IDENTITY();";
                         using (SqlCommand insertRegistroCommand = new SqlCommand(insertRegistroQuery, connection, transaction))
                         {
                             insertRegistroCommand.Parameters.AddWithValue("@DataHora", DateTime.Now);
                             insertRegistroCommand.Parameters.AddWithValue("@PrecoTotal", Convert.ToDouble(lblValorTotal.Text.Replace("R$ ", "")));
                             insertRegistroCommand.Parameters.AddWithValue("@FormaDePagamento", formaDePagamento);
+                            insertRegistroCommand.Parameters.AddWithValue("@NomeUsuario", nomeUsuario);
 
                             // Executa o comando e obtém o IDTransacao gerado
                             int idTransacao = Convert.ToInt32(insertRegistroCommand.ExecuteScalar());
@@ -317,6 +340,7 @@ namespace Zita
                     connection.Close();
             }
         }
+
 
 
 

@@ -17,11 +17,17 @@ namespace Zita
         public Button BtnEstoque { get { return btnEstoque; } }
         public Button BtnRegistros { get { return btnRegistros; } }
 
-        public frmMenu()
+        private string nomeUsuario;
+        private string usuarioLogado;
+
+        public frmMenu(string usuarioLogado)
         {
             InitializeComponent();
+            this.nomeUsuario = usuarioLogado;
             this.FormBorderStyle = FormBorderStyle.None;
             menuButtons = new List<Button> { btnCaixa, btnRegistros, btnEstoque, btnRelatorio };
+            this.usuarioLogado = usuarioLogado;
+
         }
 
         public void ToggleFullScreen()
@@ -103,21 +109,16 @@ namespace Zita
         }
 
 
-        public void btnCaixa_Click(object sender, EventArgs e)
+        private void btnCaixa_Click(object sender, EventArgs e)
         {
-            Button clickedButton = (Button)sender;
-            clickedButton.BackColor = Color.FromArgb(50, 50, 50);
-
-            foreach (Button button in menuButtons)
-            {
-                if (button != clickedButton)
-                {
-                    button.BackColor = Color.FromArgb(18, 18, 18);
-                }
-            }
-
-            frmCaixa caixaForm = new frmCaixa();
-            OpenChildForm(caixaForm);
+            frmCaixa frmCaixa = new frmCaixa(usuarioLogado);
+            frmCaixa.TopLevel = false;
+            frmCaixa.FormBorderStyle = FormBorderStyle.None;
+            frmCaixa.Dock = DockStyle.Fill;
+            this.Controls.Add(frmCaixa);
+            this.Tag = frmCaixa;
+            frmCaixa.BringToFront();
+            frmCaixa.Show();
         }
 
         public void btnRegistros_Click(object sender, EventArgs e)
