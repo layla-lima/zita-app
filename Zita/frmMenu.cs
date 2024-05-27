@@ -82,12 +82,26 @@ namespace Zita
 
         private void lblSair_Click(object sender, EventArgs e)
         {
-            DialogResult resultado = MessageBox.Show("Tem certeza que deseja sair?", "Confirmação", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            DialogResult resultado = MessageBox.Show("Tem certeza que deseja deslogar?", "Confirmação", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
             if (resultado == DialogResult.Yes)
             {
-                Application.Exit();
+                Deslogar();
             }
         }
+
+        private void Deslogar()
+        {
+            // Fecha o formulário atual
+            this.Hide();
+
+            // Abre o formulário de login
+            frmLogin loginForm = new frmLogin();
+            loginForm.ShowDialog();
+
+            // Fecha a aplicação se o formulário de login for fechado
+            this.Close();
+        }
+
 
         public void btnCaixa_Click(object sender, EventArgs e)
         {

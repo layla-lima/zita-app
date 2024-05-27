@@ -53,7 +53,6 @@
             lblHora = new Label();
             panel3 = new Panel();
             label2 = new Label();
-            label1 = new Label();
             hora = new System.Windows.Forms.Timer(components);
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)btnMaximize).BeginInit();
@@ -291,7 +290,6 @@
             pnlDesktop.Controls.Add(lblData);
             pnlDesktop.Controls.Add(lblHora);
             pnlDesktop.Controls.Add(panel3);
-            pnlDesktop.Controls.Add(label1);
             pnlDesktop.Dock = DockStyle.Fill;
             pnlDesktop.Location = new Point(298, 74);
             pnlDesktop.Name = "pnlDesktop";
@@ -303,7 +301,7 @@
             lblData.AutoSize = true;
             lblData.Font = new Font("Microsoft Sans Serif", 27.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
             lblData.ForeColor = SystemColors.ControlDarkDark;
-            lblData.Location = new Point(243, 259);
+            lblData.Location = new Point(241, 287);
             lblData.Name = "lblData";
             lblData.Size = new Size(558, 42);
             lblData.TabIndex = 4;
@@ -314,7 +312,7 @@
             lblHora.AutoSize = true;
             lblHora.Font = new Font("Microsoft Sans Serif", 48F, FontStyle.Bold, GraphicsUnit.Point, 0);
             lblHora.ForeColor = Color.FromArgb(60, 60, 60);
-            lblHora.Location = new Point(385, 166);
+            lblHora.Location = new Point(385, 190);
             lblHora.Name = "lblHora";
             lblHora.Size = new Size(292, 73);
             lblHora.TabIndex = 3;
@@ -338,17 +336,6 @@
             label2.Size = new Size(398, 15);
             label2.TabIndex = 1;
             label2.Text = "Sistema desenvolvido por Layla Lima © 2024. Todos os direitos reservados.";
-            // 
-            // label1
-            // 
-            label1.AutoSize = true;
-            label1.Font = new Font("Segoe UI Semibold", 20.25F, FontStyle.Bold | FontStyle.Italic, GraphicsUnit.Point, 0);
-            label1.ForeColor = Color.DarkGray;
-            label1.Location = new Point(243, 433);
-            label1.Name = "label1";
-            label1.Size = new Size(603, 37);
-            label1.TabIndex = 0;
-            label1.Text = "Para iniciar, selecione uma das opções do menu.";
             // 
             // hora
             // 
@@ -393,7 +380,6 @@
         private PictureBox pictureBox5;
         private Panel pnlDesktop;
         private Label label2;
-        private Label label1;
         private Panel panel3;
         private PictureBox btnMinimize;
         private PictureBox btnClose;
