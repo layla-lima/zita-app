@@ -18,7 +18,9 @@ namespace Zita
             InitializeComponent();
             this.FormBorderStyle = FormBorderStyle.None;
             connection = new SqlConnection(connectionString);
-            adapter = new SqlDataAdapter("SELECT * FROM Registros", connection); // Configura o adaptador com a consulta SQL
+
+            // Configura o adaptador com a consulta SQL para incluir o nome do usuário
+            adapter = new SqlDataAdapter("SELECT r.*, u.NomeUsuario AS NomeUsuario FROM Registros r JOIN Usuarios u ON r.IDUsuario = u.IDUsuario", connection);
             dataTable = new DataTable();
             this.Load += frmRegistros_Load;
 
@@ -83,15 +85,15 @@ namespace Zita
                 adapter.SelectCommand.Parameters.AddWithValue("@DataFim", dataFim);
 
                 // Constrói a cláusula de filtro
-                string filtro = "DataHora >= @DataInicio AND DataHora <= @DataFim";
+                string filtro = "r.DataHora >= @DataInicio AND r.DataHora <= @DataFim";
                 if (!string.IsNullOrEmpty(formaPagamento))
                 {
-                    filtro += " AND FormaDePagamento = @FormaDePagamento";
+                    filtro += " AND r.FormaDePagamento = @FormaDePagamento";
                     adapter.SelectCommand.Parameters.AddWithValue("@FormaDePagamento", formaPagamento);
                 }
 
                 // Preenche a DataTable com os dados filtrados
-                adapter.SelectCommand.CommandText = $"SELECT * FROM Registros WHERE {filtro}";
+                adapter.SelectCommand.CommandText = $"SELECT r.*, u.NomeUsuario AS NomeUsuario FROM Registros r JOIN Usuarios u ON r.IDUsuario = u.IDUsuario WHERE {filtro}";
                 adapter.Fill(dataTable);
 
                 // Atualiza o DataGridView com os dados filtrados
@@ -106,7 +108,6 @@ namespace Zita
             }
         }
 
-
         private void CalcularEExibirValorTotalFiltrado()
         {
             decimal valorTotal = 0;
@@ -117,7 +118,6 @@ namespace Zita
             lblValorTotalFiltrado.Text = valorTotal.ToString("C"); // Exibe apenas o valor no formato de moeda
         }
 
-
         private void CarregarRegistros()
         {
             try
@@ -125,8 +125,8 @@ namespace Zita
                 // Limpa a DataTable antes de preencher com todos os registros
                 dataTable?.Clear();
 
-                // Preenche a DataTable com todos os registros
-                adapter.SelectCommand.CommandText = "SELECT * FROM Registros";
+                // Preenche a DataTable com todos os registros, incluindo apenas a coluna Funcionario (NomeUsuario)
+                adapter.SelectCommand.CommandText = "SELECT *, NomeUsuario AS Funcionario FROM Registros";
                 adapter.Fill(dataTable);
 
                 if (dataTable != null && dataTable.Rows.Count > 0)
@@ -140,6 +140,12 @@ namespace Zita
                     // Atualiza o DataGridView com todos os registros
                     dgrRegistros.DataSource = dataTable;
 
+                    // Remove a coluna NomeUsuario do grid
+                    if (dgrRegistros.Columns.Contains("NomeUsuario"))
+                    {
+                        dgrRegistros.Columns["NomeUsuario"].Visible = false;
+                    }
+
                     // Calcula e exibe o valor total
                     CalcularEExibirValorTotalFiltrado();
                 }
@@ -149,6 +155,12 @@ namespace Zita
                 MessageBox.Show("Erro ao carregar registros: " + ex.Message);
             }
         }
+
+
+
+
+
+
 
 
 
