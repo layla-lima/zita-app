@@ -159,7 +159,26 @@ namespace Zita
             restricaoForm.ShowDialog();
         }
 
+        private void hora_Tick(object sender, EventArgs e)
+        {
+            lblHora.Text = DateTime.Now.ToLongTimeString();
+            lblData.Text = DateTime.Now.ToLongDateString();
+        }
 
+        public void ResetToInitialState()
+        {
+            if (CurrentChildForm != null)
+            {
+                CurrentChildForm.Close();
+                CurrentChildForm = null;
+            }
 
+            // Se necessário, redefina outros elementos visuais ou dados do formulário aqui
+        }
+
+        private void pictureBox4_Click(object sender, EventArgs e)
+        {
+            ResetToInitialState();
+        }
     }
 }

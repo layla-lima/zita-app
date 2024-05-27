@@ -20,7 +20,9 @@ namespace Zita
 
         public frmCaixaAberto()
         {
+
             InitializeComponent();
+            
             this.FormBorderStyle = FormBorderStyle.None;
             connection = new SqlConnection(connectionString);
             // Desativa os estilos visuais dos cabeçalhos
@@ -113,6 +115,7 @@ namespace Zita
 
         private void btnAdicionar_Click(object sender, EventArgs e)
         {
+            txtCodProduto.Focus();
             // Obtém os valores dos controles
             string codigo = txtCodProduto.Text;
             string produto = lblNomeProduto.Text;

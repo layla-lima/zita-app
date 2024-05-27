@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmMenu));
             panel1 = new Panel();
             btnMaximize = new PictureBox();
@@ -48,9 +49,12 @@
             lblSair = new Label();
             pictureBox5 = new PictureBox();
             pnlDesktop = new Panel();
+            lblData = new Label();
+            lblHora = new Label();
             panel3 = new Panel();
             label2 = new Label();
             label1 = new Label();
+            hora = new System.Windows.Forms.Timer(components);
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)btnMaximize).BeginInit();
             ((System.ComponentModel.ISupportInitialize)btnMinimize).BeginInit();
@@ -122,16 +126,18 @@
             // pictureBox4
             // 
             pictureBox4.Image = Properties.Resources.Logo_branco_Photoroom_png_Photoroom;
-            pictureBox4.Location = new Point(39, 75);
+            pictureBox4.Location = new Point(45, 28);
             pictureBox4.Name = "pictureBox4";
-            pictureBox4.Size = new Size(235, 164);
+            pictureBox4.Size = new Size(202, 204);
             pictureBox4.SizeMode = PictureBoxSizeMode.Zoom;
             pictureBox4.TabIndex = 4;
             pictureBox4.TabStop = false;
+            pictureBox4.Click += pictureBox4_Click;
             // 
             // panel2
             // 
             panel2.BackColor = Color.FromArgb(18, 18, 18);
+            panel2.Controls.Add(pictureBox4);
             panel2.Controls.Add(panel6);
             panel2.Controls.Add(btnRelatorio);
             panel2.Controls.Add(panel7);
@@ -143,7 +149,6 @@
             panel2.Controls.Add(pnlContainer);
             panel2.Controls.Add(lblSair);
             panel2.Controls.Add(pictureBox5);
-            panel2.Controls.Add(pictureBox4);
             panel2.Dock = DockStyle.Left;
             panel2.Location = new Point(0, 0);
             panel2.Name = "panel2";
@@ -283,6 +288,8 @@
             // pnlDesktop
             // 
             pnlDesktop.BackColor = SystemColors.Control;
+            pnlDesktop.Controls.Add(lblData);
+            pnlDesktop.Controls.Add(lblHora);
             pnlDesktop.Controls.Add(panel3);
             pnlDesktop.Controls.Add(label1);
             pnlDesktop.Dock = DockStyle.Fill;
@@ -290,6 +297,28 @@
             pnlDesktop.Name = "pnlDesktop";
             pnlDesktop.Size = new Size(1072, 675);
             pnlDesktop.TabIndex = 19;
+            // 
+            // lblData
+            // 
+            lblData.AutoSize = true;
+            lblData.Font = new Font("Microsoft Sans Serif", 27.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            lblData.ForeColor = SystemColors.ControlDarkDark;
+            lblData.Location = new Point(243, 259);
+            lblData.Name = "lblData";
+            lblData.Size = new Size(558, 42);
+            lblData.TabIndex = 4;
+            lblData.Text = "[semana], [dia] de [mês] de [ano]";
+            // 
+            // lblHora
+            // 
+            lblHora.AutoSize = true;
+            lblHora.Font = new Font("Microsoft Sans Serif", 48F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            lblHora.ForeColor = Color.FromArgb(60, 60, 60);
+            lblHora.Location = new Point(385, 166);
+            lblHora.Name = "lblHora";
+            lblHora.Size = new Size(292, 73);
+            lblHora.TabIndex = 3;
+            lblHora.Text = "00:00:00";
             // 
             // panel3
             // 
@@ -315,11 +344,16 @@
             label1.AutoSize = true;
             label1.Font = new Font("Segoe UI Semibold", 20.25F, FontStyle.Bold | FontStyle.Italic, GraphicsUnit.Point, 0);
             label1.ForeColor = Color.DarkGray;
-            label1.Location = new Point(221, 275);
+            label1.Location = new Point(243, 433);
             label1.Name = "label1";
             label1.Size = new Size(603, 37);
             label1.TabIndex = 0;
             label1.Text = "Para iniciar, selecione uma das opções do menu.";
+            // 
+            // hora
+            // 
+            hora.Enabled = true;
+            hora.Tick += hora_Tick;
             // 
             // frmMenu
             // 
@@ -372,5 +406,8 @@
         private Button btnRelatorio;
         private Panel panel7;
         private Button btnCaixa;
+        private Label lblData;
+        private Label lblHora;
+        private System.Windows.Forms.Timer hora;
     }
 }

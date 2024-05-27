@@ -147,9 +147,12 @@
             // 
             // dgrRegistros
             // 
+            dgrRegistros.AllowUserToAddRows = false;
+            dgrRegistros.AllowUserToDeleteRows = false;
             dgrRegistros.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dgrRegistros.Location = new Point(103, 117);
             dgrRegistros.Name = "dgrRegistros";
+            dgrRegistros.ReadOnly = true;
             dgrRegistros.Size = new Size(852, 371);
             dgrRegistros.TabIndex = 31;
             // 

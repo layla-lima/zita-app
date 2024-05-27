@@ -1,3 +1,4 @@
+C:\Users\Layla\Documents\Zita\Zita\obj\Debug\net8.0-windows\Zita.csproj.AssemblyReference.cache
 C:\Users\Layla\Documents\Zita\Zita\bin\Debug\net8.0-windows\Zita.exe
 C:\Users\Layla\Documents\Zita\Zita\bin\Debug\net8.0-windows\Zita.deps.json
 C:\Users\Layla\Documents\Zita\Zita\bin\Debug\net8.0-windows\Zita.runtimeconfig.json
@@ -11,9 +12,6 @@ C:\Users\Layla\Documents\Zita\Zita\bin\Debug\net8.0-windows\runtimes\win-x64\nat
 C:\Users\Layla\Documents\Zita\Zita\bin\Debug\net8.0-windows\runtimes\win-x86\native\sni.dll
 C:\Users\Layla\Documents\Zita\Zita\bin\Debug\net8.0-windows\runtimes\unix\lib\netcoreapp2.1\System.Data.SqlClient.dll
 C:\Users\Layla\Documents\Zita\Zita\bin\Debug\net8.0-windows\runtimes\win\lib\netcoreapp2.1\System.Data.SqlClient.dll
-C:\Users\Layla\Documents\Zita\Zita\bin\Debug\net8.0-windows\LiveCharts.Wpf.dll
-C:\Users\Layla\Documents\Zita\Zita\bin\Debug\net8.0-windows\LiveCharts.dll
-C:\Users\Layla\Documents\Zita\Zita\obj\Debug\net8.0-windows\Zita.csproj.AssemblyReference.cache
 C:\Users\Layla\Documents\Zita\Zita\obj\Debug\net8.0-windows\Zita.frmCadastro.resources
 C:\Users\Layla\Documents\Zita\Zita\obj\Debug\net8.0-windows\Zita.frmCaixa.resources
 C:\Users\Layla\Documents\Zita\Zita\obj\Debug\net8.0-windows\Zita.frmCaixaAberto.resources
@@ -22,6 +20,7 @@ C:\Users\Layla\Documents\Zita\Zita\obj\Debug\net8.0-windows\Zita.frmLogin.resour
 C:\Users\Layla\Documents\Zita\Zita\obj\Debug\net8.0-windows\Zita.frmMenu.resources
 C:\Users\Layla\Documents\Zita\Zita\obj\Debug\net8.0-windows\Zita.frmRegistros.resources
 C:\Users\Layla\Documents\Zita\Zita\obj\Debug\net8.0-windows\Zita.frmRelatorio.resources
+C:\Users\Layla\Documents\Zita\Zita\obj\Debug\net8.0-windows\Zita.frmRestricao.resources
 C:\Users\Layla\Documents\Zita\Zita\obj\Debug\net8.0-windows\Zita.Properties.Resources.resources
 C:\Users\Layla\Documents\Zita\Zita\obj\Debug\net8.0-windows\Zita.csproj.GenerateResource.cache
 C:\Users\Layla\Documents\Zita\Zita\obj\Debug\net8.0-windows\Zita.GeneratedMSBuildEditorConfig.editorconfig
@@ -34,4 +33,3 @@ C:\Users\Layla\Documents\Zita\Zita\obj\Debug\net8.0-windows\refint\Zita.dll
 C:\Users\Layla\Documents\Zita\Zita\obj\Debug\net8.0-windows\Zita.pdb
 C:\Users\Layla\Documents\Zita\Zita\obj\Debug\net8.0-windows\Zita.genruntimeconfig.cache
 C:\Users\Layla\Documents\Zita\Zita\obj\Debug\net8.0-windows\ref\Zita.dll
-C:\Users\Layla\Documents\Zita\Zita\obj\Debug\net8.0-windows\Zita.frmRestricao.resources

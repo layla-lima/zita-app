@@ -144,7 +144,7 @@
             btnRemover.Location = new Point(245, 199);
             btnRemover.Name = "btnRemover";
             btnRemover.Size = new Size(190, 38);
-            btnRemover.TabIndex = 34;
+            btnRemover.TabIndex = 5;
             btnRemover.Text = "Remover";
             btnRemover.UseVisualStyleBackColor = false;
             btnRemover.Click += btnRemover_Click;
@@ -159,7 +159,7 @@
             btnAdicionar.Location = new Point(33, 199);
             btnAdicionar.Name = "btnAdicionar";
             btnAdicionar.Size = new Size(190, 38);
-            btnAdicionar.TabIndex = 33;
+            btnAdicionar.TabIndex = 4;
             btnAdicionar.Text = "Adicionar";
             btnAdicionar.UseVisualStyleBackColor = false;
             btnAdicionar.Click += btnAdicionar_Click;
@@ -169,7 +169,7 @@
             txtQuantidade.Location = new Point(453, 138);
             txtQuantidade.Name = "txtQuantidade";
             txtQuantidade.Size = new Size(74, 23);
-            txtQuantidade.TabIndex = 32;
+            txtQuantidade.TabIndex = 3;
             // 
             // label6
             // 
@@ -206,7 +206,7 @@
             txtCodProduto.Location = new Point(245, 38);
             txtCodProduto.Name = "txtCodProduto";
             txtCodProduto.Size = new Size(140, 23);
-            txtCodProduto.TabIndex = 26;
+            txtCodProduto.TabIndex = 1;
             // 
             // label1
             // 
@@ -281,7 +281,6 @@
             txtDesconto.PlaceholderText = "0%";
             txtDesconto.Size = new Size(47, 23);
             txtDesconto.TabIndex = 55;
-            
             // 
             // label5
             // 
@@ -459,7 +458,7 @@
             btnBuscar.Location = new Point(411, 37);
             btnBuscar.Name = "btnBuscar";
             btnBuscar.Size = new Size(75, 23);
-            btnBuscar.TabIndex = 40;
+            btnBuscar.TabIndex = 2;
             btnBuscar.Text = "Buscar";
             btnBuscar.UseVisualStyleBackColor = false;
             btnBuscar.Click += btnBuscar_Click;
