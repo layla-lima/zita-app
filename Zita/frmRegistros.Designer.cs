@@ -39,9 +39,8 @@
             label3 = new Label();
             label5 = new Label();
             dgrRegistros = new DataGridView();
-            label6 = new Label();
-            cboFormaDePagamento = new ComboBox();
             btnLimparFiltro = new Button();
+            txtPesquisar = new TextBox();
             panel3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dgrRegistros).BeginInit();
             SuspendLayout();
@@ -117,13 +116,12 @@
             btnFiltrar.BackColor = SystemColors.ActiveCaptionText;
             btnFiltrar.FlatStyle = FlatStyle.Popup;
             btnFiltrar.ForeColor = SystemColors.ButtonFace;
-            btnFiltrar.Location = new Point(740, 81);
+            btnFiltrar.Location = new Point(431, 81);
             btnFiltrar.Name = "btnFiltrar";
             btnFiltrar.Size = new Size(93, 23);
             btnFiltrar.TabIndex = 28;
             btnFiltrar.Text = "Filtrar";
             btnFiltrar.UseVisualStyleBackColor = false;
-            btnFiltrar.Click += BtnFiltrar_Click;
             // 
             // label3
             // 
@@ -156,31 +154,12 @@
             dgrRegistros.Size = new Size(852, 371);
             dgrRegistros.TabIndex = 31;
             // 
-            // label6
-            // 
-            label6.AutoSize = true;
-            label6.Font = new Font("Segoe UI", 9.75F, FontStyle.Bold);
-            label6.Location = new Point(418, 85);
-            label6.Name = "label6";
-            label6.Size = new Size(144, 17);
-            label6.TabIndex = 32;
-            label6.Text = "Forma de Pagamento:";
-            // 
-            // cboFormaDePagamento
-            // 
-            cboFormaDePagamento.DropDownStyle = ComboBoxStyle.DropDownList;
-            cboFormaDePagamento.FormattingEnabled = true;
-            cboFormaDePagamento.Location = new Point(568, 81);
-            cboFormaDePagamento.Name = "cboFormaDePagamento";
-            cboFormaDePagamento.Size = new Size(143, 23);
-            cboFormaDePagamento.TabIndex = 33;
-            // 
             // btnLimparFiltro
             // 
             btnLimparFiltro.BackColor = SystemColors.ActiveCaptionText;
             btnLimparFiltro.FlatStyle = FlatStyle.Popup;
             btnLimparFiltro.ForeColor = SystemColors.ButtonFace;
-            btnLimparFiltro.Location = new Point(864, 81);
+            btnLimparFiltro.Location = new Point(541, 81);
             btnLimparFiltro.Name = "btnLimparFiltro";
             btnLimparFiltro.Size = new Size(91, 23);
             btnLimparFiltro.TabIndex = 34;
@@ -188,14 +167,21 @@
             btnLimparFiltro.UseVisualStyleBackColor = false;
             btnLimparFiltro.Click += BtnLimparFiltro_Click;
             // 
+            // txtPesquisar
+            // 
+            txtPesquisar.Location = new Point(648, 81);
+            txtPesquisar.Name = "txtPesquisar";
+            txtPesquisar.PlaceholderText = "Pesquisar...";
+            txtPesquisar.Size = new Size(307, 23);
+            txtPesquisar.TabIndex = 35;
+            // 
             // frmRegistros
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1056, 636);
+            Controls.Add(txtPesquisar);
             Controls.Add(btnLimparFiltro);
-            Controls.Add(cboFormaDePagamento);
-            Controls.Add(label6);
             Controls.Add(dgrRegistros);
             Controls.Add(label5);
             Controls.Add(label3);
@@ -228,8 +214,7 @@
         private Label label3;
         private Label label5;
         private DataGridView dgrRegistros;
-        private Label label6;
-        private ComboBox cboFormaDePagamento;
         private Button btnLimparFiltro;
+        private TextBox txtPesquisar;
     }
 }

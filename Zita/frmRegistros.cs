@@ -24,8 +24,8 @@ namespace Zita
             dataTable = new DataTable();
             this.Load += frmRegistros_Load;
 
-            // Adiciona as opções ao ComboBox
-            cboFormaDePagamento.Items.AddRange(new string[] { "Pix", "Dinheiro", "Crédito", "Débito" });
+            // Adiciona o evento ao TextBox de pesquisa
+            txtPesquisar.TextChanged += TxtPesquisar_TextChanged;
 
             // Adiciona os eventos aos botões
             btnFiltrar.Click += BtnFiltrar_Click;
@@ -55,26 +55,23 @@ namespace Zita
 
         private void BtnFiltrar_Click(object sender, EventArgs e)
         {
-            FiltrarRegistrosPorDataEFormaDePagamento();
+            FiltrarRegistrosPorDataEUsuario();
         }
 
         private void BtnLimparFiltro_Click(object sender, EventArgs e)
         {
             // Limpa os filtros
-            cboFormaDePagamento.SelectedIndex = -1;
+            txtPesquisar.Clear();
             CarregarRegistros();
         }
 
-        private void FiltrarRegistrosPorDataEFormaDePagamento()
+        private void FiltrarRegistrosPorDataEUsuario()
         {
             try
             {
                 // Obtém os valores dos DateTimePickers
                 DateTime dataInicio = dateTimePickerInicio.Value.Date; // Apenas a data, sem a parte do tempo
                 DateTime dataFim = dateTimePickerFim.Value.Date.AddDays(1).AddSeconds(-1); // Ajusta para o final do dia selecionado
-
-                // Obtém a forma de pagamento selecionada
-                string formaPagamento = cboFormaDePagamento.SelectedIndex >= 0 ? cboFormaDePagamento.SelectedItem.ToString() : null;
 
                 // Limpa a DataTable antes de preencher com os dados filtrados
                 dataTable.Clear();
@@ -86,14 +83,19 @@ namespace Zita
 
                 // Constrói a cláusula de filtro
                 string filtro = "r.DataHora >= @DataInicio AND r.DataHora <= @DataFim";
-                if (!string.IsNullOrEmpty(formaPagamento))
+
+                // Adiciona o filtro por usuário e forma de pagamento
+                if (!string.IsNullOrEmpty(txtPesquisar.Text))
                 {
-                    filtro += " AND r.FormaDePagamento = @FormaDePagamento";
-                    adapter.SelectCommand.Parameters.AddWithValue("@FormaDePagamento", formaPagamento);
+                    filtro += " AND (u.NomeUsuario LIKE @TermoPesquisa OR r.FormaDePagamento LIKE @TermoPesquisa)";
+                    adapter.SelectCommand.Parameters.AddWithValue("@TermoPesquisa", "%" + txtPesquisar.Text.Trim() + "%");
                 }
 
+                // Monta a consulta SQL completa
+                string consultaCompleta = "SELECT r.*, u.NomeUsuario AS Funcionario FROM Registros r JOIN Usuarios u ON r.NomeUsuario = u.NomeUsuario WHERE " + filtro;
+
                 // Preenche a DataTable com os dados filtrados
-                adapter.SelectCommand.CommandText = $"SELECT r.*, u.NomeUsuario AS NomeUsuario FROM Registros r JOIN Usuarios u ON r.IDUsuario = u.IDUsuario WHERE {filtro}";
+                adapter.SelectCommand.CommandText = consultaCompleta;
                 adapter.Fill(dataTable);
 
                 // Atualiza o DataGridView com os dados filtrados
@@ -104,9 +106,15 @@ namespace Zita
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Erro ao filtrar registros por data e forma de pagamento: " + ex.Message);
+                MessageBox.Show("Erro ao filtrar registros por data e usuário: " + ex.Message);
             }
         }
+
+
+
+
+
+
 
         private void CalcularEExibirValorTotalFiltrado()
         {
@@ -156,14 +164,10 @@ namespace Zita
             }
         }
 
-
-
-
-
-
-
-
-
-
+        private void TxtPesquisar_TextChanged(object sender, EventArgs e)
+        {
+            // Quando o texto da caixa de pesquisa é alterado, filtramos novamente
+            FiltrarRegistrosPorDataEUsuario();
+        }
     }
 }
