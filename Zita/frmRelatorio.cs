@@ -178,11 +178,10 @@ namespace Zita
 
                     // Consulta para obter a quantidade total de itens vendidos por categoria
                     string queryQuantidadePorCategoria = @"
-                SELECT P.Categoria, SUM(IV.Quantidade) AS TotalQuantidade
+                SELECT P.Categoria, ISNULL(SUM(IV.Quantidade), 0) AS TotalQuantidade
                 FROM Produtos P
                 LEFT JOIN ItensVendidos IV ON IV.CodigoProduto = P.Codigo
-                GROUP BY P.Categoria
-                ORDER BY TotalQuantidade DESC";
+                GROUP BY P.Categoria";
                     SqlCommand cmdQuantidadePorCategoria = new SqlCommand(queryQuantidadePorCategoria, connection);
                     SqlDataReader reader = cmdQuantidadePorCategoria.ExecuteReader();
 
@@ -192,14 +191,14 @@ namespace Zita
                     // Inicializando o dicionário com quantidade zero para cada categoria
                     foreach (string categoria in categorias)
                     {
-                        quantidadePorCategoria.Add(categoria, 0);
+                        quantidadePorCategoria[categoria] = 0;
                     }
 
                     // Preenchendo o dicionário com as quantidades reais de itens vendidos
                     while (reader.Read())
                     {
                         string categoria = reader["Categoria"].ToString();
-                        int totalQuantidade = Convert.ToInt32(reader["TotalQuantidade"]);
+                        int totalQuantidade = reader["TotalQuantidade"] != DBNull.Value ? Convert.ToInt32(reader["TotalQuantidade"]) : 0;
 
                         // Verificando se a categoria está na lista de categorias definidas
                         if (quantidadePorCategoria.ContainsKey(categoria))
@@ -216,11 +215,11 @@ namespace Zita
                     // Cores para cada categoria (em tons de roxo)
                     var cores = new OxyColor[]
                     {
-                        OxyColor.FromRgb(218, 162, 255),    // #b1104c
-                        OxyColor.FromRgb(218, 162, 255),    // #c52d63
-                        OxyColor.FromRgb(168, 116, 213),   // #d84a79
-                        OxyColor.FromRgb(142, 92, 191),  // #ec6690
-                        OxyColor.FromRgb(117, 69, 170)   // #ff83a6
+                OxyColor.FromRgb(218, 162, 255),    // #b1104c
+                OxyColor.FromRgb(218, 162, 255),    // #c52d63
+                OxyColor.FromRgb(168, 116, 213),   // #d84a79
+                OxyColor.FromRgb(142, 92, 191),  // #ec6690
+                OxyColor.FromRgb(117, 69, 170)   // #ff83a6
                     };
 
                     int indiceCor = 0; // Índice para percorrer o array de cores
@@ -228,7 +227,14 @@ namespace Zita
                     foreach (string categoria in categorias)
                     {
                         var cor = cores[indiceCor]; // Seleciona a cor para a categoria atual
-                        barSeries.Items.Add(new ColumnItem { Value = quantidadePorCategoria[categoria], Color = cor });
+                        if (quantidadePorCategoria.ContainsKey(categoria))
+                        {
+                            barSeries.Items.Add(new ColumnItem { Value = quantidadePorCategoria[categoria], Color = cor });
+                        }
+                        else
+                        {
+                            barSeries.Items.Add(new ColumnItem { Value = 0, Color = cor });
+                        }
                         indiceCor++;
                     }
 
@@ -254,6 +260,13 @@ namespace Zita
 
             plotView.Model = model;
         }
+
+
+
+
+
+
+
 
 
 

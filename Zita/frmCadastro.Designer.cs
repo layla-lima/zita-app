@@ -58,9 +58,9 @@
             label2.Font = new Font("Arial", 9F, FontStyle.Bold);
             label2.Location = new Point(185, 126);
             label2.Name = "label2";
-            label2.Size = new Size(43, 15);
+            label2.Size = new Size(100, 15);
             label2.TabIndex = 1;
-            label2.Text = "Nome:";
+            label2.Text = "Nome Completo:";
             // 
             // txtNome
             // 
