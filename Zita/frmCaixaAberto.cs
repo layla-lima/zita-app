@@ -21,34 +21,25 @@ namespace Zita
 
         public frmCaixaAberto(string nomeUsuario)
         {
-
             InitializeComponent();
-            
+
             this.FormBorderStyle = FormBorderStyle.None;
             connection = new SqlConnection(connectionString);
-            // Desativa os estilos visuais dos cabeçalhos
             dgrCompras.EnableHeadersVisualStyles = false;
-
-            // Define o estilo para o cabeçalho das colunas
             dgrCompras.ColumnHeadersDefaultCellStyle.BackColor = Color.Black;
             dgrCompras.ColumnHeadersDefaultCellStyle.ForeColor = Color.White;
             dgrCompras.AdvancedColumnHeadersBorderStyle.All = DataGridViewAdvancedCellBorderStyle.None;
             dgrCompras.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             txtDesconto.Leave += TxtDesconto_Leave;
 
-            // Armazena o nome do usuário logado
             this.nomeUsuario = nomeUsuario;
-
-
         }
+
         private void frmCaixaAberto_Load(object sender, EventArgs e)
         {
             if (!string.IsNullOrEmpty(nomeUsuario))
             {
-                // Use o nome do usuário conforme necessário
-                // Por exemplo, atualizar um label ou qualquer outro uso
-                // Exemplo:
-                // lblWelcome.Text = $"Bem-vindo, {nomeUsuario}";
+                lblFuncionario.Text = nomeUsuario; // Atualiza o lblFuncionario com o nome do usuário
             }
             else
             {

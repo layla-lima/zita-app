@@ -67,6 +67,8 @@
             panel3 = new Panel();
             btnClose = new PictureBox();
             pictureBox1 = new PictureBox();
+            label8 = new Label();
+            lblFuncionario = new Label();
             ((System.ComponentModel.ISupportInitialize)dgrCompras).BeginInit();
             panel1.SuspendLayout();
             panel2.SuspendLayout();
@@ -98,10 +100,10 @@
             dgrCompras.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dgrCompras.Columns.AddRange(new DataGridViewColumn[] { Codigo, Produto, ValorUnitario, Quantidade, ValorFinal });
             dgrCompras.EnableHeadersVisualStyles = false;
-            dgrCompras.Location = new Point(54, 354);
+            dgrCompras.Location = new Point(54, 387);
             dgrCompras.Name = "dgrCompras";
             dgrCompras.ReadOnly = true;
-            dgrCompras.Size = new Size(669, 341);
+            dgrCompras.Size = new Size(663, 301);
             dgrCompras.TabIndex = 35;
             // 
             // Codigo
@@ -141,7 +143,7 @@
             btnRemover.FlatStyle = FlatStyle.Popup;
             btnRemover.Font = new Font("Segoe UI", 12F, FontStyle.Bold);
             btnRemover.ForeColor = SystemColors.ButtonFace;
-            btnRemover.Location = new Point(245, 199);
+            btnRemover.Location = new Point(244, 195);
             btnRemover.Name = "btnRemover";
             btnRemover.Size = new Size(190, 38);
             btnRemover.TabIndex = 5;
@@ -156,7 +158,7 @@
             btnAdicionar.FlatStyle = FlatStyle.Popup;
             btnAdicionar.Font = new Font("Segoe UI", 12F, FontStyle.Bold);
             btnAdicionar.ForeColor = SystemColors.ButtonFace;
-            btnAdicionar.Location = new Point(33, 199);
+            btnAdicionar.Location = new Point(32, 195);
             btnAdicionar.Name = "btnAdicionar";
             btnAdicionar.Size = new Size(190, 38);
             btnAdicionar.TabIndex = 4;
@@ -166,7 +168,7 @@
             // 
             // txtQuantidade
             // 
-            txtQuantidade.Location = new Point(453, 138);
+            txtQuantidade.Location = new Point(452, 134);
             txtQuantidade.Name = "txtQuantidade";
             txtQuantidade.Size = new Size(74, 23);
             txtQuantidade.TabIndex = 3;
@@ -175,7 +177,7 @@
             // 
             label6.AutoSize = true;
             label6.Font = new Font("Segoe UI", 15.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label6.Location = new Point(313, 131);
+            label6.Location = new Point(312, 127);
             label6.Name = "label6";
             label6.Size = new Size(134, 30);
             label6.TabIndex = 31;
@@ -185,7 +187,7 @@
             // 
             label3.AutoSize = true;
             label3.Font = new Font("Segoe UI", 15.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label3.Location = new Point(32, 131);
+            label3.Location = new Point(31, 127);
             label3.Name = "label3";
             label3.Size = new Size(155, 30);
             label3.TabIndex = 28;
@@ -195,7 +197,7 @@
             // 
             label2.AutoSize = true;
             label2.Font = new Font("Segoe UI", 15.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label2.Location = new Point(33, 82);
+            label2.Location = new Point(32, 78);
             label2.Name = "label2";
             label2.Size = new Size(198, 30);
             label2.TabIndex = 27;
@@ -203,7 +205,7 @@
             // 
             // txtCodProduto
             // 
-            txtCodProduto.Location = new Point(245, 38);
+            txtCodProduto.Location = new Point(244, 34);
             txtCodProduto.Name = "txtCodProduto";
             txtCodProduto.Size = new Size(140, 23);
             txtCodProduto.TabIndex = 1;
@@ -212,7 +214,7 @@
             // 
             label1.AutoSize = true;
             label1.Font = new Font("Segoe UI", 15.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label1.Location = new Point(33, 31);
+            label1.Location = new Point(32, 27);
             label1.Name = "label1";
             label1.Size = new Size(209, 30);
             label1.TabIndex = 25;
@@ -222,7 +224,7 @@
             // 
             lblNomeProduto.AutoSize = true;
             lblNomeProduto.Font = new Font("Segoe UI Semibold", 18F, FontStyle.Bold | FontStyle.Italic, GraphicsUnit.Point, 0);
-            lblNomeProduto.Location = new Point(237, 80);
+            lblNomeProduto.Location = new Point(236, 76);
             lblNomeProduto.Name = "lblNomeProduto";
             lblNomeProduto.Size = new Size(171, 32);
             lblNomeProduto.TabIndex = 37;
@@ -232,7 +234,7 @@
             // 
             lblValorUnitario.AutoSize = true;
             lblValorUnitario.Font = new Font("Segoe UI Semibold", 15.75F, FontStyle.Bold | FontStyle.Italic, GraphicsUnit.Point, 0);
-            lblValorUnitario.Location = new Point(193, 131);
+            lblValorUnitario.Location = new Point(192, 127);
             lblValorUnitario.Name = "lblValorUnitario";
             lblValorUnitario.Size = new Size(85, 30);
             lblValorUnitario.TabIndex = 38;
@@ -256,9 +258,9 @@
             panel1.Controls.Add(optDebito);
             panel1.Controls.Add(optCredito);
             panel1.Controls.Add(label7);
-            panel1.Location = new Point(782, 93);
+            panel1.Location = new Point(782, 123);
             panel1.Name = "panel1";
-            panel1.Size = new Size(561, 405);
+            panel1.Size = new Size(561, 375);
             panel1.TabIndex = 39;
             // 
             // btnConfirmarDesconto
@@ -445,9 +447,9 @@
             panel2.Controls.Add(lblNomeProduto);
             panel2.Controls.Add(label2);
             panel2.Controls.Add(label3);
-            panel2.Location = new Point(21, 93);
+            panel2.Location = new Point(21, 123);
             panel2.Name = "panel2";
-            panel2.Size = new Size(731, 627);
+            panel2.Size = new Size(731, 597);
             panel2.TabIndex = 40;
             // 
             // btnBuscar
@@ -455,7 +457,7 @@
             btnBuscar.BackColor = SystemColors.ActiveCaptionText;
             btnBuscar.FlatStyle = FlatStyle.Popup;
             btnBuscar.ForeColor = SystemColors.ButtonHighlight;
-            btnBuscar.Location = new Point(411, 37);
+            btnBuscar.Location = new Point(410, 33);
             btnBuscar.Name = "btnBuscar";
             btnBuscar.Size = new Size(75, 23);
             btnBuscar.TabIndex = 2;
@@ -496,12 +498,35 @@
             pictureBox1.TabIndex = 0;
             pictureBox1.TabStop = false;
             // 
+            // label8
+            // 
+            label8.AutoSize = true;
+            label8.Font = new Font("Segoe UI", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label8.Location = new Point(21, 93);
+            label8.Name = "label8";
+            label8.Size = new Size(260, 25);
+            label8.TabIndex = 39;
+            label8.Text = "Nome do(a) Funcionário(a):";
+            // 
+            // lblFuncionario
+            // 
+            lblFuncionario.AutoSize = true;
+            lblFuncionario.Font = new Font("Segoe UI", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            lblFuncionario.ForeColor = Color.FromArgb(60, 60, 60);
+            lblFuncionario.Location = new Point(277, 93);
+            lblFuncionario.Name = "lblFuncionario";
+            lblFuncionario.Size = new Size(71, 25);
+            lblFuncionario.TabIndex = 40;
+            lblFuncionario.Text = "Nome ";
+            // 
             // frmCaixaAberto
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1370, 749);
+            Controls.Add(lblFuncionario);
             Controls.Add(panel3);
+            Controls.Add(label8);
             Controls.Add(panel1);
             Controls.Add(btnFinalizarCompra);
             Controls.Add(dgrCompras);
@@ -519,6 +544,7 @@
             ((System.ComponentModel.ISupportInitialize)btnClose).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             ResumeLayout(false);
+            PerformLayout();
         }
 
         #endregion
@@ -561,5 +587,7 @@
         private Button btnConfirmarDesconto;
         private TextBox txtDesconto;
         private Label label5;
+        private Label label8;
+        private Label lblFuncionario;
     }
 }
